@@ -1,6 +1,7 @@
-import { GET_ALL_COUNTRIES } from "../actions";
+import { GET_ALL_COUNTRIES, GET_FILTERED_COUNTRIES, GET_FULL_COUNTRY_LIST } from "../actions";
 
 const initialState = {
+    fullCountryList: [],
     countries: [],
     countries_activities:[]
 }
@@ -8,10 +9,19 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ALL_COUNTRIES:
-            // console.log('action.payload.content', action.payload.content)
             return{
                 ...state,
                 countries: action.payload
+            }
+        case GET_FILTERED_COUNTRIES:
+            return{
+                ...state,
+                countries: action.payload
+            }
+        case GET_FULL_COUNTRY_LIST:
+            return{
+                ...state,
+                fullCountryList: action.payload
             }
     
         default:

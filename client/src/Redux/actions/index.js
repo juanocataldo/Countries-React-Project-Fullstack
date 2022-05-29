@@ -1,6 +1,7 @@
 export const GET_ALL_COUNTRIES = 'GET_ALL_COUNTRIES'
 export const GET_ARGENTINE = 'GET_ARGENTINE'
-
+export const GET_FILTERED_COUNTRIES = 'GET_FILTERED_COUNTRIES'
+export const GET_FULL_COUNTRY_LIST = 'GET_FULL_COUNTRY_LIST'
 // let countryArray = []
 
 //Fetch a la api externa y fill en nuestra DB
@@ -44,17 +45,39 @@ export function uploadData(data){
         .catch(e => console.log(e))
 }
 
-export function getCountries(p,s){
+export function getCountriesPaginated(o,p,page){
     return function(dispatch){
-        return fetch(`http://localhost:3001/home?page=${p}&size=${s}`)
+        return fetch(`http://localhost:3001/home?order=${o}&poblation=${p}&page=${page}`)
         .then(data => data.json())
         .then(res => {
-            console.log('getCountries --> ',res)
             dispatch({
-                type: GET_ALL_COUNTRIES,
+                type: GET_FILTERED_COUNTRIES,
                 payload: res
             })
         })
+    }
+}
+
+export function getCountries(){
+    return function(dispatch){
+        return fetch(`http://localhost:3001/home/all`)
+        .then(data => data.json())
+        .then(res => {
+            dispatch({
+                type: GET_FULL_COUNTRY_LIST,
+                payload: res
+            })
+        })
+    }
+}
+
+export function orderCountries(countries){
+    console.log('sorted: ',countries)
+    return function(dispatch){        
+            dispatch({
+                type:GET_FILTERED_COUNTRIES,
+                payload: countries
+            })        
     }
 }
 

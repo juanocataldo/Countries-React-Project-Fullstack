@@ -10,11 +10,21 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
+router.get('/home/all' , async (req, res) => {
+  try {
+    const allCountries = await Country.findAll()
+    res.json(allCountries)
+  } catch (error) {
+    res.status(400).json({msg: error.message()})
+  }
+})
+
 //PAGINACIÓN
 router.get("/home", async (req, res) => {
   try {
     const pageAsNumber = Number.parseInt(req.query.page);
     const sizeAsNumber = Number.parseInt(req.query.size);
+    const { order, poblation } = req.query;
 
     let page = 0;
     let size = 10;
@@ -27,20 +37,29 @@ router.get("/home", async (req, res) => {
       size = sizeAsNumber;
     }
 
-     console.log(`pageAsNumber is ${pageAsNumber} and sizeAsNumber is ${sizeAsNumber}`)
-     console.log(`Page is ${page} and size is ${size}`)
+    if(poblation !== ''){
+      const allCountries = await Country.findAndCountAll({
+        limit: size,
+        offset: page * size,
+        order: [
+          ["country_poblation", poblation]
+        ]
+      });
 
-    const allCountries = await Country.findAndCountAll({
-      limit: size,
-      offset: page * size,
-    });
+      res.json(allCountries.rows);
+    }else{
+      const allCountries = await Country.findAndCountAll({
+        limit: size,
+        offset: page * size,
+        order: [
+          ["country_name", order]          
+        ]
+      });
 
-    res.json({
-      content: allCountries.rows,
-      totalPages: Math.ceil(allCountries.count / size),
-    });
+      res.json(allCountries.rows);
+    }
   } catch (error) {
-    res.status(400).json({ msg: error.msg() });
+    res.status(400).json({ msg: error.message });
   }
 });
 
@@ -68,7 +87,7 @@ router.post("/", async (req, res) => {
       country_poblation,
     });
 
-    res.send({msg:"ok"});
+    res.send({ msg: "ok" });
   } catch (e) {
     res.status(400).json({ error: e });
   }
