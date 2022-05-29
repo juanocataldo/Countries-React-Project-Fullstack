@@ -2,11 +2,14 @@ export const GET_ALL_COUNTRIES = 'GET_ALL_COUNTRIES'
 export const GET_ARGENTINE = 'GET_ARGENTINE'
 export const GET_FILTERED_COUNTRIES = 'GET_FILTERED_COUNTRIES'
 export const GET_FULL_COUNTRY_LIST = 'GET_FULL_COUNTRY_LIST'
+export const GET_ALL_ACTIVITIES = 'GET_ALL_ACTIVITIES'
+
 // let countryArray = []
 
 //Fetch a la api externa y fill en nuestra DB
 export function getAllCountries(){
     return function(dispatch){
+        console.log('INSERTING')
         return fetch('https://restcountries.com/v3/all')
         .then(data => data.json())
         .then(res => {   
@@ -45,6 +48,32 @@ export function uploadData(data){
         .catch(e => console.log(e))
 }
 
+export function loadActivity(data){    
+    fetch(`http://localhost:3001/activity`,
+        {
+            method:'POST',
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type" : "application/json"
+            }
+        })
+        .catch(e => console.log(e))
+}
+
+export function getAllActivities(){
+    console.log('GET ACTIVITIES')
+    return function(dispatch){
+        return fetch('http://localhost:3001/activities')
+        .then(data => data.json())
+        .then(res => {
+            dispatch({
+                type: GET_ALL_ACTIVITIES,
+                payload: res
+            })
+        })
+    }
+}
+
 export function getCountriesPaginated(o,p,page){
     return function(dispatch){
         return fetch(`http://localhost:3001/home?order=${o}&poblation=${p}&page=${page}`)
@@ -81,27 +110,16 @@ export function orderCountries(countries){
     }
 }
 
-// export function getArgentine(){
-//     return function(dispatch){
-//         return fetch('https://restcountries.com/v3/name/argentina')
-//         .then(data => data.json())
-//         .then(res => {
-//             let argentina = {
-//                 country_id:res[0].cca3 || res[0].cioc || 'N/A',
-//                 country_name: res[0].translations.spa.official || res[0].translations.spa.common || 'N/A',
-//                 country_flag: res[0].flags[0] || 'N/A',
-//                 country_continent: res[0].continents[0] || 'N/A',
-//                 country_capital: res[0].capital[0] || 'N/A',
-//                 country_subregion: res[0].subregion || 'N/A',
-//                 country_area: res[0].area.toString() || 'N/A',
-//                 country_poblation: res[0].population.toString() || 'N/A'
-//             }
-//             console.log('Hecho objeto ',res)
 
-//             dispatch({
-//                 type: GET_ARGENTINE,
-//                 payload: res
-//             })
-//         })
-//     }
-// }
+export function createActivityOfCountry(data){
+    console.log('DATAAAAAAAAAAAA',data)    
+    fetch(`http://localhost:3001/activity_country`,
+        {
+            method:'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type" : "application/json"
+            }
+        })
+        .catch(e => console.log(e))
+}

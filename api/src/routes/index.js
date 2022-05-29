@@ -1,4 +1,4 @@
-const { Country } = require("../db");
+const { Country, Tourist_activity } = require("../db");
 
 const { Router } = require("express");
 
@@ -10,12 +10,63 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
+router.get('/activities', async(req, res) => {
+  try {
+    let activities = await Tourist_activity.findAll();
+    res.send(activities)
+  } catch (error) {
+    res.status(400).json({msg:error.message})
+  }
+})
+
+router.put('/activity_country', async (req, res) => {
+  try {
+    const {country_id, touact_id} = req.body
+    
+    let country = await Country.findByPk(country_id)
+    console.log('country para actividad ',country)
+    let touact_id2 = await Tourist_activity.findAll({   
+      raw: true,   
+      order: [
+        ["touact_id", "DESC"]
+      ],
+      limit:1
+    })
+    // const activity = await Tourist_activity.findByPk()
+    console.log('EL ID PARA INSERTAR (EL ULTIMO) ', touact_id2[0].touact_id)
+    res.json(await country.addTourist_activity(touact_id2[0].touact_id))        
+  } catch (error) {
+    res.status(400).json({msg:error.message})
+  }
+})
+
+router.post('/activity' , async (req, res) => {
+  try {
+
+    const {touact_name, touact_difficulty, touact_duration, touact_season} = req.body;
+
+    const activity = await Tourist_activity.create({
+      touact_name,
+      touact_difficulty,
+      touact_duration,
+      touact_season
+    })
+
+    console.log('Actividad creada ', activity)
+
+    res.send({msg:"done"})
+
+  } catch (error) {
+    res.status(400).json({msg: error.message })
+  }
+})
+
 router.get('/home/all' , async (req, res) => {
   try {
     const allCountries = await Country.findAll()
     res.json(allCountries)
   } catch (error) {
-    res.status(400).json({msg: error.message()})
+    res.status(400).json({msg: error.message })
   }
 })
 

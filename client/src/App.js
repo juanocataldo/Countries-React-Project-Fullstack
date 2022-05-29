@@ -3,16 +3,25 @@ import './App.css';
 import {  Routes, Route } from 'react-router-dom';
 import { Home } from '../src/Components/Home'
 import { Access } from './Components/Access';
+import { getAllCountries } from './Redux/actions';
+import { useDispatch } from 'react-redux';
+import { CreateActivity } from './Components/CreateActivity';
+import { NavBar } from './Components/NavBar';
 function App() {
 
+  const dispatch = useDispatch()
   
   useEffect(() => {
+    // INSERT MASIVO INICIAL
+    // dispatch(getAllCountries()) 
   },[])
  
 
   return (
-    <div className="App">      
+    <div className="App"> 
+    <NavBar />     
       <Routes>
+        <Route path='/create_activity' element={<CreateActivity />} />
         <Route path='/home' element={<Home />} />
         <Route path='/' element={<Access />} />
       </Routes>      
