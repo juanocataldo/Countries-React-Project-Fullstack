@@ -75,7 +75,6 @@ export function loadActivity(data){
 }
 
 export function getAllActivities(){
-    console.log('GET ACTIVITIES')
     return function(dispatch){
         return fetch('http://localhost:3001/activities')
         .then(data => data.json())

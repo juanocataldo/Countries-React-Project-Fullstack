@@ -2,7 +2,7 @@ import { Country } from "./Country"
 import '../styles/country.css'
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
-import { getCountriesPaginated, GET_ALL_COUNTRIES, orderCountries, GET_FILTERED_COUNTRIES, getCountries } from "../Redux/actions"
+import { getCountriesPaginated, GET_ALL_COUNTRIES, orderCountries, GET_FILTERED_COUNTRIES, getCountries, getAllActivities } from "../Redux/actions"
 import { NavLink } from "react-router-dom"
 
 export function Home() {
@@ -10,10 +10,12 @@ export function Home() {
     const dispatch = useDispatch()
     let countriesPaginated = useSelector(store => store.countries)
     let allCountries = useSelector(store => store.fullCountryList)
+    let allActivities = useSelector(store => store.countries_activities)
 
     const [countryOrder, setCountryOrder] = useState('')
     const [populationOrder, setPopulationOrder] = useState('')
     const [searchCountryByName, setSearchCountryByName] = useState('')
+    // const [activities, setActivities] = useState('')
 
     const pagination = Math.ceil(allCountries.length / 10)
 
@@ -22,6 +24,7 @@ export function Home() {
         setPopulationOrder('')
         dispatch(getCountriesPaginated('ASC', ''))      
         dispatch(getCountries())  
+        dispatch(getAllActivities())
         
     }, [])
 
@@ -69,6 +72,15 @@ export function Home() {
         return allCountries.filter(c => c.country_name.match(new RegExp(query, "i")))       
       }
 
+    function filterByContinent(e){
+        console.log('FILTRANDO POR CONTINENTE ',e.target.value)
+        let filtered = allCountries.filter(c => c.country_continent === e.target.value)
+        dispatch({
+            type:GET_ALL_COUNTRIES,
+            payload:filtered        
+        })
+    }
+
     function searchByName(e){
         e.preventDefault()             
         let filtered = filterItems(searchCountryByName)
@@ -93,10 +105,21 @@ export function Home() {
             {/* FILTROS */}
             <button onClick={() => orderByAZ()}>A-Z</button>
             <button onClick={() => orderByZA()}>Z-A</button><br />
+            
             <label for="continent">Order by continent:</label>
-
-            <select name="continent" id="continents">
-                {countriesPaginated && countriesPaginated.map(c => <option value={c.country_continent}>{c.country_continent}</option>)}               
+            <select name="continent" id="continents" onChange={filterByContinent}>
+                <option  value="Africa">Antartica</option>
+                <option  value="Africa">Africa</option>
+                <option  value="Asia">Asia</option>
+                <option  value="Europe">Europe</option>
+                <option  value="North America">North America</option>
+                <option  value="Oceania">Oceania</option>
+                <option  value="South America">South America</option>
+            </select>
+            <br />
+            <label for="continent">Filter by activity:</label>
+            <select name="activity" id="activities">
+                {allActivities && allActivities.map(c => <option value={c.touact_name}>{c.touact_name}</option>)}               
             </select>
             <br />
 

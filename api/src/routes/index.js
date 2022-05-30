@@ -10,9 +10,28 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.get('/details', async(req, res) =>{  
+//TRAIGO ACTIVIDADES SEGUN ID DE PAIS
+router.get('/eager/:id', async(req, res) =>{
   try {
-    const {id} = req.query
+    const {id} = req.params;
+    const allData = await Country.findAll({
+      include: Tourist_activity,
+      where:{
+        country_id : id
+      }
+    });
+
+    res.json(allData)
+  } catch (error) {
+    res.status(400).json({msg: error.message})
+  }
+})
+
+
+router.get('/details/:id', async(req, res) =>{  
+  try {
+    const {id} = req.params
+    console.log('id en ruta details ',id)
     const country = await Country.findByPk(id)
     res.json(country)    
   } catch (error) {
@@ -23,7 +42,7 @@ router.get('/details', async(req, res) =>{
 router.get('/activities', async(req, res) => {
   try {
     let activities = await Tourist_activity.findAll();
-    res.send(activities)
+    res.json(activities)
   } catch (error) {
     res.status(400).json({msg:error.message})
   }

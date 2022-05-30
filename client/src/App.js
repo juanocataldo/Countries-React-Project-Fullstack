@@ -22,7 +22,7 @@ function App() {
     <div className="App"> 
     <NavBar />     
       <Routes>
-        <Route path='/details' element={<CountryDetails /> } />
+        <Route path='/details/:id' element={<CountryDetails /> } />
         <Route path='/create_activity' element={<CreateActivity />} />
         <Route path='/home' element={<Home />} />
         <Route path='/' element={<Access />} />
