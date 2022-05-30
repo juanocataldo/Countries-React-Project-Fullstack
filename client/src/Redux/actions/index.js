@@ -3,6 +3,7 @@ export const GET_ARGENTINE = 'GET_ARGENTINE'
 export const GET_FILTERED_COUNTRIES = 'GET_FILTERED_COUNTRIES'
 export const GET_FULL_COUNTRY_LIST = 'GET_FULL_COUNTRY_LIST'
 export const GET_ALL_ACTIVITIES = 'GET_ALL_ACTIVITIES'
+export const GET_COUNTRY_DETAILS = 'GET_COUNTRY_DETAILS'
 
 // let countryArray = []
 
@@ -35,6 +36,19 @@ export function getAllCountries(){
         .catch(err => console.log(err))
     }
 }
+
+// export function countryDetails(){
+//     return function(dispatch){
+//         return fetch('')
+//         .then(res => res.json)
+//         .then(data => {
+//             dispatch({
+//                 type:GET_COUNTRY_DETAILS,
+//                 payload: data
+//             })
+//         })
+//     }
+// }
 
 export function uploadData(data){    
     fetch(`http://localhost:3001/`,

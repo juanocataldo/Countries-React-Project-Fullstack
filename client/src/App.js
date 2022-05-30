@@ -7,6 +7,7 @@ import { getAllCountries } from './Redux/actions';
 import { useDispatch } from 'react-redux';
 import { CreateActivity } from './Components/CreateActivity';
 import { NavBar } from './Components/NavBar';
+import { CountryDetails } from './Components/CountryDetails';
 function App() {
 
   const dispatch = useDispatch()
@@ -21,6 +22,7 @@ function App() {
     <div className="App"> 
     <NavBar />     
       <Routes>
+        <Route path='/details' element={<CountryDetails /> } />
         <Route path='/create_activity' element={<CreateActivity />} />
         <Route path='/home' element={<Home />} />
         <Route path='/' element={<Access />} />

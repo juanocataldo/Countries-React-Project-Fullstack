@@ -1,8 +1,9 @@
-import { GET_ALL_COUNTRIES, GET_FILTERED_COUNTRIES, GET_FULL_COUNTRY_LIST, GET_ALL_ACTIVITIES } from "../actions";
+import { GET_ALL_COUNTRIES, GET_FILTERED_COUNTRIES, GET_FULL_COUNTRY_LIST, GET_ALL_ACTIVITIES, GET_COUNTRY_DETAILS } from "../actions";
 
 const initialState = {
     fullCountryList: [],
     countries: [],
+    country_details:{},
     countries_activities:[]
 }
 
@@ -27,6 +28,11 @@ const rootReducer = (state = initialState, action) => {
             return{
                 ...state,
                 countries_activities: action.payload
+            }
+        case GET_COUNTRY_DETAILS:
+            return{
+                ...state,
+                country_details: action.payload
             }
     
         default:

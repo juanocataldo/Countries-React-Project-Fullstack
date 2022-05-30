@@ -10,6 +10,16 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
+router.get('/details', async(req, res) =>{  
+  try {
+    const {id} = req.query
+    const country = await Country.findByPk(id)
+    res.json(country)    
+  } catch (error) {
+    res.status(400).json({msg: error.message})
+  }
+})
+
 router.get('/activities', async(req, res) => {
   try {
     let activities = await Tourist_activity.findAll();

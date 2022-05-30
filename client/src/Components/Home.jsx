@@ -106,7 +106,7 @@ export function Home() {
 
         {/* MUESTRO COUNTRIES */}
         <div className="countryContainer">
-            {countriesPaginated && countriesPaginated.map(c => <Country name={c.country_name} flag={c.country_flag} continent={c.country_continent} />)}
+            {countriesPaginated && countriesPaginated.map(c => <Country id={c.country_id} name={c.country_name} flag={c.country_flag} continent={c.country_continent} />)}
         </div>
 
         {/* SETEO MI PAGINADOR CON EL ORDEN (ESTADO) Y PAGE AND SIZE */}

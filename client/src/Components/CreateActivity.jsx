@@ -78,7 +78,7 @@ export function CreateActivity(){
 
             <label>Select country for this activity</label>
             <select name="country" id="countries" onChange={showPK}>
-                {ordered && ordered.map(c => <option value={c.country_name}>{c.country_name}</option>)}               
+                {ordered && ordered.map(c => <option value={c.country_name} defaultValue={c.country_name}>{c.country_name}</option>)}               
             </select>
             <br />
             <input type="submit" value="Save" />
