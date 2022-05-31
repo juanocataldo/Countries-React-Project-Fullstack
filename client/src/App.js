@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { CreateActivity } from './Components/CreateActivity';
 import { NavBar } from './Components/NavBar';
 import { CountryDetails } from './Components/CountryDetails';
+import { Favorites } from './Components/Favorites';
 function App() {
 
   const dispatch = useDispatch()
@@ -22,6 +23,7 @@ function App() {
     <div className="App"> 
     <NavBar />     
       <Routes>
+        <Route path='/favorites' element={<Favorites />} />
         <Route path='/details/:id' element={<CountryDetails /> } />
         <Route path='/create_activity' element={<CreateActivity />} />
         <Route path='/home' element={<Home />} />
@@ -34,3 +36,4 @@ function App() {
 }
 
 export default App;
+ 

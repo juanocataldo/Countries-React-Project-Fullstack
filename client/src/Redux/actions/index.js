@@ -4,6 +4,7 @@ export const GET_FILTERED_COUNTRIES = 'GET_FILTERED_COUNTRIES'
 export const GET_FULL_COUNTRY_LIST = 'GET_FULL_COUNTRY_LIST'
 export const GET_ALL_ACTIVITIES = 'GET_ALL_ACTIVITIES'
 export const GET_COUNTRY_DETAILS = 'GET_COUNTRY_DETAILS'
+export const SET_FAVORITE_COUNTRY = 'SET_FAVORITE_COUNTRY'
 
 // let countryArray = []
 
@@ -49,6 +50,19 @@ export function getAllCountries(){
 //         })
 //     }
 // }
+
+export function setFavCountry(id){
+    return function(dispatch){
+        return fetch(`http://localhost:3001/details/${id}`)
+        .then(data => data.json())
+        .then(res => {
+            dispatch({
+                type: SET_FAVORITE_COUNTRY,
+                payload: res
+            })
+        })
+    }
+}
 
 export function uploadData(data){    
     fetch(`http://localhost:3001/`,
@@ -114,7 +128,6 @@ export function getCountries(){
 }
 
 export function orderCountries(countries){
-    console.log('sorted: ',countries)
     return function(dispatch){        
             dispatch({
                 type:GET_FILTERED_COUNTRIES,
@@ -125,7 +138,6 @@ export function orderCountries(countries){
 
 
 export function createActivityOfCountry(data){
-    console.log('DATAAAAAAAAAAAA',data)    
     fetch(`http://localhost:3001/activity_country`,
         {
             method:'PUT',
