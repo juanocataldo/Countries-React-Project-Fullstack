@@ -2,7 +2,7 @@ import { Country } from "./Country"
 import '../styles/country.css'
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
-import { getCountriesPaginated, GET_ALL_COUNTRIES, orderCountries, GET_FILTERED_COUNTRIES, getCountries, getAllActivities } from "../Redux/actions"
+import { getFullActivities, getCountriesPaginated, GET_ALL_COUNTRIES, orderCountries, GET_FILTERED_COUNTRIES, getCountries, getAllActivities } from "../Redux/actions"
 import { NavLink } from "react-router-dom"
 
 export function Home() {
@@ -11,6 +11,7 @@ export function Home() {
     let countriesPaginated = useSelector(store => store.countries)
     let allCountries = useSelector(store => store.fullCountryList)
     let allActivities = useSelector(store => store.countries_activities)
+    const fullActivities = useSelector(store => store.full_activities)
 
     const [countryOrder, setCountryOrder] = useState('')
     const [populationOrder, setPopulationOrder] = useState('')
@@ -22,9 +23,12 @@ export function Home() {
     useEffect(() => {
         setCountryOrder('ASC')
         setPopulationOrder('')
+        dispatch(getAllActivities())
         dispatch(getCountriesPaginated('ASC', ''))      
         dispatch(getCountries())  
-        dispatch(getAllActivities())
+        dispatch(getFullActivities())
+
+        
         
     }, [])
 
@@ -80,6 +84,32 @@ export function Home() {
             payload:filtered        
         })
     }
+    
+    function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+      }
+
+    function filterByActivity(e){
+        console.log('SELECTED ',e.target.value)
+        let filter = fullActivities.map(a => {
+            if(a.touact_name.toLowerCase() === e.target.value.toLowerCase()){
+                return a.countries.map(a => a.country_id).join(';')
+            }
+        } )
+
+        let filtered = filter.filter(function(x) {
+            return x !== undefined;
+       });
+
+       filtered = allCountries.filter(item => filtered.includes(item.country_id));
+
+       console.log(filtered)
+
+        dispatch({
+            type:GET_ALL_COUNTRIES,
+            payload:filtered        
+        })
+    }
 
 
 
@@ -87,14 +117,19 @@ export function Home() {
         e.preventDefault()             
         let filtered = filterItems(searchCountryByName)
         countriesPaginated = filtered        
-        console.log('filtered ',filtered)
-        console.log('countriesPaginated ', countriesPaginated)
 
         dispatch({
             type:GET_ALL_COUNTRIES,
             payload:filtered        
         })
     }
+    const seen = new Set();
+    allActivities = allActivities.filter(el => {
+        const duplicate = seen.has(el.touact_name.toLowerCase());
+        seen.add(el.touact_name.toLowerCase());
+        return !duplicate;
+      });
+
     return <div>
         <h1>Countries</h1>
         <div className="filters">
@@ -110,6 +145,7 @@ export function Home() {
             
             <label for="continent">Order by continent:</label>
             <select name="continent" id="continents" onChange={filterByContinent}>
+            <option disabled="disabled" selected="Select" value="Select option">Select an option</option>
                 <option  value="Africa">Antartica</option>
                 <option  value="Africa">Africa</option>
                 <option  value="Asia">Asia</option>
@@ -119,9 +155,12 @@ export function Home() {
                 <option  value="South America">South America</option>
             </select>
             <br />
-            <label for="continent">Filter by activity:</label>
-            <select name="activity" id="activities">
-                {allActivities && allActivities.map(c => <option value={c.touact_name}>{c.touact_name}</option>)}               
+            <label for="activity">Filter by activity:</label>
+            <select  name="activity" id="activities" defaultChecked='' onChange={filterByActivity}>
+                <option disabled="disabled" selected="Select" value="Select option">Select an option</option>
+                {allActivities && 
+                
+                allActivities.map(c => <option  value={c.touact_name}>{c.touact_name}</option>)}               
             </select>
             <br />
 

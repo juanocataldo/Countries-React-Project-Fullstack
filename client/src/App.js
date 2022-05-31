@@ -9,6 +9,7 @@ import { CreateActivity } from './Components/CreateActivity';
 import { NavBar } from './Components/NavBar';
 import { CountryDetails } from './Components/CountryDetails';
 import { Favorites } from './Components/Favorites';
+import { Home2 } from './Components/Home2';
 function App() {
 
   const dispatch = useDispatch()

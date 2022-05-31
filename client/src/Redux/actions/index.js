@@ -5,6 +5,7 @@ export const GET_FULL_COUNTRY_LIST = 'GET_FULL_COUNTRY_LIST'
 export const GET_ALL_ACTIVITIES = 'GET_ALL_ACTIVITIES'
 export const GET_COUNTRY_DETAILS = 'GET_COUNTRY_DETAILS'
 export const SET_FAVORITE_COUNTRY = 'SET_FAVORITE_COUNTRY'
+export const GET_FULL_ACTIVITIES = 'GET_FULL_ACTIVITIES'
 
 // let countryArray = []
 
@@ -95,6 +96,20 @@ export function getAllActivities(){
         .then(res => {
             dispatch({
                 type: GET_ALL_ACTIVITIES,
+                payload: res
+            })
+        })
+    }
+}
+
+export function getFullActivities(){
+    return function(dispatch){
+        return fetch('http://localhost:3001/activity_filter')
+        .then(data => data.json())
+        .then(res => {
+            console.log('FULL ACT', res)
+            dispatch({
+                type: GET_FULL_ACTIVITIES,
                 payload: res
             })
         })

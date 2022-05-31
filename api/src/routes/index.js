@@ -1,4 +1,4 @@
-const { Country, Tourist_activity } = require("../db");
+const { Country, Tourist_activity, Op } = require("../db");
 
 const { Router } = require("express");
 
@@ -14,6 +14,7 @@ const router = Router();
 router.get('/eager/:id', async(req, res) =>{
   try {
     const {id} = req.params;
+
     const allData = await Country.findAll({
       include: Tourist_activity,
       where:{
@@ -39,10 +40,21 @@ router.get('/details/:id', async(req, res) =>{
   }
 })
 
+router.get('/activity_filter', async(req, res) =>{
+  
+  const allData = await Tourist_activity.findAll({
+    include: Country
+  });
+
+  res.send(allData)
+
+})
+
 router.get('/activities', async(req, res) => {
   try {
     let activities = await Tourist_activity.findAll();
     res.json(activities)
+
   } catch (error) {
     res.status(400).json({msg:error.message})
   }

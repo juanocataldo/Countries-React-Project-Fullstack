@@ -1,11 +1,12 @@
-import { SET_FAVORITE_COUNTRY, GET_ALL_COUNTRIES, GET_FILTERED_COUNTRIES, GET_FULL_COUNTRY_LIST, GET_ALL_ACTIVITIES, GET_COUNTRY_DETAILS } from "../actions";
+import { GET_FULL_ACTIVITIES, SET_FAVORITE_COUNTRY, GET_ALL_COUNTRIES, GET_FILTERED_COUNTRIES, GET_FULL_COUNTRY_LIST, GET_ALL_ACTIVITIES, GET_COUNTRY_DETAILS } from "../actions";
 
 const initialState = {
     fullCountryList: [],
     countries: [],
     country_details:{},
     countries_activities:[],
-    favorites_countries:[]
+    favorites_countries:[],
+    full_activities:[]
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -39,6 +40,11 @@ const rootReducer = (state = initialState, action) => {
             return{
                 ...state,
                 favorites_countries: [...state.favorites_countries, action.payload]
+            }
+        case GET_FULL_ACTIVITIES:
+            return{
+                ...state,
+                full_activities: action.payload
             }
     
         default:
