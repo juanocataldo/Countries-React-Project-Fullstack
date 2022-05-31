@@ -153,6 +153,7 @@ export function orderCountries(countries){
 
 
 export function createActivityOfCountry(data){
+    console.log('CREATING ACT OF ',data)
     fetch(`http://localhost:3001/activity_country`,
         {
             method:'PUT',

@@ -6,6 +6,7 @@ export function CreateActivity(){
 
     const [activity, setActivity] = useState('')
     const [countryID, setCountryID] = useState('')
+    const [countryList, setCountryList] = useState([])
 
     const countries = useSelector(store => store.fullCountryList)
     const activities = useSelector(store => store.countries_activities)
@@ -27,7 +28,7 @@ export function CreateActivity(){
 
     useEffect(()=>{
         dispatch(getCountries())
-        dispatch(getAllActivities())       
+        dispatch(getAllActivities())             
     },[])
 
     function fillActivityState(e){
@@ -40,29 +41,41 @@ export function CreateActivity(){
 
     function submitActivity(e){
         e.preventDefault()
-        loadActivity(activity)
+        loadActivity(activity) //creo la actividad en su respectiva tabla
         
-        let country_id = countryID
-        let touact_id = 0
-        console.log('EL TOUCT ID ', touact_id)
-        let act = {
-            country_id,
-            touact_id
+        // let country_id = countryID
+        // let touact_id = 0
+
+        // console.log('EL TOUCT ID ', touact_id)
+        
+        for (let i = 0; i < countryList.length; i++) {
+            
+            let act = {
+                country_id: countryList[i],
+                touact_id: 0
+            }
+            
+            createActivityOfCountry(act)
+            
         }
-        createActivityOfCountry(act)
     }
 
+    
     function showPK(e){
-        // console.log(e.target.value)
+        
         let pk = countries.filter(c => c.country_name === e.target.value)
-        // console.log(pk[0].country_id)
         setCountryID(pk[0].country_id)
+        let add = pk[0].country_id
+        
+        setCountryList(oldItems => [...oldItems, add])
+        console.log(countryList)        
     }
 
  
 
     return <div>
         <h1>Create Activity</h1><br />
+        
         <form onSubmit={submitActivity}>
             <label>Activity name</label>
             <input type="text" name="touact_name" id="" onChange={fillActivityState} /><br />
@@ -82,6 +95,7 @@ export function CreateActivity(){
                 {ordered && ordered.map(c => <option value={c.country_name} defaultValue={c.country_name}>{c.country_name}</option>)}               
             </select>
             <br />
+            {countryList && countryList.map(item => <h5>{item}</h5>)}
             <input type="submit" value="Save" />
         </form>
     </div>
