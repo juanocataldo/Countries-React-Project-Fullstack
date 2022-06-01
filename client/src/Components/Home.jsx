@@ -94,18 +94,21 @@ export function Home() {
 
     function filterByActivity(e){
         console.log('SELECTED ',e.target.value)
-        let filter = fullActivities.map(a => {
+        let filter = []
+        let filtered = []
+        filter = fullActivities.map(a => {
             
             if(a.touact_name.toLowerCase() === e.target.value.toLowerCase()){
                 return a.countries.map(a => a.country_id)
             }
         } )
-        let filtered = filter.filter(function(x) {
+        console.log("xx-",filter)
+        filtered = filter.filter(function(x) {
             return x !== undefined;
         });
         console.log('x', filtered)
-        console.log(allCountries.filter(item => filtered.includes(item.country_id)))
-       filtered = allCountries.filter(item => filtered.includes(item.country_id));
+        console.log(allCountries.filter(item => filtered[0].includes(item.country_id)))
+       filtered = allCountries.filter(item => filtered[0].includes(item.country_id));
 
        console.log('paises filtrados ',filtered)
 

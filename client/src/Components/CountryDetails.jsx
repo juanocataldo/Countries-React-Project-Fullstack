@@ -41,6 +41,6 @@ export function CountryDetails(){
         <h5>{details.country_poblation}</h5>
         <h5>Activities</h5>
         <hr />
-        {gotActivities && gotActivities.map(a => <p>{a.touact_name}</p>)}
+        {gotActivities && gotActivities.map(a => <><p>{a.touact_name}</p> <p>{a.touact_duration}</p> <p>{a.touact_difficulty}</p></>)}
     </div>
 }
