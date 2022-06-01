@@ -143,7 +143,7 @@ export function CreateActivity(){
     
 
     return <div>
-        <h1>Create Activity</h1><br />
+        
         
         <form onSubmit={submitActivity}>
             <label>Activity name</label>

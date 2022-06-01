@@ -1,5 +1,25 @@
 .App {
   text-align: center;
+  background-color: #282c34;
+}
+
+html{
+  background-color: #282c34;
+}
+
+button:hover{
+  cursor: pointer;
+  background-color: #282c34;
+  transition: 0.3s;
+}
+
+input[type="button"], input[type="submit"] {
+  cursor: pointer;
+}
+
+input[type="button"], input[type="text"], select{
+  width: 90%;
+  text-align: center;
 }
 
 .App-logo {

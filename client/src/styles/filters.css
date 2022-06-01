@@ -1,0 +1,65 @@
+.title-dock{
+    display: flex;
+    background-color: #373D44;
+    color: black;
+    display: flex;
+    color: #E4E7EA;
+    font-size: 30px;
+    margin: auto;
+    height: 50px;
+    margin: 20px;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid rgb(36, 35, 35);
+}
+
+.filter-dock{
+    display: flex;
+    background-color: #515960;
+    color: black;
+    display: flex;
+    color: #E4E7EA;
+    font-size: 20px;
+    margin: auto;
+    height: 50px;
+    margin: 20px;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid rgb(36, 35, 35);
+}
+
+.filter{ 
+    width: 80%; 
+}
+
+.filtro-row{
+    width: 20%;    
+    text-align: center;
+}
+
+.filtro-row span{
+    color: #a3a6a8;
+}
+
+#btnFilter{
+    width: 40%;
+}
+
+.inner-filter{    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: -20px 20px 20px 20px;
+    background-color: #373d44;
+    padding: 20px;
+    color: white;
+}
+
+.input{
+    background-color: #515960;
+    border: none;
+    padding: 9px;
+    margin: 5px;
+    color: white;
+}

@@ -10,6 +10,7 @@ import { NavBar } from './Components/NavBar';
 import { CountryDetails } from './Components/CountryDetails';
 import { Favorites } from './Components/Favorites';
 import { Home2 } from './Components/Home2';
+import { Dock } from './Components/Dock';
 function App() {
 
   const dispatch = useDispatch()
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <div className="App"> 
+    <Dock />
     <NavBar />     
       <Routes>
         <Route path='/favorites' element={<Favorites />} />
