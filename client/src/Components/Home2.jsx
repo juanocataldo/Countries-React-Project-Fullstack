@@ -40,7 +40,10 @@ export function Home2({ countries }) {
     setPopulationOrder('')
     dispatch(getAllActivities())
     dispatch(getCountriesPaginated('ASC', ''))
-    dispatch(getCountries())
+    
+    if(allCountries.length<=0)
+      dispatch(getCountries())
+
     dispatch(getFullActivities())
     console.log(favorites)
   }, [])
