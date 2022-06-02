@@ -1,0 +1,21 @@
+.createSpace{
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+    color: rgb(191, 191, 191);
+}
+
+.select{
+    
+}
+
+.createContainer{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;    
+    justify-content: space-evenly;
+    background-color: #373d44;
+    margin: 20px;
+    padding: 20px;
+    width: 100%;
+}

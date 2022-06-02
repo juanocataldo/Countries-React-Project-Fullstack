@@ -17,9 +17,14 @@ input[type="button"], input[type="submit"] {
   cursor: pointer;
 }
 
+input[type="submit"]:hover {
+  background-color:#dbaf1e;
+  transition: 0.5s;
+}
+
 input[type="button"], input[type="text"], select{
   width: 90%;
-  text-align: center;
+  
 }
 
 .App-logo {

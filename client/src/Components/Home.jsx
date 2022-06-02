@@ -149,19 +149,19 @@ export function Home() {
 
                 <div className="inner-filter">
                     <div className="filtro-row">
-                        <span>Search by Country name</span>
+                        <span>Country name</span>
                         <form onSubmit={searchByName}>
                             <input className="input" type="text" name="searchByName" id="" placeholder="Search country" onChange={fillSearchByName} />
-                            <input className="input" type="submit" value="Search" />
+                            <input className="input" type="submit" value="Search" style={{width:"100%"}} />
                         </form>
                     </div>
                     <div className="filtro-row">
-                    <span>Order alphabetically</span><br />
+                    <span>Alphabetically</span><br />
                         <button id="btnFilter" className="input" onClick={() => orderByAZ()}>A-Z</button>
                         <button id="btnFilter" className="input" onClick={() => orderByZA()}>Z-A</button><br />
                     </div>
                     <div className="filtro-row">
-                    <span>Order by Continent</span><br />
+                    <span>By Continent</span><br />
                         <select className="input" name="continent" id="continents" onChange={filterByContinent}>
                             <option disabled="disabled" selected="Select" value="Select option">Select an option</option>
                             <option value="Africa">Antartica</option>
@@ -175,7 +175,7 @@ export function Home() {
 
                     </div>
                     <div className="filtro-row">
-                    <span>Filter by activity</span><br />
+                    <span>By activity</span><br />
                         <select className="input" name="activity" id="activities" defaultChecked='' onChange={filterByActivity}>
                             <option disabled="disabled" selected="Select" value="Select option">Select an option</option>
                             {allActivities &&
@@ -185,7 +185,7 @@ export function Home() {
 
                     </div>
                     <div className="filtro-row">
-                    <span>Order by population</span><br />
+                    <span>By population</span><br />
                         <button id="btnFilter" className="input" onClick={() => orderByBiggerPopulation()}>Bigger poblation</button>
                         <button id="btnFilter" className="input" onClick={() => orderBySmallerPopulation()}>Smaller poblation</button>
                     </div>

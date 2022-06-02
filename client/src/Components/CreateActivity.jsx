@@ -1,13 +1,20 @@
+
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { createActivityOfCountry, getAllActivities, getCountries, loadActivity } from "../Redux/actions"
-
+import '../Styles/createActivity.css'
+import '../Styles/filters.css'
 export function CreateActivity(){
 
     const [activity, setActivity] = useState('')
     const [countryID, setCountryID] = useState('')
     const [countryList, setCountryList] = useState([])
-    const [error, setError] = useState(false)
+    
+    const [nameError, setNameError] = useState(true)
+    const [diffError, setDiffError] = useState(true)
+    const [durError, setDurError] = useState(true)
+    const [seasonError, setSeasonError] = useState(true)
+    const [countryError, setCountryError] = useState(true)
 
     const countries = useSelector(store => store.fullCountryList)
     const activities = useSelector(store => store.countries_activities)
@@ -32,72 +39,78 @@ export function CreateActivity(){
         dispatch(getAllActivities())             
     },[])
 
-    
-    //VALIDATIONS
-    useEffect(()=>{
-        
+    function validate(){
         let inputName = document.getElementById('touact_name')
         let difficulty = document.getElementById('touact_difficulty')
         let duration = document.getElementById('touact_duration')
         let season = document.getElementById('touact_season')
         let countries = document.getElementById('countries')
 
+
+        if(!activity.touact_name){
+            inputName.style.border = "1px solid red"
+            inputName.placeholder = "Fill this field"
+            console.log('mal nombre')
+            setNameError(true)
+        }else{
+            console.log('buen nombre')
+            setNameError(false)
+            inputName.style.border = ""
+        }
+
+        if(!activity.touact_difficulty){
+            difficulty.style.border = "1px solid red"
+            difficulty.placeholder = "Fill this field"
+            setDiffError(true)
+        }else{
+            setDiffError(false)
+            difficulty.style.border = ""
+        }
+
         if(!activity.touact_duration){
-            duration.style.border = "3px solid red"
+            duration.style.border = "1px solid red"
             duration.placeholder = "Fill this field"
-            setError(true)
+            setDurError(true)
         }else{
             if(isNaN(activity.touact_duration)){
                 console.log('not a number')
-                duration.style.border = "3px solid red"
+                duration.style.border = "1px solid red"                
                 duration.value = ""
                 duration.placeholder = "Only numbers"
-                setError(true)
+                setDurError(true)
             }else{
-                setError(false)
+                setDurError(false)
                 duration.style.border = ""
             }
         }
 
         if(!activity.touact_season){
-            season.style.border = "3px solid red"
+            season.style.border = "1px solid red"
             season.placeholder = "Fill this field"
-            setError(true)
+            setSeasonError(true)
         }else{
-            setError(false)
+            setSeasonError(false)
             season.style.border = ""
         }
 
-        if(!activity.touact_difficulty){
-            difficulty.style.border = "3px solid red"
-            difficulty.placeholder = "Fill this field"
-            setError(true)
-        }else{
-            setError(false)
-            difficulty.style.border = ""
-        }
-
-        if(!activity.touact_name){
-            inputName.style.border = "3px solid red"
-            inputName.placeholder = "Fill this field"
-            setError(true)
-        }else{
-            setError(false)
-            inputName.style.border = ""
-        }
-
         if(countryList.length === 0){
-            countries.style.border = "3px solid red"
+            countries.style.border = "1px solid red"
             countries.placeholder = "Fill this field"
-            setError(true)
+            setCountryError(true)
         }else{
-            setError(false)
+            setCountryError(false)
             countries.style.border = ""
         }
-
-      
-
-    },[activity,countryList])
+    }
+    function twoCalls(e){
+        validate();
+        fillActivityState(e)
+        console.log(`${diffError} ${durError} ${seasonError} ${countryError} ${nameError} `)
+    }
+    //VALIDATIONS
+    useEffect(()=>{
+        validate()
+    },[nameError, diffError, durError, seasonError, countryError])
 
 
 
@@ -112,22 +125,30 @@ export function CreateActivity(){
 
     function submitActivity(e){
         e.preventDefault()
-
         
+        
+        console.log(`${diffError} ${durError} ${seasonError} ${countryError} ${nameError} `)
 
-        // CREATE THE ACTIVITY IN NON-RELATIONATED TABLE
-        loadActivity(activity) //creo la actividad en su respectiva tabla
+        if(nameError || diffError || durError || seasonError || countryError){
+            console.log('Estas moqueandola')
+        }else{
+            console.log('Atroden')
+
+        }
+
+        // // CREATE THE ACTIVITY IN NON-RELATIONATED TABLE
+        // loadActivity(activity) //creo la actividad en su respectiva tabla
                 
         
-        // CREATE THE ACTIVITY IN RELATIONATED TABLE    
-        for (let i = 0; i < countryList.length; i++) {            
-            let act = {
-                country_id: countryList[i],
-                touact_id: 0
-            }
+        // // CREATE THE ACTIVITY IN RELATIONATED TABLE    
+        // for (let i = 0; i < countryList.length; i++) {            
+        //     let act = {
+        //         country_id: countryList[i],
+        //         touact_id: 0
+        //     }
 
-        createActivityOfCountry(act)            
-        }
+        // createActivityOfCountry(act)            
+        // }
     }
 
     
@@ -143,15 +164,19 @@ export function CreateActivity(){
     
 
     return <div>
-        
-        
+            <div className="visual">
+         
+        <div className="createSpace">
+        <div className='createContainer'>
+        <span id='titleActivities'>Create Activity</span>
+            
         <form onSubmit={submitActivity}>
             <label>Activity name</label>
-            <input type="text" name="touact_name" id="touact_name" onChange={fillActivityState} /><br />
+            <input className="input select" type="text" name="touact_name" id="touact_name" onChange={twoCalls} /><br />
             
             <label>Activity difficulty</label>
             {/* <input type="text" name="touact_difficulty" id="" onChange={fillActivityState} /><br /> */}
-            <select name="touact_difficulty" id="touact_difficulty" onChange={fillActivityState}>
+            <select className="input select" name="touact_difficulty" id="touact_difficulty" onChange={twoCalls}>
                 <option disabled="disabled" selected="Select" value="Select option">Select difficulty</option>
                 <option value="1">1 - Easy</option>
                 <option value="2">2 - Upper Easy</option>
@@ -161,10 +186,10 @@ export function CreateActivity(){
             </select><br />
 
             <label>Activity duration</label>
-            <input type="text" name="touact_duration" id="touact_duration" onChange={fillActivityState} /><br />
+            <input className="input select" type="text" name="touact_duration" id="touact_duration" onChange={twoCalls} /><br />
 
             <label>Activity season</label>
-            <select name="touact_season" id="touact_season" onChange={fillActivityState}>
+            <select className="input select" name="touact_season" id="touact_season" onChange={twoCalls}>
                 <option disabled="disabled" selected="Select" value="Select option">Select season</option>
                 <option value="Summer">Summer</option>
                 <option value="Winter">Winter</option>
@@ -175,13 +200,24 @@ export function CreateActivity(){
             {/* <input type="text" name="touact_season" id="" onChange={fillActivityState} /><br /> */}
 
             <label>Select country for this activity</label>
-            <select name="country" id="countries" onChange={showPK}>
+            <select className="input select"  name="country" id="countries" onChange={showPK}>
             <option disabled="disabled" selected="Select" value="Select option">Select an option</option>
                 {ordered && ordered.map(c => <option value={c.country_name} defaultValue={c.country_name}>{c.country_name}</option>)}               
             </select>
             <br />
             {countryList && countryList.map(item => <h5>{item}</h5>)}
-            <input type="submit" value="Save"  />
+            <div className="submit">
+                <input className="input" type="submit" value="Save" style={{width:"100px"}} />
+
+            </div>
         </form>
+
+        </div>
+
+        </div>
+
+            </div>
+        
+        
     </div>
 }

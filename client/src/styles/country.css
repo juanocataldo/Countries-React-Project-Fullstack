@@ -50,6 +50,17 @@
 .country img{      
     width: 100%;    
     height: 150px;
+    filter: grayscale(80%);
+    -webkit-filter: grayscale(80%);
+    transition: 0.3s;
+}
+
+.country img:hover{      
+    width: 100%;    
+    height: 150px;
+    filter: none;
+    -webkit-filter: grayscale(0);
+    transition: 0.3s;
 }
 
 
