@@ -114,25 +114,25 @@ router.get('/home/all' , async (req, res) => {
 //PAGINACIÓN
 router.get("/home", async (req, res) => {
   try {
-    const pageAsNumber = Number.parseInt(req.query.page);
-    const sizeAsNumber = Number.parseInt(req.query.size);
+    // const pageAsNumber = Number.parseInt(req.query.page);
+    // const sizeAsNumber = Number.parseInt(req.query.size);
     const { order, poblation } = req.query;
 
-    let page = 0;
-    let size = 10;
+    // let page = 0;
+    // let size = 10;
 
-    if (!Number.isNaN(pageAsNumber) && pageAsNumber > 0) {
-      page = pageAsNumber;
-    }
+    // if (!Number.isNaN(pageAsNumber) && pageAsNumber > 0) {
+    //   page = pageAsNumber;
+    // }
 
-    if (!Number.isNaN(sizeAsNumber) && sizeAsNumber > 0 && sizeAsNumber < 10) {
-      size = sizeAsNumber;
-    }
+    // if (!Number.isNaN(sizeAsNumber) && sizeAsNumber > 0 && sizeAsNumber < 10) {
+    //   size = sizeAsNumber;
+    // }
 
     if(poblation !== ''){
       const allCountries = await Country.findAndCountAll({
-        limit: size,
-        offset: page * size,
+        // limit: size,
+        // offset: page * size,
         order: [
           ["country_poblation", poblation]
         ]
@@ -141,8 +141,8 @@ router.get("/home", async (req, res) => {
       res.json(allCountries.rows);
     }else{
       const allCountries = await Country.findAndCountAll({
-        limit: size,
-        offset: page * size,
+        // limit: size,
+        // offset: page * size,
         order: [
           ["country_name", order]          
         ]

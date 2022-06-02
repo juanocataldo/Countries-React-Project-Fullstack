@@ -1,20 +1,30 @@
+import '../Styles/pagination.css'
+
 export function Pagination({ postsPerPage, totalPosts, paginate }){
     const pageNumbers = []
 
 
+    let maxPags = Math.ceil(totalPosts / postsPerPage )
 
-    for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage ); i++) {
+    if(maxPags > 25)
+        maxPags = 25
+
+    for (let i = 1; i <= maxPags; i++) {
         pageNumbers.push(i)        
     }
+
+    function a(number){
+        console.log(number)
+    }
    
-    return <nav>
+    return <nav className="pagination">
         <ul>
             {pageNumbers.map( number => (
-                <li key={number}>
-                    <a onClick={() => paginate(number)} href="#">
-                        {number}
-                    </a>
-                </li>
+                <span key={number}>
+                    <button onClick={() => {paginate(number);a(number)}} >
+                        {number}   
+                    </button>
+                </span>
             ))}
         </ul>
     </nav>

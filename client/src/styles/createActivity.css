@@ -19,3 +19,34 @@
     padding: 20px;
     width: 100%;
 }
+
+.flagList{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.miniFlag{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.miniFlag img{
+    width: 70px;
+    height: 50px;
+    padding: 5px;
+}
+
+.miniFlag span{
+    font-size: 13px;
+}
+
+#miniX{
+    background-color: #373d4400;
+    border: none;
+    font-size: 15px;
+    color: white;
+}

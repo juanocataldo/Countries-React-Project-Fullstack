@@ -29,7 +29,7 @@ function App() {
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/details/:id' element={<CountryDetails /> } />
         <Route path='/create_activity' element={<CreateActivity />} />
-        <Route path='/home' element={<Home />} />
+        <Route path='/home' element={<Home2 />} />
         <Route path='/' element={<Access />} />
       </Routes>      
       

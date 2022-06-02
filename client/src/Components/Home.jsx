@@ -172,7 +172,6 @@ export function Home() {
                             <option value="Oceania">Oceania</option>
                             <option value="South America">South America</option>
                         </select>
-
                     </div>
                     <div className="filtro-row">
                     <span>By activity</span><br />

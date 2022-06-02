@@ -1,0 +1,14 @@
+.pagination button{
+    background-color: transparent;
+    border: none;
+    padding: 10px;    
+    color: white;
+}
+
+.pagination button:hover{
+    background-color: #C9A012;
+    border-radius: 10%;
+    border: none;
+    padding: 10px;    
+    color: white;
+}

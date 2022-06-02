@@ -37,6 +37,7 @@ const rootReducer = (state = initialState, action) => {
                 country_details: action.payload
             }
         case SET_FAVORITE_COUNTRY:
+            console.log('reducer favs ', action.payload)
             return{
                 ...state,
                 favorites_countries: [...state.favorites_countries, action.payload]

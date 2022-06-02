@@ -122,7 +122,7 @@ export function getCountriesPaginated(o,p,page){
         .then(data => data.json())
         .then(res => {
             dispatch({
-                type: GET_FILTERED_COUNTRIES,
+                type: GET_FULL_COUNTRY_LIST,
                 payload: res
             })
         })
@@ -135,7 +135,7 @@ export function getCountries(){
         .then(data => data.json())
         .then(res => {
             dispatch({
-                type: GET_FULL_COUNTRY_LIST,
+                type: GET_ALL_COUNTRIES,
                 payload: res
             })
         })
@@ -150,6 +150,8 @@ export function orderCountries(countries){
             })        
     }
 }
+
+
 
 
 export function createActivityOfCountry(data){

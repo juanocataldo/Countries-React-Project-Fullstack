@@ -15,6 +15,7 @@ export function CreateActivity(){
     const [durError, setDurError] = useState(true)
     const [seasonError, setSeasonError] = useState(true)
     const [countryError, setCountryError] = useState(true)
+    const [errorMsg, setErrorMsg] = useState('')
 
     const countries = useSelector(store => store.fullCountryList)
     const activities = useSelector(store => store.countries_activities)
@@ -39,6 +40,15 @@ export function CreateActivity(){
         dispatch(getAllActivities())             
     },[])
 
+    function closeMiniFlag(id){
+        let cleared = countryList.filter(c => c.country_id !== id)
+        setCountryList(cleared)
+    }
+
+    function clearFields(){
+        let form = document.getElementById("formActivity").reset();
+    }
+
     function validate(){
         let inputName = document.getElementById('touact_name')
         let difficulty = document.getElementById('touact_difficulty')
@@ -61,7 +71,7 @@ export function CreateActivity(){
         if(!activity.touact_difficulty){
             difficulty.style.border = "1px solid red"
             difficulty.placeholder = "Fill this field"
-            setDiffError(true)
+            setDiffError(true)            
         }else{
             setDiffError(false)
             difficulty.style.border = ""
@@ -107,6 +117,8 @@ export function CreateActivity(){
         validate();
         console.log(`${diffError} ${durError} ${seasonError} ${countryError} ${nameError} `)
     }
+
+    
     //VALIDATIONS
     useEffect(()=>{
         validate()
@@ -130,32 +142,32 @@ export function CreateActivity(){
         console.log(`${diffError} ${durError} ${seasonError} ${countryError} ${nameError} `)
 
         if(nameError || diffError || durError || seasonError || countryError){
-            console.log('Estas moqueandola')
+            setErrorMsg('Some fields are wrong. Please check.')
         }else{
-            console.log('Atroden')
-
+            setErrorMsg('')
+            clearFields()
+            // CREATE THE ACTIVITY IN NON-RELATIONATED TABLE
+            loadActivity(activity) //creo la actividad en su respectiva tabla
+                    
+            
+            // CREATE THE ACTIVITY IN RELATIONATED TABLE    
+            for (let i = 0; i < countryList.length; i++) {            
+                let act = {
+                    country_id: countryList[i].country_id,
+                    touact_id: 0
+                }
+    
+            createActivityOfCountry(act)            
+            }
         }
 
-        // // CREATE THE ACTIVITY IN NON-RELATIONATED TABLE
-        // loadActivity(activity) //creo la actividad en su respectiva tabla
-                
-        
-        // // CREATE THE ACTIVITY IN RELATIONATED TABLE    
-        // for (let i = 0; i < countryList.length; i++) {            
-        //     let act = {
-        //         country_id: countryList[i],
-        //         touact_id: 0
-        //     }
-
-        // createActivityOfCountry(act)            
-        // }
     }
 
     
     function showPK(e){        
         let pk = countries.filter(c => c.country_name === e.target.value)
         setCountryID(pk[0].country_id)
-        let add = pk[0].country_id
+        let add = pk[0]
         
         setCountryList(oldItems => [...oldItems, add])
         console.log(countryList)        
@@ -167,10 +179,11 @@ export function CreateActivity(){
             <div className="visual">
          
         <div className="createSpace">
+            
         <div className='createContainer'>
         <span id='titleActivities'>Create Activity</span>
             
-        <form onSubmit={submitActivity}>
+        <form id="formActivity" onSubmit={submitActivity}>
             <label>Activity name</label>
             <input className="input select" type="text" name="touact_name" id="touact_name" onChange={twoCalls} /><br />
             
@@ -202,13 +215,17 @@ export function CreateActivity(){
             <label>Select country for this activity</label>
             <select className="input select"  name="country" id="countries" onChange={showPK}>
             <option disabled="disabled" selected="Select" value="Select option">Select an option</option>
-                {ordered && ordered.map(c => <option value={c.country_name} defaultValue={c.country_name}>{c.country_name}</option>)}               
+                {ordered && ordered.map(c => <option value={c.country_name} defaultValue={c.country_name}>
+                    {c.country_name}
+                    </option>)}               
             </select>
             <br />
-            {countryList && countryList.map(item => <h5>{item}</h5>)}
+            <div className="flagList">                
+                {countryList && countryList.map(item => <div className="miniFlag"><button id="miniX" onClick={() => closeMiniFlag(item.country_id)}>x</button><img src={item.country_flag} alt="" /><span >{item.country_name}</span></div>)}
+            </div>
             <div className="submit">
                 <input className="input" type="submit" value="Save" style={{width:"100px"}} />
-
+                <span> {errorMsg}</span>
             </div>
         </form>
 

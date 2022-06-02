@@ -12,10 +12,11 @@
     align-items: center;
     justify-content: space-evenly;
     background-color: #373d44;
-    margin: 20px;
+    margin: 0px 20px 20px 20px;
     padding: 20px;
     width: 100%;
 }
+
 
 .country{
     text-align: center;    
@@ -68,4 +69,25 @@
     width: 80%;
     display: flex;
     justify-content: flex-end;
+}
+
+.paginatorSpace{
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.paginatorContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #373d44;
+    width: 100%;
+    margin: 0px 20px 0 20px;
+}
+
+#notfound{
+    color: rgb(175, 163, 163);
 }
