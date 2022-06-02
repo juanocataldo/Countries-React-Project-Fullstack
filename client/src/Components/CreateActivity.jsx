@@ -103,14 +103,14 @@ export function CreateActivity(){
         }
     }
     function twoCalls(e){
-        validate();
         fillActivityState(e)
+        validate();
         console.log(`${diffError} ${durError} ${seasonError} ${countryError} ${nameError} `)
     }
     //VALIDATIONS
     useEffect(()=>{
         validate()
-    },[nameError, diffError, durError, seasonError, countryError])
+    },[activity, countryList])
 
 
 
