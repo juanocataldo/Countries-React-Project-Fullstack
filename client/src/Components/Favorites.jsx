@@ -5,13 +5,14 @@ import { Country } from "./Country"
 export function Favorites(){
 
     let favorites = useSelector(store => store.favorites_countries)
+    let allCountries = useSelector(store => store.countries)
     const [items, setItems] = useState([])
 
     useEffect(()=>{
-        console.log('favs in favorites',favorites)
+        // favorites = [...new Set(favorites)]
+        console.log('favssss', favorites)
     },[])
     
-    console.log(items)
 
     return <div className="visual">
         
@@ -23,7 +24,10 @@ export function Favorites(){
 
         <div className="countrySpace">
             <div className="countryContainer">
-                {favorites.length > 0 ? favorites.map(c => <Country name={c.country_name} flag={c.country_flag} continent={c.country_continent} id={c.country_id} /> ) : <span id="notfound">No countries found</span>}
+                {favorites && favorites.map( c => {
+                    if(c.heart === true )
+                    return <div><Country name={c.country_name} flag={c.country_flag} continent={c.country_continent} id={c.country_id} /></div>} )}
+                {/* {favorites[0].length > 0 ? favorites[0].map(c => <Country name={c.country_name} flag={c.country_flag} continent={c.country_continent} id={c.country_id} /> ) : <span id="notfound">No countries found</span>} */}
             </div>
         </div>
         {/* {items && items.map(c => <p>{c.country_name}</p>)} */}

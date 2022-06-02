@@ -24,7 +24,8 @@ const rootReducer = (state = initialState, action) => {
         case GET_FULL_COUNTRY_LIST:
             return{
                 ...state,
-                fullCountryList: action.payload
+                fullCountryList: action.payload.filter(e => {e.heart = false 
+                                                                return e})
             }
         case GET_ALL_ACTIVITIES:
             return{
@@ -40,7 +41,7 @@ const rootReducer = (state = initialState, action) => {
             console.log('reducer favs ', action.payload)
             return{
                 ...state,
-                favorites_countries: [...state.favorites_countries, action.payload]
+                favorites_countries: action.payload
             }
         case GET_FULL_ACTIVITIES:
             return{

@@ -19,18 +19,18 @@ export function Home2({ countries }) {
   const fullActivities = useSelector(store => store.full_activities)
   let allActivities = useSelector(store => store.countries_activities)
   let countriesPaginated = useSelector(store => store.countries)
-  useEffect(() => {
-    setCountryOrder('ASC')
-    setPopulationOrder('')
-    dispatch(getAllActivities())
-    dispatch(getCountriesPaginated('ASC', ''))
-    dispatch(getCountries())
-    dispatch(getFullActivities())
-  }, [])
+  // useEffect(() => {
+  //   setCountryOrder('ASC')
+  //   setPopulationOrder('')
+  //   dispatch(getAllActivities())
+  //   dispatch(getCountriesPaginated('ASC', ''))
+  //   dispatch(getCountries())
+  //   dispatch(getFullActivities())
+  // }, [])
 
   const allCountries = useSelector(store => store.fullCountryList)
   const fixedAllCountries = useSelector(store => store.countries)
-
+  const favorites = useSelector(store => store.favorites_countries)
   const indexOfLastPost = currentPage * countriesPerPage;
   const indexOfFirstPost = indexOfLastPost - countriesPerPage;
   const currentPosts = allCountries.slice(indexOfFirstPost, indexOfLastPost).sort(compare)
@@ -42,6 +42,7 @@ export function Home2({ countries }) {
     dispatch(getCountriesPaginated('ASC', ''))
     dispatch(getCountries())
     dispatch(getFullActivities())
+    console.log(favorites)
   }, [])
 
 
@@ -156,6 +157,8 @@ export function Home2({ countries }) {
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber)
   }
+
+  
 
   return <div>
     {/* FILTROS */}

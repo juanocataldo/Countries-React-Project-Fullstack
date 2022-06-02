@@ -13,7 +13,7 @@ button:hover{
   transition: 0.3s;
 }
 
-input[type="button"], input[type="submit"], select {
+input[type="button"], input[type="submit"], select, svg {
   cursor: pointer;
 }
 
