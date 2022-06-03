@@ -15,16 +15,16 @@
 
 .filter-dock{
     display: flex;
-    background-color: #5f5f51;
+    background-color: #5c5c5c86;
     color: black;
     display: flex;
     color: #E4E7EA;
     font-size: 20px;
-    margin: auto;
+    padding-left: 20px;
     height: 50px;
     margin: 20px;
     align-items: center;
-    justify-content: space-around;
+    justify-content:flex-start;
     border: 1px solid rgb(36, 35, 35);
 }
 
