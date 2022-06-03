@@ -5,7 +5,7 @@ import { Country } from "./Country"
 export function Favorites(){
 
     let favorites = useSelector(store => store.favorites_countries)
-    let allCountries = useSelector(store => store.countries)
+    
     const [items, setItems] = useState([])
 
     useEffect(()=>{

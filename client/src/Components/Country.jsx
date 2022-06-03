@@ -11,33 +11,44 @@ export function Country({ id, name, flag, continent, favorite }) {
 
     // let allCountries = useSelector(store => store.countries)
     let allCountries = useSelector(store => store.fullCountryList)
-    // let allCountriesFilters = useSelector(store => store.countries)
+    const favorites = useSelector(store => store.favorites_countries)
+    let fixedAllCountries = useSelector(store => store.countries)
+    let updated = Object.assign([{}], fixedAllCountries, allCountries);
+
+    useEffect(()=>{
+        updated = Object.assign([{}], fixedAllCountries, allCountries);
+    },[])
+
 
     function setAsFavorite() {
-
-        for (var i in allCountries) {
-            if (allCountries[i].country_id == id) {
-                if (allCountries[i].heart === true) {
-                    console.log('no fav')
-                    allCountries[i].heart = false
+        updated = Object.assign([{}], fixedAllCountries, allCountries);
+        console.log('De esta lista : ',updated)
+        for (var i in updated) {
+            console.log(`Comparando ${updated[i].country_id} | ${id}`)
+            if (updated[i].country_id == id) {
+                console.log(`ESTADO? ${updated[i].heart} `)
+                if (updated[i].heart === true || updated[i].heart === undefined) {
+                    updated[i].heart = false
+                    updated[i].act = "del"
+                    
+                    dispatch({
+                        type: SET_FAVORITE_COUNTRY,
+                        payload: updated[i]
+                    })
+                    break;
                 } else {
-                    console.log('fav')
-                    allCountries[i].heart = true
+                    updated[i].heart = true
+                    updated[i].act = "add"
+                    dispatch({
+                        type: SET_FAVORITE_COUNTRY,
+                        payload: updated[i]
+                    })
+                    break;
                 }
             }
         }
-
-        let filtered = allCountries.filter(e => e.heart === true)
-        console.log('los favs ', filtered)
-       
-        dispatch({
-            type: SET_FAVORITE_COUNTRY,
-            payload: filtered
-        })
-
-       
     }
-
+    console.log(favorites)
     return <div className="country">
         
         <div className="heart">

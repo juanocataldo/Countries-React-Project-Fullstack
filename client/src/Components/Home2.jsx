@@ -34,8 +34,13 @@ export function Home2({ countries }) {
   const indexOfLastPost = currentPage * countriesPerPage;
   const indexOfFirstPost = indexOfLastPost - countriesPerPage;
   const currentPosts = allCountries.slice(indexOfFirstPost, indexOfLastPost).sort(compare)
+  
+  let updated = Object.assign([{}], fixedAllCountries, allCountries);
+  
 
   useEffect(() => {
+    updated = Object.assign([{}], fixedAllCountries, allCountries);
+    console.log('START  ',updated)
     setCountryOrder('ASC')
     setPopulationOrder('')
     dispatch(getAllActivities())
@@ -49,6 +54,11 @@ export function Home2({ countries }) {
     dispatch(getFullActivities())
     console.log(favorites)
   }, [])
+
+  useEffect(() => {
+    updated = Object.assign([{}], fixedAllCountries, allCountries);
+    console.log('updated!  ',updated)
+  },[favorites])
 
 
   useEffect(() => {
@@ -104,13 +114,14 @@ export function Home2({ countries }) {
   }
 
   const filterItems = query => {
-    return allCountries.filter(c => c.country_name.match(new RegExp(query, "i")))
+    return updated.filter(c => c.country_name.match(new RegExp(query, "i")))
   }
 
 
   function filterByContinent(e) {
-    console.log('todos', fixedAllCountries)
-    let filtered = fixedAllCountries.filter(c => c.country_continent === e.target.value)
+    updated = Object.assign([{}], fixedAllCountries, allCountries);
+    console.log(updated.filter(c => c.country_continent === e.target.value))
+    let filtered = updated.filter(c => c.country_continent === e.target.value)
     console.log('filtrados', filtered)
     dispatch({
       type: GET_FULL_COUNTRY_LIST,
@@ -150,6 +161,8 @@ export function Home2({ countries }) {
       })
 
   }
+
+
   const seen = new Set();
   allActivities = allActivities.filter(el => {
     const duplicate = seen.has(el.touact_name.toLowerCase());

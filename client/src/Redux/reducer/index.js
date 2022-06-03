@@ -1,4 +1,4 @@
-import { GET_FULL_ACTIVITIES, SET_FAVORITE_COUNTRY, GET_ALL_COUNTRIES, GET_FILTERED_COUNTRIES, GET_FULL_COUNTRY_LIST, GET_ALL_ACTIVITIES, GET_COUNTRY_DETAILS } from "../actions";
+import { FILTER_COUNTRIES, GET_FULL_ACTIVITIES, SET_FAVORITE_COUNTRY, GET_ALL_COUNTRIES, GET_FILTERED_COUNTRIES, GET_FULL_COUNTRY_LIST, GET_ALL_ACTIVITIES, GET_COUNTRY_DETAILS } from "../actions";
 
 const initialState = {
     fullCountryList: [],
@@ -22,6 +22,7 @@ const rootReducer = (state = initialState, action) => {
                 countries: action.payload
             }
         case GET_FULL_COUNTRY_LIST:
+            console.log(action.payload)
             return{
                 ...state,
                 fullCountryList: action.payload.filter(e => {e.heart = false 
@@ -38,15 +39,35 @@ const rootReducer = (state = initialState, action) => {
                 country_details: action.payload
             }
         case SET_FAVORITE_COUNTRY:
-            console.log('reducer favs ', action.payload)
-            return{
-                ...state,
-                favorites_countries: action.payload
+            if(action.payload.act === 'add'){
+                delete action.payload.act;
+                console.log('ADDING ',action.payload)
+                return{
+                    ...state,                
+                    favorites_countries: [...state.favorites_countries, action.payload]
+                }
+            }
+            if(action.payload.act === 'del'){
+                delete action.payload.act;
+                console.log('DELETING',action.payload)
+                console.log('--->',state.favorites_countries.filter( f => f.country_id !== action.payload.country_id))
+                return{
+                    ...state,                
+                    favorites_countries: [...state.favorites_countries.filter( f => f.country_id !== action.payload.country_id)]
+                }
             }
         case GET_FULL_ACTIVITIES:
             return{
                 ...state,
                 full_activities: action.payload
+            }
+        case FILTER_COUNTRIES:
+            if(action.payload.type === 'continent'){
+                return{
+                    ...state,
+                    fullCountryList: state.fullCountryList.filter()
+                }
+                
             }
     
         default:
