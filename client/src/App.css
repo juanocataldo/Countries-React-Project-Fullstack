@@ -1,10 +1,13 @@
 .App {
   text-align: center;
-  background-color: #282c34;
+  
 }
 
 html{
-  background-color: #282c34;
+  background-image: url('./Assets/wallpaper.png');    
+    
+    background-position:center;
+    background-size: 100%;
 }
 
 button:hover{
@@ -18,7 +21,7 @@ input[type="button"], input[type="submit"], select, svg {
 }
 
 input[type="submit"]:hover {
-  background-color:#dbaf1e;
+  background-color:rgb(128,96,44);
   transition: 0.5s;
 }
 

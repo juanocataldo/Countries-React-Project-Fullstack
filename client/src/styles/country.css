@@ -3,6 +3,7 @@
     text-align: left;
     flex-direction: column;
     align-items: flex-end;
+    
 }
 
 .countryContainer{
@@ -10,11 +11,10 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-evenly;
-    background-color: #373d44;
-    margin: 0px 20px 20px 20px;
-    padding: 20px;
+    justify-content: space-evenly;    
+    margin: 0px 20px 20px 20px;    
     width: 100%;
+    background-color: #373d44d3;
 }
 
 #heart{
@@ -26,8 +26,8 @@
 .country{
     text-align: center;    
     width: 200px;
-    height: 200px;
     padding: 10px;
+    margin: 10px;    
     color: white;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -96,11 +96,26 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
-    background-color: #373d44;
+    background-color: #373d44d3;
     width: 100%;
     margin: 0px 20px 0 20px;
 }
 
 #notfound{
     color: rgb(175, 163, 163);
+}
+
+.heart{
+    position: absolute;
+    right: 20px;    
+}
+
+#heart:hover{
+    background: url('../Assets/heart_red.png');
+    background-repeat: no-repeat;
+    background-size: 102%;
+    background-position: center;
+    /* width: 30px;
+    height: 35px; */
+    cursor: pointer;
 }

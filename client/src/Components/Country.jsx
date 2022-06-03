@@ -11,11 +11,7 @@ export function Country({ id, name, flag, continent, favorite }) {
 
     // let allCountries = useSelector(store => store.countries)
     let allCountries = useSelector(store => store.fullCountryList)
-
-
-    useEffect(() => {
-        
-    }, [])
+    // let allCountriesFilters = useSelector(store => store.countries)
 
     function setAsFavorite() {
 
@@ -44,9 +40,10 @@ export function Country({ id, name, flag, continent, favorite }) {
 
     return <div className="country">
         
-        
-        {favorite && <img src={heart_red} alt="" id='heart' onClick={() => setAsFavorite()}/>}
-        {favorite || <img src={heart_black} alt="" id='heart' onClick={() => setAsFavorite()}/>}
+        <div className="heart">
+            {favorite && <img src={heart_red} alt="" id='heart' onClick={() => setAsFavorite()}/>}
+            {favorite || <img src={heart_black} alt="" id='heart' onClick={() => setAsFavorite()}/>}
+        </div>
 
         <NavLink to={`/details/${id}`} className="countryAccess">
             <div className="country-content">

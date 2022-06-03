@@ -11,6 +11,7 @@ import { CountryDetails } from './Components/CountryDetails';
 import { Favorites } from './Components/Favorites';
 import { Home2 } from './Components/Home2';
 import { Dock } from './Components/Dock';
+import { About } from './Components/About';
 function App() {
 
   const dispatch = useDispatch()
@@ -26,6 +27,7 @@ function App() {
     <Dock />
     <NavBar />     
       <Routes>
+        <Route path='/about' element={<About />} />
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/details/:id' element={<CountryDetails /> } />
         <Route path='/create_activity' element={<CreateActivity />} />

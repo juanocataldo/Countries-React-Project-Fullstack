@@ -17,16 +17,16 @@ export function Favorites(){
     return <div className="visual">
         
         <div className="filter">
-            <div className="title-dock">
-                <span>Favorites</span>
-            </div>
+        <div className="page-dock">
+          <span>Favorites</span>
+        </div>
         </div>
 
         <div className="countrySpace">
             <div className="countryContainer">
-                {favorites && favorites.map( c => {
+                {favorites.length > 0 ? favorites.map( c => {
                     if(c.heart === true )
-                    return <div><Country name={c.country_name} flag={c.country_flag} continent={c.country_continent} id={c.country_id} favorite={c.heart} /></div>} )}
+                    return <div><Country name={c.country_name} flag={c.country_flag} continent={c.country_continent} id={c.country_id} favorite={c.heart} /></div>} ) : <span id="notfound" style={{padding:"20px"}}>No favorites added</span>}
                 {/* {favorites[0].length > 0 ? favorites[0].map(c => <Country name={c.country_name} flag={c.country_flag} continent={c.country_continent} id={c.country_id} /> ) : <span id="notfound">No countries found</span>} */}
             </div>
         </div>

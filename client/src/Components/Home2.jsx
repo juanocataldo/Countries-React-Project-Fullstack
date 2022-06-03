@@ -143,11 +143,12 @@ export function Home2({ countries }) {
     e.preventDefault()
     let filtered = filterItems(searchCountryByName)
     countriesPaginated = filtered
+    console.log(searchCountryByName)
+      dispatch({
+        type: GET_FULL_COUNTRY_LIST,
+        payload: filtered
+      })
 
-    dispatch({
-      type: GET_FULL_COUNTRY_LIST,
-      payload: filtered
-    })
   }
   const seen = new Set();
   allActivities = allActivities.filter(el => {
@@ -169,7 +170,10 @@ export function Home2({ countries }) {
     {/* FILTROS */}
     <div className="visual">
       <div className="filter">
-        <div className="title-dock">
+        {/* <div className="title-dock">
+          <span>Home</span>
+        </div> */}
+         <div className="page-dock">
           <span>Home</span>
         </div>
 

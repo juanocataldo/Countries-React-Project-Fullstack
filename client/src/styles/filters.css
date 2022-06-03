@@ -1,6 +1,6 @@
 .title-dock{
     display: flex;
-    background-color: #373D44;
+    
     color: black;
     display: flex;
     color: #E4E7EA;
@@ -15,7 +15,7 @@
 
 .filter-dock{
     display: flex;
-    background-color: #5c5c5c86;
+    background-color: #5c5c5caf;
     color: black;
     display: flex;
     color: #E4E7EA;
@@ -26,6 +26,23 @@
     align-items: center;
     justify-content:flex-start;
     border: 1px solid rgb(36, 35, 35);
+    
+}
+
+.page-dock{
+    display: flex;
+    background: rgb(128,96,44);
+background: linear-gradient(90deg, rgba(128,96,44,1) 0%, rgba(36,36,36,0) 35%);
+    color: black;
+    display: flex;
+    color: #E4E7EA;
+    font-size: 20px;
+    padding-left: 20px;
+    height: 50px;
+    margin: 20px;
+    align-items: center;
+    justify-content:flex-start;
+    border-radius: 5px;
 }
 
 .filter{ 
@@ -51,7 +68,7 @@
     flex-wrap: wrap;
     justify-content: center;
     margin: -20px 20px 20px 20px;
-    background-color: #373d44;
+    background-color: #373d44b2;
     padding: 20px;
     color: white;
 }

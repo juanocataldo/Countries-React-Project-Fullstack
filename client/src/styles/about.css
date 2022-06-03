@@ -1,0 +1,19 @@
+.social-media{
+    width: 80px;
+    padding: 20px;    
+}
+
+.inner-about{    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+    margin: -20px 20px 20px 20px;
+    background-color: #373d44b2;    
+    color: white;
+}
+
+.social-row{
+    display: flex;
+    
+}
