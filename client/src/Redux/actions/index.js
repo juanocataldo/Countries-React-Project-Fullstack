@@ -6,7 +6,7 @@ export const GET_ALL_ACTIVITIES = 'GET_ALL_ACTIVITIES'
 export const GET_COUNTRY_DETAILS = 'GET_COUNTRY_DETAILS'
 export const SET_FAVORITE_COUNTRY = 'SET_FAVORITE_COUNTRY'
 export const GET_FULL_ACTIVITIES = 'GET_FULL_ACTIVITIES'
-
+export const GET_FULL_COUNTRY_LIST_WITH_FAVS = 'GET_FULL_COUNTRY_LIST_WITH_FAVS'
 // let countryArray = []
 
 //Fetch a la api externa y fill en nuestra DB
@@ -38,19 +38,6 @@ export function getAllCountries(){
         .catch(err => console.log(err))
     }
 }
-
-// export function countryDetails(){
-//     return function(dispatch){
-//         return fetch('')
-//         .then(res => res.json)
-//         .then(data => {
-//             dispatch({
-//                 type:GET_COUNTRY_DETAILS,
-//                 payload: data
-//             })
-//         })
-//     }
-// }
 
 export function setFavCountry(id){
     return function(dispatch){

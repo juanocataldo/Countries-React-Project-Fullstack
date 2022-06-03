@@ -1,5 +1,5 @@
 .dock{
-    width: 100%;
+    width: 80%;
     height: 50px;
     background-color: #373d44;
     border-bottom: 1px solid rgb(80, 78, 78);
@@ -12,8 +12,7 @@ box-shadow: 0px 9px 12px -1px rgba(0,0,0,0.78);
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    width: 100%;
-    
+    width: 100%;    
 }
 
 .logo img{

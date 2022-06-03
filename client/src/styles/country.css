@@ -2,8 +2,7 @@
     display: flex;    
     text-align: left;
     flex-direction: column;
-    align-items: flex-end;
-    
+    align-items: flex-end;    
 }
 
 .countryContainer{
@@ -12,16 +11,11 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;    
-    margin: 0px 20px 20px 20px;    
+    margin: 0px 20px 0px 20px;    
     width: 100%;
     background-color: #373d44d3;
 }
 
-#heart{
-    width: 30px;
-    height: 35px;
-    cursor: pointer;
-}
 
 .country{
     text-align: center;    
@@ -110,12 +104,20 @@
     right: 20px;    
 }
 
+
+#heart{
+    width: 30px;
+    height: 35px;
+    cursor: pointer;
+}
+
 #heart:hover{
-    background: url('../Assets/heart_red.png');
-    background-repeat: no-repeat;
-    background-size: 102%;
-    background-position: center;
+    content: url('../Assets/heart_red.png');
+    width: 30px;
+    height: 35px;
     /* width: 30px;
     height: 35px; */
     cursor: pointer;
 }
+
+

@@ -24,8 +24,8 @@ function App() {
 
   return (
     <div className="App"> 
-    <Dock />
     <NavBar />     
+    <Dock />
       <Routes>
         <Route path='/about' element={<About />} />
         <Route path='/favorites' element={<Favorites />} />

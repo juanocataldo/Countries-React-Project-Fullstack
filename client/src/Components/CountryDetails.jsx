@@ -66,10 +66,8 @@ export function CountryDetails() {
                 <span id='titleActivities'>Details of {details.country_name}</span><br />
                             <hr /><br />
                     <div className="flag">
-                        <div className="">
                             <img src={details.country_flag} alt="" />
-                        </div>
-                        <div className="map">
+                        <div>
                             <iframe id='frame'
                                 width="100%"
                                 height="209"
