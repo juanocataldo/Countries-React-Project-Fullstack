@@ -18,7 +18,7 @@ export function Favorites(){
         
         <div className="filter">
         <div className="page-dock">
-          <span>Favorites</span>
+        <h1 className='title'>Favorites</h1>
         </div>
         </div>
 

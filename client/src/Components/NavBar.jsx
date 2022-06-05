@@ -6,7 +6,7 @@ export function NavBar(){
         <nav className="navbar">
             <NavLink to='/home' className="navMenu">
             <div className="menu-button">
-                <span className="material-symbols-outlined">gite</span>
+                <span className="material-symbols-outlined">home</span>
                 Home
             <span id="arrow" class="material-symbols-outlined">arrow_forward_ios</span>
             </div>

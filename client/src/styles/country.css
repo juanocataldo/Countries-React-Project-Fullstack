@@ -2,7 +2,8 @@
     display: flex;    
     text-align: left;
     flex-direction: column;
-    align-items: flex-end;    
+    align-items: flex-end;            
+   
 }
 
 .countryContainer{
@@ -13,7 +14,7 @@
     justify-content: space-evenly;    
     margin: 0px 20px 0px 20px;    
     width: 100%;
-    background-color: #373d44d3;
+    background-color: #3e537e38;
 }
 
 

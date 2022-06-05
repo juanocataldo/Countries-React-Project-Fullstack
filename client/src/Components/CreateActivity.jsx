@@ -237,15 +237,15 @@ export function CreateActivity() {
                             </option>)}
                         </select>
                         <br />
-                        <div className="flagList">
-                            {countryList && countryList.map(item => <div className="miniFlag"><button id="miniX" onClick={() => closeMiniFlag(item.country_id)}>x</button><img src={item.country_flag} alt="" /><span >{item.country_name}</span></div>)}
-                        </div>
                         <div className="submit">
                             <input className="input" type="submit" value="Save" style={{ width: "100px" }} />
                             <span> {errorMsg}</span>
                             <Modal onClose={() => setShowModal(false)} show={showModal} />
                         </div>
                     </form>
+                        <div className="flagList">
+                            {countryList && countryList.map(item => <div className="miniFlag"><button id="miniX" onClick={() => closeMiniFlag(item.country_id)}>x</button><img src={item.country_flag} alt="" /><span >{item.country_name}</span></div>)}
+                        </div>
 
                 </div>
 

@@ -22,7 +22,6 @@ const rootReducer = (state = initialState, action) => {
                 countries: action.payload
             }
         case GET_FULL_COUNTRY_LIST:
-            console.log(action.payload)
             return{
                 ...state,
                 fullCountryList: action.payload.filter(e => {e.heart = false 
@@ -41,7 +40,6 @@ const rootReducer = (state = initialState, action) => {
         case SET_FAVORITE_COUNTRY:
             if(action.payload.act === 'add'){
                 delete action.payload.act;
-                console.log('ADDING ',action.payload)
                 return{
                     ...state,                
                     favorites_countries: [...state.favorites_countries, action.payload]
@@ -49,8 +47,6 @@ const rootReducer = (state = initialState, action) => {
             }
             if(action.payload.act === 'del'){
                 delete action.payload.act;
-                console.log('DELETING',action.payload)
-                console.log('--->',state.favorites_countries.filter( f => f.country_id !== action.payload.country_id))
                 return{
                     ...state,                
                     favorites_countries: [...state.favorites_countries.filter( f => f.country_id !== action.payload.country_id)]

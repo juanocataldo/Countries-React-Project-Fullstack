@@ -22,11 +22,8 @@ export function Country({ id, name, flag, continent, favorite }) {
 
     function setAsFavorite() {
         updated = Object.assign([{}], fixedAllCountries, allCountries);
-        console.log('De esta lista : ',updated)
         for (var i in updated) {
-            console.log(`Comparando ${updated[i].country_id} | ${id}`)
             if (updated[i].country_id == id) {
-                console.log(`ESTADO? ${updated[i].heart} `)
                 if (updated[i].heart === true || updated[i].heart === undefined) {
                     updated[i].heart = false
                     updated[i].act = "del"
@@ -48,7 +45,6 @@ export function Country({ id, name, flag, continent, favorite }) {
             }
         }
     }
-    console.log(favorites)
     return <div className="country">
         
         <div className="heart">

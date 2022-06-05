@@ -1,0 +1,31 @@
+.landing{
+    color: white;
+    width: 78%;
+    padding-left: 200px;
+    height: 50vw;
+}
+
+.a{
+    background-image: url('../Assets/wallpaper.png');
+    background-repeat: repeat;
+    background-size: 100%;
+    background-position:100%;
+    
+}
+
+.landing h5{
+    font-weight: 200;
+    font-size: 20px;
+}
+
+.landHome{
+    color: #C9A012;
+}
+
+#landingTitle{
+    color: white;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}

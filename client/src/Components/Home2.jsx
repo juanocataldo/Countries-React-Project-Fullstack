@@ -17,16 +17,16 @@ export function Home2({ countries }) {
   const [populationOrder, setPopulationOrder] = useState('')
   const [searchCountryByName, setSearchCountryByName] = useState('')
   const fullActivities = useSelector(store => store.full_activities)
+  
+  const[az , setAz] = useState(true)
+  const[za , setZa] = useState(false)
+
+  const [bigP , setBigP] = useState(false)
+  const [smallP , setSmallP] = useState(false)
+
   let allActivities = useSelector(store => store.countries_activities)
   let countriesPaginated = useSelector(store => store.countries)
-  // useEffect(() => {
-  //   setCountryOrder('ASC')
-  //   setPopulationOrder('')
-  //   dispatch(getAllActivities())
-  //   dispatch(getCountriesPaginated('ASC', ''))
-  //   dispatch(getCountries())
-  //   dispatch(getFullActivities())
-  // }, [])
+  
 
   const allCountries = useSelector(store => store.fullCountryList)
   const fixedAllCountries = useSelector(store => store.countries)
@@ -37,10 +37,10 @@ export function Home2({ countries }) {
   
   let updated = Object.assign([{}], fixedAllCountries, allCountries);
   
+ 
 
   useEffect(() => {
     updated = Object.assign([{}], fixedAllCountries, allCountries);
-    console.log('START  ',updated)
     setCountryOrder('ASC')
     setPopulationOrder('')
     dispatch(getAllActivities())
@@ -48,27 +48,47 @@ export function Home2({ countries }) {
     if(allCountries.length<=0){
       dispatch(getCountriesPaginated('ASC', ''))
       dispatch(getCountries())
-
     }
-
     dispatch(getFullActivities())
-    console.log(favorites)
   }, [])
 
   useEffect(() => {
     updated = Object.assign([{}], fixedAllCountries, allCountries);
-    console.log('updated!  ',updated)
   },[favorites])
 
+  useEffect(()=>{
+    let azBtn = document.getElementById('az')
+    let zaBtn = document.getElementById('za')
 
-  useEffect(() => {
 
-    //     if(currentPage === 1)
-    //     setCountriesPerPage(9)
-    // else
-    //     setCountriesPerPage(10)
+    if(az){
+      azBtn.style.backgroundColor = "rgb(128,96,44)"
+      zaBtn.style.backgroundColor = "#515960"
+    }
+    if(za){
+      zaBtn.style.backgroundColor = "rgb(128,96,44)"
+      azBtn.style.backgroundColor = "#515960"
+    }
 
-  }, [currentPage])
+    let big = document.getElementById('bigP')
+    let small = document.getElementById('smallP')
+    console.log(bigP)
+    console.log(smallP)
+    if(bigP){
+      big.style.backgroundColor = "rgb(128,96,44)"
+      small.style.backgroundColor = "#515960"
+    }
+
+    if(smallP){
+      small.style.backgroundColor = "rgb(128,96,44)"
+      big.style.backgroundColor = "#515960"
+    }
+
+  },[az, bigP, currentPage])
+
+  useEffect(()=>{
+   
+  },[bigP])
 
   function compare(a, b) {
     if (a.last_nom < b.last_nom) {
@@ -82,13 +102,20 @@ export function Home2({ countries }) {
 
   // FILTRO Z-A
   function orderByZA() {
+    setZa(true)
+    setAz(false)
+
     setCountryOrder('DESC')
     setPopulationOrder('')
     dispatch(getCountriesPaginated('DESC', ''))
   }
 
   // FILTRO A-Z
-  function orderByAZ() {
+  function orderByAZ() {    
+    setAz(true)
+    setZa(false)
+
+   
     setCountryOrder('ASC')
     setPopulationOrder('')
     dispatch(getCountriesPaginated('ASC', ''))
@@ -96,12 +123,17 @@ export function Home2({ countries }) {
 
   // FILTRO POPULATION
   function orderByBiggerPopulation() {
+    setBigP(true)
+    setSmallP(false)
+    
     setCountryOrder('')
     setPopulationOrder('DESC')
     dispatch(getCountriesPaginated('', 'DESC'))
   }
 
   function orderBySmallerPopulation() {
+    setBigP(false)
+    setSmallP(true)
     setPopulationOrder('ASC')
     setCountryOrder('')
     dispatch(getCountriesPaginated('', 'ASC'))
@@ -114,15 +146,13 @@ export function Home2({ countries }) {
   }
 
   const filterItems = query => {
-    return updated.filter(c => c.country_name.match(new RegExp(query, "i")))
+    return allCountries.filter(c => c.country_name.match(new RegExp(query, "i")))
   }
 
 
   function filterByContinent(e) {
     updated = Object.assign([{}], fixedAllCountries, allCountries);
-    console.log(updated.filter(c => c.country_continent === e.target.value))
     let filtered = updated.filter(c => c.country_continent === e.target.value)
-    console.log('filtrados', filtered)
     dispatch({
       type: GET_FULL_COUNTRY_LIST,
       payload: filtered
@@ -142,7 +172,7 @@ export function Home2({ countries }) {
     filtered = filter.filter(function (x) {
       return x !== undefined;
     });
-    filtered = fixedAllCountries.filter(item => filtered[0].includes(item.country_id));
+    filtered = updated.filter(item => filtered[0].includes(item.country_id));
 
     dispatch({
       type: GET_FULL_COUNTRY_LIST,
@@ -153,13 +183,18 @@ export function Home2({ countries }) {
   function searchByName(e) {
     e.preventDefault()
     let filtered = filterItems(searchCountryByName)
-    countriesPaginated = filtered
-    console.log(searchCountryByName)
+    if(searchCountryByName === ''){
+      console.log('filtro todo')
+      dispatch({
+        type: GET_FULL_COUNTRY_LIST,
+        payload: updated.sort(compare)
+      })
+    }else{
       dispatch({
         type: GET_FULL_COUNTRY_LIST,
         payload: filtered
       })
-
+    }
   }
 
 
@@ -187,7 +222,7 @@ export function Home2({ countries }) {
           <span>Home</span>
         </div> */}
          <div className="page-dock">
-          <span>Home</span>
+          <h1 className='title'>Home</h1>
         </div>
 
         <div className="filter-dock">
@@ -195,17 +230,20 @@ export function Home2({ countries }) {
         </div>
 
         <div className="inner-filter">
-          <div className="filtro-row">
+          <div className="filtro-row" id='name'>
             <span>Country name</span>
-            <form onSubmit={searchByName}>
-              <input className="input" type="text" name="searchByName" id="" placeholder="Search country" onChange={fillSearchByName} />
-              <input className="input" type="submit" value="Search" style={{ width: "100%" }} />
+            <form onSubmit={searchByName} className='searchByName' style={{marginTop:"5px"}}>
+              <input autoComplete='off' className="input" id='inputNameSearch' type="text" name="searchByName" placeholder="Search country" onChange={fillSearchByName} />
+              <button className='search'>
+                <span class="material-symbols-outlined">search</span>
+              </button>
+              {/* <input className="search" type="submit" value="" /> */}
             </form>
           </div>
           <div className="filtro-row">
             <span>Alphabetically</span><br />
-            <button id="btnFilter" className="input" onClick={() => orderByAZ()}>A-Z</button>
-            <button id="btnFilter" className="input" onClick={() => orderByZA()}>Z-A</button><br />
+            <button id="az" className="input" onClick={() => orderByAZ()}>A-Z</button>
+            <button id="za" className="input" onClick={() => orderByZA()}>Z-A</button><br />
           </div>
           <div className="filtro-row">
             <span>By Continent</span><br />
@@ -232,14 +270,14 @@ export function Home2({ countries }) {
           </div>
           <div className="filtro-row">
             <span>By population</span><br />
-            <button id="btnFilter" className="input" onClick={() => orderByBiggerPopulation()}>Bigger poblation</button>
-            <button id="btnFilter" className="input" onClick={() => orderBySmallerPopulation()}>Smaller poblation</button>
+            <button id="bigP" className="input" onClick={() => orderByBiggerPopulation()}>Bigger poblation</button>
+            <button id="smallP" className="input" onClick={() => orderBySmallerPopulation()}>Smaller poblation</button>
           </div>
         </div>
       </div>
       <div className="paginatorSpace">
         <div className="paginatorContainer">
-          <Pagination postsPerPage={countriesPerPage} totalPosts={allCountries.length} paginate={paginate} />
+          <Pagination postsPerPage={countriesPerPage} totalPosts={allCountries.length} paginate={paginate} currentPage={currentPage} />
         </div>
       </div>
 

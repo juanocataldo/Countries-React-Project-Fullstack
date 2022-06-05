@@ -1,6 +1,6 @@
 import '../Styles/pagination.css'
 
-export function Pagination({ postsPerPage, totalPosts, paginate }){
+export function Pagination({ postsPerPage, totalPosts, paginate, currentPage }){
     const pageNumbers = []
 
 
@@ -13,15 +13,13 @@ export function Pagination({ postsPerPage, totalPosts, paginate }){
         pageNumbers.push(i)        
     }
 
-    function a(number){
-        console.log(number)
-    }
+    
    
     return <nav className="pagination">
         <ul>
             {pageNumbers.map( number => (
-                <span key={number}>
-                    <button onClick={() => {paginate(number);a(number)}} >
+                <span className={currentPage === number ? 'active' : ''}  key={number}>
+                    <button className={currentPage === number ? 'active' : ''} onClick={() => {paginate(number)}} >
                         {number}   
                     </button>
                 </span>

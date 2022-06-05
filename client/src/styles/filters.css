@@ -1,3 +1,5 @@
+
+
 .title-dock{
     display: flex;
     
@@ -15,7 +17,7 @@
 
 .filter-dock{
     display: flex;
-    background-color: #5c5c5caf;
+    background-color: #31363E;
     color: black;
     display: flex;
     color: #E4E7EA;
@@ -25,14 +27,24 @@
     margin: 20px;
     align-items: center;
     justify-content:flex-start;
-    border: 1px solid rgb(36, 35, 35);
-    
+    border: 1px solid rgb(36, 35, 35);    
+}
+
+.inner-filter{    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: -20px 20px 20px 20px;
+    border-radius: 0px 0px 20px 20px;
+    background-color: #3e537e38;
+    padding: 20px;
+    color: white;
 }
 
 .page-dock{
     display: flex;
-    background: rgb(128,96,44);
-background: linear-gradient(90deg, rgba(128,96,44,1) 0%, rgba(36,36,36,0) 35%);
+  
     color: black;
     display: flex;
     color: #E4E7EA;
@@ -49,8 +61,7 @@ background: linear-gradient(90deg, rgba(128,96,44,1) 0%, rgba(36,36,36,0) 35%);
     width: 80%; 
 }
 
-.filtro-row{
-    width: 20%;    
+.filtro-row{    
     text-align: center;
 }
 
@@ -58,25 +69,49 @@ background: linear-gradient(90deg, rgba(128,96,44,1) 0%, rgba(36,36,36,0) 35%);
     color: #a3a6a8;
 }
 
-#btnFilter{
+.btnFilter{
     width: 40%;
 }
 
-.inner-filter{    
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: -20px 20px 20px 20px;
-    background-color: #373d44b2;
-    padding: 20px;
-    color: white;
-}
 
-.input{
+
+.input:not(#inputNameSearch){
     background-color: #515960;
     border: none;
     padding: 9px;
     margin: 5px;
     color: white;
+}
+
+.searchByName{
+    display: flex;
+    align-items:center;
+    justify-content: flex-start;
+}
+
+.search{
+    background-color: #515960;
+    border: none;
+    height: 34px;    
+}
+
+#inputNameSearch{
+    background-color: #515960;
+    border: none;
+    height: 32px; 
+    color: white;
+    padding-left:10px;
+}
+
+#inputNameSearch:focus {
+    outline: none; 
+    
+}
+
+#name{
+    display: flex;
+    /* margin: auto; */
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
 }

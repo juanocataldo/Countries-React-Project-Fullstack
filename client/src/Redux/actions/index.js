@@ -41,7 +41,7 @@ export function getAllCountries(){
 
 export function setFavCountry(id){
     return function(dispatch){
-        return fetch(`http://localhost:3001/details/${id}`)
+        return fetch(`http://localhost:3001/countries/${id}`)
         .then(data => data.json())
         .then(res => {
             dispatch({
@@ -94,7 +94,6 @@ export function getFullActivities(){
         return fetch('http://localhost:3001/activity_filter')
         .then(data => data.json())
         .then(res => {
-            console.log('FULL ACT', res)
             dispatch({
                 type: GET_FULL_ACTIVITIES,
                 payload: res
@@ -118,7 +117,7 @@ export function getCountriesPaginated(o,p,page){
 
 export function getCountries(){
     return function(dispatch){
-        return fetch(`http://localhost:3001/home/all`)
+        return fetch(`http://localhost:3001/countries`)
         .then(data => data.json())
         .then(res => {
             dispatch({

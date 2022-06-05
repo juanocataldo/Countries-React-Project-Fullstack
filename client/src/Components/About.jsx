@@ -13,7 +13,7 @@ export function About() {
 
             <div className="filter">
                 <div className="page-dock">
-                    <span>About</span>
+                <h1 className='title'>About</h1>
                 </div>
             </div>
 

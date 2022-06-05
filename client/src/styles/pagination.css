@@ -1,14 +1,21 @@
-.pagination button{
+.pagination button:not(.active){
     background-color: transparent;
     border: none;
-    padding: 10px;    
+    padding-left: 10px;    
     color: white;
 }
 
 .pagination button:hover{
+    background-color: transparent;
+    border-radius: 20%;
+    border: 1px solid rgb(128,96,44);;    
+    color: white;
+}
+
+.active{
     background-color: rgb(128,96,44);
-    border-radius: 10%;
     border: none;
-    padding: 10px;    
+    padding: 5px;
+    border-radius: 7px;
     color: white;
 }

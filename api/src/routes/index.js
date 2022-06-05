@@ -29,7 +29,7 @@ router.get('/eager/:id', async(req, res) =>{
 })
 
 
-router.get('/details/:id', async(req, res) =>{  
+router.get('/countries/:id', async(req, res) =>{  
   try {
     const {id} = req.params
     console.log('id en ruta details ',id)
@@ -64,7 +64,7 @@ router.put('/activity_country', async (req, res) => {
   try {
     const {country_id, touact_id} = req.body
     
-    let country = await Country.findByPk(country_id)
+    let country = await Country.findByPk(country_id)    
     console.log('country para actividad ',country)
     let touact_id2 = await Tourist_activity.findAll({   
       raw: true,   
@@ -73,8 +73,8 @@ router.put('/activity_country', async (req, res) => {
       ],
       limit:1
     })
+    console.log('actividad ', touact_id2)
     // const activity = await Tourist_activity.findByPk()
-    console.log('EL ID PARA INSERTAR (EL ULTIMO) ', touact_id2[0].touact_id)
     res.json(await country.addTourist_activity(touact_id2[0].touact_id))        
   } catch (error) {
     res.status(400).json({msg:error.message})
@@ -102,7 +102,7 @@ router.post('/activity' , async (req, res) => {
   }
 })
 
-router.get('/home/all' , async (req, res) => {
+router.get('/countries' , async (req, res) => {
   try {
     const allCountries = await Country.findAll()
     res.json(allCountries)

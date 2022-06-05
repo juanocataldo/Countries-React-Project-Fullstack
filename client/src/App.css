@@ -1,19 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 .App {
   text-align: center;
   
 }
 
+.title{
+  color: rgba(255, 255, 255, 0.453);
+  font-family: 'Roboto', sans-serif;
+}
+
 html{
-  background-image: url('./Assets/wallpaper.png');    
-    
-    background-position:center;
-    background-size: 100%;
+  background-color: #141a23;
 }
 
 button:hover{
-  cursor: pointer;
-  background-color: #282c34;
-  transition: 0.3s;
+  cursor: pointer;  
+  
 }
 
 input[type="button"], input[type="submit"], select, svg {

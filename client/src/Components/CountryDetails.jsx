@@ -27,7 +27,7 @@ export function CountryDetails() {
     }
 
     function getDetails() {
-        fetch(`http://localhost:3001/details/${id}`)
+        fetch(`http://localhost:3001/countries/${id}`)
             .then(data => data.json())
             .then(res => {
                 setDetails(res)
@@ -68,7 +68,7 @@ export function CountryDetails() {
                     <div className="flag">
                             <img src={details.country_flag} alt="" />
                         <div>
-                            <iframe id='frame'
+                            <iframe className="holds-the-iframe" id='frame'
                                 width="100%"
                                 height="209"
                                 frameBorder="0" style={{ border: "0" }}
@@ -88,7 +88,7 @@ export function CountryDetails() {
                             <br />
                             <span>Region: {moreData.region}</span>
                             <br />
-                            {moreData &&
+                            {moreData.languages &&
                                 <span>Language/s: {(Object.values(moreData.languages)).map(val => <span>{val} </span>)}</span>
                             }
                         </div>

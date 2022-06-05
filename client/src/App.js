@@ -24,15 +24,16 @@ function App() {
 
   return (
     <div className="App"> 
+    
     <NavBar />     
     <Dock />
       <Routes>
+        <Route path='/' element={<Access />} />
         <Route path='/about' element={<About />} />
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/details/:id' element={<CountryDetails /> } />
         <Route path='/create_activity' element={<CreateActivity />} />
         <Route path='/home' element={<Home2 />} />
-        <Route path='/' element={<Access />} />
       </Routes>      
       
       
