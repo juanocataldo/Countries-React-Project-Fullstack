@@ -190,9 +190,9 @@ export function CreateActivity() {
 
 
         <div className="filter">
-                <div className="page-dock">
-                    <span>Create activity</span>
-                </div>
+        <div className="page-dock">
+          <h1 className='title'>Create Activity</h1>
+        </div>
             </div>
             <div className="createSpace">
 
@@ -200,11 +200,11 @@ export function CreateActivity() {
 
                     {/* <span id='titleActivities'>Create Activity</span> */}
 
-                    <form id="formActivity" onSubmit={submitActivity}>
-                        <label>Activity name</label>
+                    <form id="formActivity" >
+                        <label>Activity name</label><br />
                         <input className="input select" type="text" name="touact_name" id="touact_name" onChange={twoCalls} /><br />
 
-                        <label>Activity difficulty</label>
+                        <label>Activity difficulty</label><br />
                         {/* <input type="text" name="touact_difficulty" id="" onChange={fillActivityState} /><br /> */}
                         <select className="input select" name="touact_difficulty" id="touact_difficulty" onChange={twoCalls}>
                             <option disabled="disabled" selected="Select" value="Select option">Select difficulty</option>
@@ -215,10 +215,10 @@ export function CreateActivity() {
                             <option value="5">5 - Pro</option>
                         </select><br />
 
-                        <label>Activity duration</label>
+                        <label>Activity duration</label><br />
                         <input className="input select" type="text" name="touact_duration" id="touact_duration" onChange={twoCalls} /><br />
 
-                        <label>Activity season</label>
+                        <label>Activity season</label><br />
                         <select className="input select" name="touact_season" id="touact_season" onChange={twoCalls}>
                             <option disabled="disabled" selected="Select" value="Select option">Select season</option>
                             <option value="Summer">Summer</option>
@@ -229,7 +229,7 @@ export function CreateActivity() {
                         </select><br />
                         {/* <input type="text" name="touact_season" id="" onChange={fillActivityState} /><br /> */}
 
-                        <label>Select country for this activity</label>
+                        <label>Select country for this activity</label><br />
                         <select className="input select" name="country" id="countries" onChange={showPK}>
                             <option disabled="disabled" selected="Select" value="Select option">Select an option</option>
                             {ordered && ordered.map(c => <option value={c.country_name} defaultValue={c.country_name}>
@@ -238,7 +238,15 @@ export function CreateActivity() {
                         </select>
                         <br />
                         <div className="submit">
-                            <input className="input" type="submit" value="Save" style={{ width: "100px" }} />
+                            <div className="saveBtn">
+                                <button className="input submBtn" onClick={submitActivity}>
+                                    Save
+                                    <span class="material-symbols-outlined">save</span>
+                                </button>
+                                {/* <input className="input" type="submit" value="Save" style={{ width: "100px" }} /> */}
+                                
+                            </div>
+                            
                             <span> {errorMsg}</span>
                             <Modal onClose={() => setShowModal(false)} show={showModal} />
                         </div>

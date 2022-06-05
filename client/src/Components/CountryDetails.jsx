@@ -59,24 +59,17 @@ export function CountryDetails() {
         </div> */}
         <div className="detailsSpace">
             <div className="detailsContainer">
-                <NavLink to='/home'>
-                    <img src={back} alt="back" id='back' />
-                </NavLink>
+                <div className="backBtn">
+                    <NavLink to='/home'>
+                        <img src={back} alt="back" id='back' />
+                    </NavLink>
+                </div>
+                
                 <div className="info">
                 <span id='titleActivities'>Details of {details.country_name}</span><br />
                             <hr /><br />
                     <div className="flag">
                             <img src={details.country_flag} alt="" />
-                        <div>
-                            <iframe className="holds-the-iframe" id='frame'
-                                width="100%"
-                                height="209"
-                                frameBorder="0" style={{ border: "0" }}
-                                referrerpolicy="no-referrer-when-downgrade"
-                                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyC36GHRjga4WoOy0LsfWII_QhSJb2DQWRk&q=${details.country_name}`}
-                                allowfullscreen>
-                            </iframe>
-                        </div>
                         <div className="">
                             
                             <h1 style={{textDecoration:"underline"}}>{details.country_name} [{details.country_id}]</h1>
@@ -91,6 +84,16 @@ export function CountryDetails() {
                             {moreData.languages &&
                                 <span>Language/s: {(Object.values(moreData.languages)).map(val => <span>{val} </span>)}</span>
                             }
+                        </div>
+                        <div>
+                            <iframe className="holds-the-iframe" id='frame'
+                                width="100%"
+                                height="209"
+                                frameBorder="0" style={{ border: "0" }}
+                                referrerpolicy="no-referrer-when-downgrade"
+                                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyC36GHRjga4WoOy0LsfWII_QhSJb2DQWRk&q=${details.country_name}`}
+                                allowfullscreen>
+                            </iframe>
                         </div>
                         
                     </div>

@@ -74,3 +74,7 @@
 .holds-the-iframe{
     background:url('../Assets/loading.gif') center center no-repeat;
 }
+.backBtn{
+    display: flex;
+    width: 100%;
+}
