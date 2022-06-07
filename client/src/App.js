@@ -3,8 +3,8 @@ import './App.css';
 import {  Routes, Route } from 'react-router-dom';
 import { Home } from '../src/Components/Home'
 import { Access } from './Components/Access';
-import { getAllCountries } from './Redux/actions';
-import { useDispatch } from 'react-redux';
+import { getAllCountries, getCountries } from './Redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
 import { CreateActivity } from './Components/CreateActivity';
 import { NavBar } from './Components/NavBar';
 import { CountryDetails } from './Components/CountryDetails';
@@ -16,9 +16,12 @@ function App() {
 
   const dispatch = useDispatch()
   
+  const allCountries = useSelector(store => store.countries)
+
   useEffect(() => {
     // INSERT MASIVO INICIAL
     // dispatch(getAllCountries()) 
+    dispatch(getCountries())
   },[])
  
 
@@ -33,7 +36,7 @@ function App() {
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/details/:id' element={<CountryDetails /> } />
         <Route path='/create_activity' element={<CreateActivity />} />
-        <Route path='/home' element={<Home2 />} />
+        <Route path='/home' element={<Home2 countries={allCountries} />} />
       </Routes>      
       
       

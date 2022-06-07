@@ -18,42 +18,34 @@ export function Home2({ countries }) {
   const [searchCountryByName, setSearchCountryByName] = useState('')
   const fullActivities = useSelector(store => store.full_activities)
   
-  const[az , setAz] = useState(true)
+  const[az , setAz] = useState(false)
   const[za , setZa] = useState(false)
 
   const [bigP , setBigP] = useState(false)
   const [smallP , setSmallP] = useState(false)
+  const [countryList, setCountryList] = useState(countries)
+
 
   let allActivities = useSelector(store => store.countries_activities)
-  let countriesPaginated = useSelector(store => store.countries)
-  
 
-  const allCountries = useSelector(store => store.fullCountryList)
-  const fixedAllCountries = useSelector(store => store.countries)
   const favorites = useSelector(store => store.favorites_countries)
   const indexOfLastPost = currentPage * countriesPerPage;
   const indexOfFirstPost = indexOfLastPost - countriesPerPage;
-  const currentPosts = allCountries.slice(indexOfFirstPost, indexOfLastPost).sort(compare)
+  let currentPosts=null;
+  if(countryList.length <= 0)
+    currentPosts = countries.slice(indexOfFirstPost, indexOfLastPost).sort(compare)
+    else
+  currentPosts = countryList.slice(indexOfFirstPost, indexOfLastPost).sort(compare)
   
-  let updated = Object.assign([{}], fixedAllCountries, allCountries);
   
  
 
   useEffect(() => {
-    updated = Object.assign([{}], fixedAllCountries, allCountries);
-    setCountryOrder('ASC')
-    setPopulationOrder('')
-    dispatch(getAllActivities())
-    
-    if(allCountries.length<=0){
-      dispatch(getCountriesPaginated('ASC', ''))
-      dispatch(getCountries())
-    }
+    dispatch(getAllActivities())    
     dispatch(getFullActivities())
   }, [])
 
   useEffect(() => {
-    updated = Object.assign([{}], fixedAllCountries, allCountries);
   },[favorites])
 
   useEffect(()=>{
@@ -64,11 +56,14 @@ export function Home2({ countries }) {
     if(az){
       azBtn.style.backgroundColor = "rgb(128,96,44)"
       zaBtn.style.backgroundColor = "#515960"
-    }
+    }else
+      azBtn.style.backgroundColor = ""
+    
     if(za){
       zaBtn.style.backgroundColor = "rgb(128,96,44)"
       azBtn.style.backgroundColor = "#515960"
-    }
+    }else
+    zaBtn.style.backgroundColor = ""
 
     let big = document.getElementById('bigP')
     let small = document.getElementById('smallP')
@@ -77,18 +72,20 @@ export function Home2({ countries }) {
     if(bigP){
       big.style.backgroundColor = "rgb(128,96,44)"
       small.style.backgroundColor = "#515960"
+    }else{
+      big.style.backgroundColor = ""
     }
 
     if(smallP){
       small.style.backgroundColor = "rgb(128,96,44)"
       big.style.backgroundColor = "#515960"
+    }else{
+      small.style.backgroundColor = ""
     }
 
-  },[az, bigP, currentPage])
+  },[az, bigP, smallP, currentPage])
 
-  useEffect(()=>{
-   
-  },[bigP])
+
 
   function compare(a, b) {
     if (a.last_nom < b.last_nom) {
@@ -102,41 +99,69 @@ export function Home2({ countries }) {
 
   // FILTRO Z-A
   function orderByZA() {
+    setBigP(false)
+    setSmallP(false)
     setZa(true)
     setAz(false)
+    if(countryList.length <= 0){
+      setCountryList(countries.sort(function (b, a) {
+        return ('' + a.country_name).localeCompare(b.country_name);}))
+    }else{
+      setCountryList(countryList.sort(function (b, a) {
+        return ('' + a.country_name).localeCompare(b.country_name);}))
 
-    setCountryOrder('DESC')
-    setPopulationOrder('')
-    dispatch(getCountriesPaginated('DESC', ''))
+    }
+
   }
 
   // FILTRO A-Z
   function orderByAZ() {    
     setAz(true)
     setZa(false)
-
-   
-    setCountryOrder('ASC')
-    setPopulationOrder('')
-    dispatch(getCountriesPaginated('ASC', ''))
+    setBigP(false)
+    setSmallP(false)
+    if(countryList.length <= 0){
+      setCountryList(countries.sort(function (a, b) {
+        return ('' + a.country_name).localeCompare(b.country_name);}))
+    }else{
+      setCountryList(countryList.sort(function (a, b) {
+        return ('' + a.country_name).localeCompare(b.country_name);}))
+      }
   }
 
   // FILTRO POPULATION
   function orderByBiggerPopulation() {
     setBigP(true)
     setSmallP(false)
+    setZa(false)
+    setAz(false)
+    if(countryList.length <= 0){
+    setCountryList(countries.sort(function (b, a) {
+      return a.country_poblation.localeCompare(b.country_poblation, undefined, { numeric: true, sensitivity: 'base' });
+  }))}else{
+    setCountryList(countryList.sort(function (b, a) {
+      return a.country_poblation.localeCompare(b.country_poblation, undefined, { numeric: true, sensitivity: 'base' });
+  }))
+  }
     
-    setCountryOrder('')
-    setPopulationOrder('DESC')
-    dispatch(getCountriesPaginated('', 'DESC'))
+    
   }
 
   function orderBySmallerPopulation() {
+    setZa(false)
+    setAz(false)
     setBigP(false)
     setSmallP(true)
-    setPopulationOrder('ASC')
-    setCountryOrder('')
-    dispatch(getCountriesPaginated('', 'ASC'))
+    
+    if(countryList.length <= 0){
+      setCountryList(countries.sort(function (a, b) {
+        return a.country_poblation.localeCompare(b.country_poblation, undefined, { numeric: true, sensitivity: 'base' });
+    }))}else{
+      setCountryList(countryList.sort(function (a, b) {
+        return a.country_poblation.localeCompare(b.country_poblation, undefined, { numeric: true, sensitivity: 'base' });
+    }))
+    }
+    
   }
 
   // FILTRO POR NOMBRE
@@ -146,65 +171,67 @@ export function Home2({ countries }) {
   }
 
   const filterItems = query => {
-    return allCountries.filter(c => c.country_name.match(new RegExp(query, "i")))
+    return countries.filter(c => c.country_name.match(new RegExp(query, "i")))
   }
 
 
   function filterByContinent(e) {
-    updated = Object.assign([{}], fixedAllCountries, allCountries);
-    let filtered = updated.filter(c => c.country_continent === e.target.value)
-    dispatch({
-      type: GET_FULL_COUNTRY_LIST,
-      payload: filtered
-    })
+    if(e.target.value === 'all')
+      setCountryList(countries)  
+    else
+      setCountryList(countries.filter(c => c.country_continent === e.target.value))  
   }
 
 
   function filterByActivity(e) {
     let filter = []
     let filtered = []
-    filter = fullActivities.map(a => {
 
-      if (a.touact_name.toLowerCase() === e.target.value.toLowerCase()) {
-        return a.countries.map(a => a.country_id)
-      }
-    })
-    filtered = filter.filter(function (x) {
-      return x !== undefined;
-    });
-    filtered = updated.filter(item => filtered[0].includes(item.country_id));
+    let continent = document.getElementById('continents')
 
-    dispatch({
-      type: GET_FULL_COUNTRY_LIST,
-      payload: filtered
-    })
+    continent.selectedIndex = 0;
+
+    if(e.target.value === 'all'){
+      filter = fullActivities
+      filtered = filter.filter(function (x) {
+        return x !== undefined;
+      });
+      if(countryList.length <= 0)
+      setCountryList(countries.filter(item => filtered.includes(item.country_id)));
+    else
+    setCountryList(countries.filter(item => filtered.includes(item.country_id)));
+    }else{
+      filter = fullActivities.map(a => {
+  
+        if (a.touact_name.toLowerCase() === e.target.value.toLowerCase()) {
+          return a.countries.map(a => a.country_id)
+        }
+      })
+      filtered = filter.filter(function (x) {
+        return x !== undefined;
+      });
+      if(countryList.length <= 0)
+      setCountryList(countries.filter(item => filtered[0].includes(item.country_id)));
+    else
+    setCountryList(countries.filter(item => filtered[0].includes(item.country_id)));
+      
+    }
+
+
   }
 
   function searchByName(e) {
     e.preventDefault()
-    let filtered = filterItems(searchCountryByName)
-    if(searchCountryByName === ''){
-      console.log('filtro todo')
-      dispatch({
-        type: GET_FULL_COUNTRY_LIST,
-        payload: updated.sort(compare)
-      })
-    }else{
-      dispatch({
-        type: GET_FULL_COUNTRY_LIST,
-        payload: filtered
-      })
-    }
+    setCountryList(filterItems(searchCountryByName)) 
   }
 
 
   const seen = new Set();
-  allActivities = allActivities.filter(el => {
+    allActivities = allActivities.filter(el => {
     const duplicate = seen.has(el.touact_name.toLowerCase());
     seen.add(el.touact_name.toLowerCase());
     return !duplicate;
   });
-
 
 
   //Change Page
@@ -248,7 +275,7 @@ export function Home2({ countries }) {
           <div className="filtro-row">
             <span>By Continent</span><br />
             <select className="input" name="continent" id="continents" onChange={filterByContinent}>
-              <option disabled="disabled" selected="Select" value="Select option">Select an option</option>
+              <option disabled="" selected="Select" value="all">All Countries</option>
               <option value="Antarctica">Antartica</option>
               <option value="Africa">Africa</option>
               <option value="Asia">Asia</option>
@@ -261,7 +288,7 @@ export function Home2({ countries }) {
           <div className="filtro-row">
             <span>By activity</span><br />
             <select className="input" name="activity" id="activities" defaultChecked='' onChange={filterByActivity}>
-              <option disabled="disabled" selected="Select" value="Select option">Select an option</option>
+              <option disabled="" selected="Select" value="all">All Countries</option>
               {allActivities &&
 
                 allActivities.map(c => <option value={c.touact_name}>{c.touact_name}</option>)}
@@ -277,7 +304,7 @@ export function Home2({ countries }) {
       </div>
       <div className="paginatorSpace">
         <div className="paginatorContainer">
-          <Pagination postsPerPage={countriesPerPage} totalPosts={allCountries.length} paginate={paginate} currentPage={currentPage} />
+          <Pagination postsPerPage={countriesPerPage} totalPosts={countryList.length} paginate={paginate} currentPage={currentPage} />
         </div>
       </div>
 
