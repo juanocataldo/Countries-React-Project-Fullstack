@@ -14,7 +14,8 @@
     justify-content: space-evenly;    
     margin: 0px 20px 0px 20px;    
     width: 100%;
-    background-color: #3e537e38;
+    background-color: #2c374cc4;;
+    border-radius: 0px 0px 20px 20px;
 }
 
 
@@ -83,6 +84,7 @@
     width: 80%;
     display: flex;
     justify-content: flex-end;
+    
 }
 
 .paginatorContainer{
@@ -91,7 +93,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
-    background-color: #373d44d3;
+    background-color: #2c374cc4;;
     width: 100%;
     margin: 0px 20px 0 20px;
 }

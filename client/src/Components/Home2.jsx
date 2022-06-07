@@ -304,7 +304,14 @@ export function Home2({ countries }) {
       </div>
       <div className="paginatorSpace">
         <div className="paginatorContainer">
+          {countryList.length <= 0 
+          ?
+          <Pagination postsPerPage={countriesPerPage} totalPosts={countries.length} paginate={paginate} currentPage={currentPage} />
+
+          :
           <Pagination postsPerPage={countriesPerPage} totalPosts={countryList.length} paginate={paginate} currentPage={currentPage} />
+
+          }
         </div>
       </div>
 
