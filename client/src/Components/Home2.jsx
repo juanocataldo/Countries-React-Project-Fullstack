@@ -24,6 +24,8 @@ export function Home2({ countries }) {
   const [bigP , setBigP] = useState(false)
   const [smallP , setSmallP] = useState(false)
   const [countryList, setCountryList] = useState(countries)
+  let continent = document.getElementById('continents')
+  let activities = document.getElementById('activities')
 
 
   let allActivities = useSelector(store => store.countries_activities)
@@ -176,6 +178,8 @@ export function Home2({ countries }) {
 
 
   function filterByContinent(e) {
+    activities.selectedIndex = 0
+    
     if(e.target.value === 'all')
       setCountryList(countries)  
     else
@@ -187,8 +191,7 @@ export function Home2({ countries }) {
     let filter = []
     let filtered = []
 
-    let continent = document.getElementById('continents')
-
+    
     continent.selectedIndex = 0;
 
     if(e.target.value === 'all'){

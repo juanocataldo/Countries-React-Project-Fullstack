@@ -202,11 +202,14 @@ export function CreateActivity() {
 
                     <form id="formActivity" >
                         <label>Activity name</label><br />
-                        <input className="input select" type="text" name="touact_name" id="touact_name" onChange={twoCalls} /><br />
+                        <input className="input" type="text" name="touact_name" id="touact_name" onChange={twoCalls}   /><br />
+                        
+                        <label>Activity duration</label><br />
+                        <input className="input" type="text" name="touact_duration" id="touact_duration" onChange={twoCalls} /><br />
 
                         <label>Activity difficulty</label><br />
                         {/* <input type="text" name="touact_difficulty" id="" onChange={fillActivityState} /><br /> */}
-                        <select className="input select" name="touact_difficulty" id="touact_difficulty" onChange={twoCalls}>
+                        <select className="input" name="touact_difficulty" id="touact_difficulty" onChange={twoCalls} >
                             <option disabled="disabled" selected="Select" value="Select option">Select difficulty</option>
                             <option value="1">1 - Easy</option>
                             <option value="2">2 - Upper Easy</option>
@@ -215,11 +218,9 @@ export function CreateActivity() {
                             <option value="5">5 - Pro</option>
                         </select><br />
 
-                        <label>Activity duration</label><br />
-                        <input className="input select" type="text" name="touact_duration" id="touact_duration" onChange={twoCalls} /><br />
 
                         <label>Activity season</label><br />
-                        <select className="input select" name="touact_season" id="touact_season" onChange={twoCalls}>
+                        <select className="input" name="touact_season" id="touact_season" onChange={twoCalls}>
                             <option disabled="disabled" selected="Select" value="Select option">Select season</option>
                             <option value="Summer">Summer</option>
                             <option value="Winter">Winter</option>
@@ -230,7 +231,7 @@ export function CreateActivity() {
                         {/* <input type="text" name="touact_season" id="" onChange={fillActivityState} /><br /> */}
 
                         <label>Select country for this activity</label><br />
-                        <select className="input select" name="country" id="countries" onChange={showPK}>
+                        <select className="input" name="country" id="countries" onChange={showPK}>
                             <option disabled="disabled" selected="Select" value="Select option">Select an option</option>
                             {ordered && ordered.map(c => <option value={c.country_name} defaultValue={c.country_name}>
                                 {c.country_name}
@@ -243,7 +244,6 @@ export function CreateActivity() {
                                     Save
                                     <span class="material-symbols-outlined">save</span>
                                 </button>
-                                {/* <input className="input" type="submit" value="Save" style={{ width: "100px" }} /> */}
                                 
                             </div>
                             

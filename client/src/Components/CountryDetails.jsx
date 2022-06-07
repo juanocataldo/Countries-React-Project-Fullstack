@@ -72,7 +72,7 @@ export function CountryDetails() {
                             {/* <img src={details.country_flag} alt="" /> */}
                         <div className="">
                             
-                            <h1 style={{textDecoration:"underline"}}>{details.country_name} [{details.country_id}]</h1>
+                            <h1 id='countryTitle'>{details.country_name} [{details.country_id}]</h1>
                             <span>Perimeter: {<NumberFormat value={details.country_area} thousandsGroupStyle="thousand" thousandSeparator={true} decimalSeparator="." displayType={'text'} />} kms2</span>
                             <br />
                             <span>Located at {details.country_subregion}</span>

@@ -37,7 +37,8 @@
     justify-content: space-between;
     margin: -20px 20px 20px 20px;
     border-radius: 0px 0px 20px 20px;
-    background-color: #2c374cc4;
+    background: rgb(41,54,72);
+background: linear-gradient(0deg, rgba(41,54,72,1) 0%, rgba(41,54,72,0.639093137254902) 46%, rgba(41,54,72,1) 89%);
     padding: 20px;
     color: white;
     border: 1px solid rgba(101, 100, 100, 0.153);

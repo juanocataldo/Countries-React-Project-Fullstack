@@ -1,59 +1,99 @@
-.arrow{
-    width: 20px;
+@media only screen and (min-width: 360px) and (max-width: 844px) {
+    .navbar{
+        width: 20%;
+        height: 100%;
+        position: fixed;
+        background: rgb(20,20,20);
+    background: linear-gradient(0deg, rgba(20,20,20,1) 0%, rgba(49,54,62,1) 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;    
+        border-right: 1px solid rgb(44, 40, 40);
+        -webkit-box-shadow: 9px 7px 12px -1px rgba(0,0,0,0.78); 
+    box-shadow: 9px 7px 12px -1px rgba(0,0,0,0.78);
+    }
+
+    .menu-button{
+        width: 95%;
+        height: 50px;    
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 10px;
+        transition: width 2s;
+    }
+    
+    #textito{
+        display:none;
+    }
+
+    .navMenu{
+        color: white;
+        text-decoration: none;
+        padding: 5px;
+        width: 95%;
+    }
 }
 
-.navbar{
-    width: 20%;
-    height: 100%;
-    position: fixed;
-    background: rgb(20,20,20);
-background: linear-gradient(0deg, rgba(20,20,20,1) 0%, rgba(49,54,62,1) 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;    
-    border-right: 1px solid rgb(44, 40, 40);
-    -webkit-box-shadow: 9px 7px 12px -1px rgba(0,0,0,0.78); 
-box-shadow: 9px 7px 12px -1px rgba(0,0,0,0.78);
-}
-
-.menu-button{
-    width: 95%;
-    height: 50px;    
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 10px;
-    transition: width 2s;
-}
-
-.navMenu:hover{
-    background-color: #80602c ;    
-    transition: 1s;
-    -webkit-box-shadow: 0px 5px 15px 5px rgba(0,0,0,0.56); 
-box-shadow: 0px 5px 15px 5px rgba(0,0,0,0.56);
-
-   border-radius: 10px;
-    transition: 0.5s;
-    width: 100%;
-}
-
-
-
-.menu-button span{
-    padding-right: 5px;    
-}
-
-.menu-button #arrow{
-    font-size: 12px;
-    margin-right: 30px;
-    right: 0px;
-    margin-left: auto;
-}
-
-.navMenu{
-    color: white;
-    text-decoration: none;
-    padding: 5px;
-    width: 95%;
+@media only screen and (min-width:845px){
+    .arrow{
+        width: 20px;
+    }
+    
+    .navbar{
+        width: 20%;
+        height: 100%;
+        position: fixed;
+        background: rgb(20,20,20);
+    background: linear-gradient(0deg, rgba(20,20,20,1) 0%, rgba(49,54,62,1) 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;    
+        border-right: 1px solid rgb(44, 40, 40);
+        -webkit-box-shadow: 9px 7px 12px -1px rgba(0,0,0,0.78); 
+    box-shadow: 9px 7px 12px -1px rgba(0,0,0,0.78);
+    }
+    
+    .menu-button{
+        width: 95%;
+        height: 50px;    
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 10px;
+        transition: width 2s;
+    }
+    
+    .navMenu:hover{
+        background-color: #80602c ;    
+        transition: 1s;
+        -webkit-box-shadow: 0px 5px 15px 5px rgba(0,0,0,0.56); 
+    box-shadow: 0px 5px 15px 5px rgba(0,0,0,0.56);
+    
+       border-radius: 10px;
+        transition: 0.5s;
+        width: 100%;
+    }
+    
+    
+    
+    .menu-button span{
+        padding-right: 5px;    
+    }
+    
+    .menu-button #arrow{
+        font-size: 12px;
+        margin-right: 30px;
+        right: 0px;
+        margin-left: auto;
+    }
+    
+    .navMenu{
+        color: white;
+        text-decoration: none;
+        padding: 5px;
+        width: 95%;
+    }
 }

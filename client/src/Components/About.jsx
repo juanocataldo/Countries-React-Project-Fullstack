@@ -20,7 +20,22 @@ export function About() {
 
             <div className="countrySpace">
                 <div className="countryContainer">
-                    <span style={{ padding: "20px", color: "white" }}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo dolorem recusandae, maxime necessitatibus natus minus tenetur id aperiam expedita voluptatibus, sint laboriosam atque maiores consequatur adipisci aliquam magni ipsa unde!</span>
+                    <span style={{ padding: "20px", color: "white" }}>This app was built with the next technologies: 
+                    <br />Frontend: <br />
+                    <ul>
+                        <li>React / Redux</li>
+                        <li>HTML + CSS (no external frameworks like bootstrap were allowed)</li>                        
+                    </ul> 
+                    Backend: <br />
+                    <ul>
+                        <li>Node / ExpressJS</li>
+                        <li>Postgres</li>
+                        <li>Sequelize</li>
+                    </ul>
+                    
+                    This was an individual final project of the Henry's bootcamp.                    
+                    The tematic is about creating activities in countries, using search filters and saving all the changes in the database ( CRUD ) <br />
+                    </span>
                     <div className="filter">
 
 
