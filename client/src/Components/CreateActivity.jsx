@@ -42,8 +42,8 @@ export function CreateActivity() {
     });
 
     useEffect(() => {
-        dispatch(getCountries())
-        dispatch(getAllActivities())
+        // dispatch(getCountries())
+        // dispatch(getAllActivities())
     }, [])
 
     function closeMiniFlag(id) {

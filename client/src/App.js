@@ -12,6 +12,7 @@ import { Favorites } from './Components/Favorites';
 import { Home2 } from './Components/Home2';
 import { Dock } from './Components/Dock';
 import { About } from './Components/About';
+import { Landing } from './Components/Landing';
 function App() {
 
   const dispatch = useDispatch()
@@ -28,15 +29,15 @@ function App() {
   return (
     <div className="App"> 
     
-    <NavBar />     
-    <Dock />
+    {/* <NavBar />     
+    <Dock /> */}
       <Routes>
-        <Route path='/' element={<Access />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/favorites' element={<Favorites />} />
+        <Route path='/' element={<Landing />} />
+        <Route path='/*' element={<Home />} />
+        {/* <Route path='/favorites' element={<Favorites />} />
         <Route path='/details/:id' element={<CountryDetails /> } />
         <Route path='/create_activity' element={<CreateActivity />} />
-        <Route path='/home' element={<Home2 countries={allCountries} />} />
+        <Route path='/home' element={<Home2 countries={allCountries} />} /> */}
       </Routes>      
       
       

@@ -12,18 +12,15 @@ export function Home2({ countries }) {
 
   const [currentPage, setCurrentPage] = useState(1)
   const [countriesPerPage, setCountriesPerPage] = useState(10)
-
-  const [countryOrder, setCountryOrder] = useState('')
-  const [populationOrder, setPopulationOrder] = useState('')
   const [searchCountryByName, setSearchCountryByName] = useState('')
   const fullActivities = useSelector(store => store.full_activities)
   
   const[az , setAz] = useState(false)
   const[za , setZa] = useState(false)
-
   const [bigP , setBigP] = useState(false)
   const [smallP , setSmallP] = useState(false)
   const [countryList, setCountryList] = useState(countries)
+  
   let continent = document.getElementById('continents')
   let activities = document.getElementById('activities')
 
@@ -178,6 +175,7 @@ export function Home2({ countries }) {
 
 
   function filterByContinent(e) {
+    setCurrentPage(1)
     activities.selectedIndex = 0
     
     if(e.target.value === 'all')
@@ -188,6 +186,7 @@ export function Home2({ countries }) {
 
 
   function filterByActivity(e) {
+    setCurrentPage(1)
     let filter = []
     let filtered = []
 
@@ -247,10 +246,7 @@ export function Home2({ countries }) {
   return <div>
     {/* FILTROS */}
     <div className="visual">
-      <div className="filter">
-        {/* <div className="title-dock">
-          <span>Home</span>
-        </div> */}
+      <div className="filter">       
          <div className="page-dock">
           <h1 className='title'>Home</h1>
         </div>
@@ -267,7 +263,6 @@ export function Home2({ countries }) {
               <button className='search'>
                 <span class="material-symbols-outlined">search</span>
               </button>
-              {/* <input className="search" type="submit" value="" /> */}
             </form>
           </div>
           <div className="filtro-row">
@@ -319,10 +314,8 @@ export function Home2({ countries }) {
       </div>
 
       <div className="countrySpace">
-        {/* MUESTRO COUNTRIES */}
         <div className="countryContainer">
           <Countries posts={currentPosts} />
-          {/* {countriesPaginated && countriesPaginated.map(c => <Country id={c.country_id} name={c.country_name} flag={c.country_flag} continent={c.country_continent} poblation={c.country_poblation} area={c.country_area} />)} */}
         </div>
 
 
@@ -331,11 +324,4 @@ export function Home2({ countries }) {
     </div>
 
   </div>
-
-  // return <div>
-
-  //     {/* {allCountries && allCountries.map(c => <p>{c.country_name}</p>)} */}
-  //     <Countries posts={currentPosts} />
-  //     <Pagination postsPerPage={countriesPerPage} totalPosts={allCountries.length} paginate={paginate}/>
-  // </div>
 }
