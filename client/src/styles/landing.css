@@ -1,8 +1,12 @@
 .landing{
     color: white;
-    width: 100%;  
+    width: 80%;  
     background: rgb(20,20,20);
 background: linear-gradient(90deg, rgba(20,20,20,0) 0%, rgba(0,0,0,0.7) 38%, rgba(0,0,0,0.7) 64%, rgba(49,54,62,0) 100%);
+display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 .wallpaper{
@@ -12,17 +16,18 @@ background: linear-gradient(90deg, rgba(20,20,20,0) 0%, rgba(0,0,0,0.7) 38%, rgb
     background-position:100%;    
     height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .wallpaper h1{
-    
+   
     font-size: 50px;
-    color: rgb(144, 108, 8);
+    color: rgb(204, 150, 0);
     text-shadow: 0px 0px 0 #000000, 0px 5px 15px #000000;
-    
+    margin: 0%;
 }
 
 .landing h5{
@@ -42,3 +47,102 @@ background: linear-gradient(90deg, rgba(20,20,20,0) 0%, rgba(0,0,0,0.7) 38%, rgb
     align-items: center;
     justify-content:center ;
 }
+
+
+
+
+
+
+
+
+.youWIll{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;    
+    
+}
+  
+  .Iam {
+    font: normal 40px/50px Montserrat, sans-serif;
+    color: rgb(255, 255, 255);
+  }
+  .Iam p {
+    height: 10px;
+    float: left;
+    margin-right: 0.3em;
+    font-size: 30px;
+  }
+  .Iam b {
+    float: left;
+    overflow: hidden;
+    position: relative;
+    height: 50px;
+    font-size: 30px;
+    top: 30px;
+  }
+  .Iam .innerIam {
+    display: inline-block;
+    color: #9c7802;
+    position: relative;
+    white-space: nowrap;
+    text-align: left;
+    top: 0;
+    left: 0;
+  
+  
+  /*animation*/
+  -webkit-animation:move 15s;
+     -moz-animation:move 15s;
+      -ms-animation:move 15s;
+       -o-animation:move 15s;
+          animation:move 15s;
+  /*animation-iteration-count*/
+  -webkit-animation-iteration-count:infinite;
+     -moz-animation-iteration-count:infinite;
+      -ms-animation-iteration-count:infinite;
+       -o-animation-iteration-count:infinite;
+          animation-iteration-count:infinite;
+  /*animation-delay*/
+  -webkit-animation-delay:2s;
+     -moz-animation-delay:2s;
+      -ms-animation-delay:2s;
+       -o-animation-delay:2s;
+          animation-delay:2s;
+  }
+  @keyframes move{
+  0%  { top: 0px; }
+  20% { top: -50px; }
+  40% { top: -100px; }
+  60% { top: -150px; }
+  80% { top: -200px; }
+  }
+  
+  @-webkit-keyframes move {
+      0%  { top: 0px; }
+      20% { top: -50px; }
+      40% { top: -100px; }
+      60% { top: -150px; }
+      80% { top: -200px; }
+  }
+  @-moz-keyframes move {
+      0%  { top: 0px; }
+      20% { top: -50px; }
+      40% { top: -100px; }
+      60% { top: -150px; }
+      80% { top: -200px; }
+  }
+  @-o-keyframes move {
+      0%  { top: 0px; }
+      20% { top: -50px; }
+      40% { top: -100px; }
+      60% { top: -150px; }
+      80% { top: -200px; }
+  }
+  @keyframes move {
+      0%  { top: 0px; }
+      20% { top: -50px; }
+      40% { top: -100px; }
+      60% { top: -150px; }
+      80% { top: -200px; }
+  }

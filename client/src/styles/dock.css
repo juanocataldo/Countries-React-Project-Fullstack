@@ -1,11 +1,12 @@
 .dock{
     width: 80%;
     height: 50px;
-    background: rgb(20,20,20);
-background: linear-gradient(270deg, rgba(20,20,20,1) 0%, rgba(49,54,62,1) 100%);
+    background-image: url('../Assets/Dock.jpg');
+    background-size: 500px;
     border-bottom: 1px solid rgb(58, 57, 57);
     -webkit-box-shadow: 0px 9px 12px -1px rgba(0,0,0,0.78); 
 box-shadow: 0px 9px 12px -1px rgba(0,0,0,0.78);
+
 }
 
 .logo{
@@ -19,4 +20,9 @@ box-shadow: 0px 9px 12px -1px rgba(0,0,0,0.78);
 .logo img{    
     padding-left: 15px;
     height: 50px;
+}
+
+.transparent{
+    background: rgb(41,54,72);
+background: linear-gradient(90deg, rgba(41,54,72,1) 0%, rgba(41,54,72,0) 79%);
 }

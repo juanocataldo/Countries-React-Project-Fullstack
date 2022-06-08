@@ -18,6 +18,7 @@ export function Country({ id, name, flag, continent, favorite }) {
     useEffect(()=>{
         updated = Object.assign([{}], fixedAllCountries, allCountries);
     },[])
+    
 
 
     function setAsFavorite() {
@@ -45,7 +46,11 @@ export function Country({ id, name, flag, continent, favorite }) {
             }
         }
     }
+
+
     return <div className="country">
+
+        
         
         <div className="heart">
             {favorite && <img src={heart_red} alt="" id='heart' onClick={() => setAsFavorite()}/>}

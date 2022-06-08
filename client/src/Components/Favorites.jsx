@@ -26,7 +26,12 @@ export function Favorites(){
             <div className="countryContainer">
                 {favorites.length > 0 ? favorites.map( c => {
                     if(c.heart === true )
-                    return <div><Country name={c.country_name} flag={c.country_flag} continent={c.country_continent} id={c.country_id} favorite={c.heart} /></div>} ) : <span id="notfound" style={{padding:"20px"}}>No favorites added</span>}
+                    return <div><Country name={c.country_name} flag={c.country_flag} continent={c.country_continent} id={c.country_id} favorite={c.heart} /></div>} ) 
+                    : 
+                    <div className="notfound">
+                        <span id="flagNotFound" class="material-symbols-outlined">flag</span>
+                        
+                        <span id="notfound" >No favorites added</span></div> }
                 {/* {favorites[0].length > 0 ? favorites[0].map(c => <Country name={c.country_name} flag={c.country_flag} continent={c.country_continent} id={c.country_id} /> ) : <span id="notfound">No countries found</span>} */}
             </div>
         </div>

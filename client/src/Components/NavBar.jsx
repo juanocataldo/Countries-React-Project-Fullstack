@@ -34,6 +34,7 @@ export function NavBar(){
                     <span id="arrow" class="material-symbols-outlined">arrow_forward_ios</span>
                 </div>
             </NavLink>
+            
         </nav>
     </>
 }

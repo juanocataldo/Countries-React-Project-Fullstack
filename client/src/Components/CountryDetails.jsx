@@ -13,6 +13,8 @@ export function CountryDetails() {
     const { id } = useParams()
 
     let navigate = useNavigate()
+
+   
     
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -24,7 +26,7 @@ export function CountryDetails() {
             .then(res => {
                 setMoreData(res[0])
                 console.log('more data -->', res[0])
-            })
+            })           
     }
 
     function getDetails() {
@@ -42,13 +44,19 @@ export function CountryDetails() {
                 setGotActivities(res[0].tourist_activities)
             })
     }
-
+    function fetchMiniFlags(){
+            
+           
+    }
 
     useEffect(() => {
         getDetails()
         bringActivities()
         fetchMoreData()
+        fetchMiniFlags()
     }, [])
+
+   
     
     return <div className='visual'>
         {/* <div className="filter">
@@ -66,7 +74,13 @@ export function CountryDetails() {
                 </div>
                 
                 <div className="info" style={{zIndex:"9999"}}>
-                <span id='titleActivities'>Details of {details.country_name}</span><br />
+                <span id='titleActivities'>
+
+                {moreData.cca3 &&
+                    <img src={`https://countryflagsapi.com/svg/${moreData.cca3}`} alt={`${details.country_name} flag`} style={{width:"60px", marginRight:"10px"}} />
+                }
+                Details of {details.country_name} 
+                    </span><br />
                             <hr /><br />
                     <div className="flag" >
                             {/* <img src={details.country_flag} alt="" /> */}

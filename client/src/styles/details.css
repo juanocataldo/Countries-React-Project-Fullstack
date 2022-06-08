@@ -81,8 +81,10 @@
     width: 100%;
 }
 
-#frame{
-    
+#titleFlag{
+    background:url('../Assets/loading.gif') center center no-repeat;        
+    background-size: 30px;
+    width: 60px;
 }
 
 #activity{
@@ -98,7 +100,8 @@
 }
 
 .holds-the-iframe{
-    background:url('../Assets/loading.gif') center center no-repeat;
+    background:url('../Assets/loading2.gif') center center no-repeat;
+    background-size: 150px;
 }
 .backBtn{
     display: flex;

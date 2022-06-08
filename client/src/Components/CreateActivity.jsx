@@ -42,8 +42,8 @@ export function CreateActivity() {
     });
 
     useEffect(() => {
-        // dispatch(getCountries())
-        // dispatch(getAllActivities())
+        
+       console.log(activities)
     }, [])
 
     function closeMiniFlag(id) {
@@ -126,6 +126,7 @@ export function CreateActivity() {
     }
 
 
+
     //VALIDATIONS
     useEffect(() => {
         validate()
@@ -179,7 +180,17 @@ export function CreateActivity() {
         setCountryID(pk[0].country_id)
         let add = pk[0]
 
-        setCountryList(oldItems => [...oldItems, add])
+        let repeated = countryList.find( c => {
+            if(c.country_id === pk[0].country_id)
+                return true
+            
+            return false
+        })
+
+        if(repeated === undefined)
+            setCountryList(oldItems => [...oldItems, add])
+
+        console.log(repeated)
         console.log(countryList)
     }
 
@@ -188,27 +199,25 @@ export function CreateActivity() {
     return <div>
         <div className="visual">
 
-
-        <div className="filter">
-        <div className="page-dock">
-          <h1 className='title'>Create Activity</h1>
-        </div>
+            <div className="filter">
+                <div className="page-dock">
+                    <h1 className='title'>Create Activity</h1>
+                </div>
             </div>
+
             <div className="createSpace">
 
                 <div className='createContainer'>
-
-                    {/* <span id='titleActivities'>Create Activity</span> */}
 
                     <form id="formActivity" >
                         <label>Activity name</label><br />
                         <input className="input" type="text" name="touact_name" id="touact_name" onChange={twoCalls}   /><br />
                         
-                        <label>Activity duration</label><br />
+                        <label>Activity duration (hs)</label><br />
                         <input className="input" type="text" name="touact_duration" id="touact_duration" onChange={twoCalls} /><br />
 
                         <label>Activity difficulty</label><br />
-                        {/* <input type="text" name="touact_difficulty" id="" onChange={fillActivityState} /><br /> */}
+
                         <select className="input" name="touact_difficulty" id="touact_difficulty" onChange={twoCalls} >
                             <option disabled="disabled" selected="Select" value="Select option">Select difficulty</option>
                             <option value="1">1 - Easy</option>
@@ -216,7 +225,9 @@ export function CreateActivity() {
                             <option value="3">3 - Medium</option>
                             <option value="4">4 - Advanced</option>
                             <option value="5">5 - Pro</option>
-                        </select><br />
+                        </select>
+                        
+                        <br />
 
 
                         <label>Activity season</label><br />
@@ -255,6 +266,25 @@ export function CreateActivity() {
                             {countryList && countryList.map(item => <div className="miniFlag"><button id="miniX" onClick={() => closeMiniFlag(item.country_id)}>x</button><img src={item.country_flag} alt="" /><span >{item.country_name}</span></div>)}
                         </div>
 
+                </div>
+
+                <div className="createContainerAct">
+                    <h1>{activity.touact_name ? activity.touact_name : "Activity"}</h1>
+                    Duration: {activity.touact_duration}hs <hr id="renglon" />
+                    Difficulty: 
+                    {activity.touact_difficulty === '1' ? " Easy (For everyone)" : ""}
+                    {activity.touact_difficulty === '2' ? " Upper easy (No experience needed)" : ""}
+                    {activity.touact_difficulty === '3' ? " Medium (Some experience is required)" : ""}
+                    {activity.touact_difficulty === '4' ? " Advanced (Experience required)" : ""}
+                    {activity.touact_difficulty === '5' ? " Pro (Only for professionals)" : ""}
+                     <hr id="renglon" />
+                    Season: {activity.touact_season} 
+                    {activity.touact_season !== '' ? "" : activity.touact_season !== "All the year" ? "AAA" : "Always check if this weather is appropiate for this activity"}
+                    <hr id="renglon" />
+                    Activity for: 
+                    <ul>
+                        {countryList && countryList.map(item => <li>{item.country_name}</li>)}
+                    </ul>
                 </div>
 
             </div>
