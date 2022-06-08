@@ -38,6 +38,7 @@ button:hover{
 
 input[type="button"], input[type="submit"], select, svg {
   cursor: pointer;
+  border-radius: 5px;
 }
 
 input[type="submit"]:hover {
@@ -45,9 +46,9 @@ input[type="submit"]:hover {
   transition: 0.5s;
 }
 
-input[type="button"], input[type="text"], select{
+input[type="button"], input[type="text"]:not(#inputNameSearch), select{
   width: 90%;
-  
+  border-radius: 5px;
 }
 
 .App-logo {

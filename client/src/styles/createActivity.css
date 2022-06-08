@@ -44,6 +44,7 @@ background: linear-gradient(0deg, rgba(41,54,72,1) 0%, rgba(41,54,72,0.504639355
     padding: 20px;
     width: 100%;
     border-radius: 20px;
+    height: 100%;
 }
 
 .flagList{
@@ -89,6 +90,53 @@ background: linear-gradient(0deg, rgba(41,54,72,1) 0%, rgba(41,54,72,0.504639355
 }
 
 #renglon{
-    width: 100%;
-    
+    width: 100%;    
+}
+
+#sportPic{
+    position: absolute;
+    transition: opacity 0.2s;
+    -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both; 
+}
+
+#sportPic{
+    position: absolute;
+    transition: opacity 0.2s;
+    -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both; 
+  transition: 0.5s;
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+    }
+    @keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+
+
+.formulario{
+    z-index: 9999;
+}
+
+.typePic{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    transition: 0.5s;
+}
+
+.block{
+    margin-top: 5px;
 }

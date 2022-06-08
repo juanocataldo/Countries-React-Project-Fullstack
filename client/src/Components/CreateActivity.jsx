@@ -1,10 +1,16 @@
-
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { createActivityOfCountry, getAllActivities, getCountries, loadActivity } from "../Redux/actions"
 import '../Styles/createActivity.css'
 import '../Styles/filters.css'
 import { Modal } from "./Modal"
+import Sport from '../Assets/activity_type/Sport.png'
+import Tour from '../Assets/activity_type/Tour.png'
+import Gastronomy from '../Assets/activity_type/Gastronomy.png'
+import City from '../Assets/activity_type/City.png'
+import Natural from '../Assets/activity_type/Natural.png'
+
+
 export function CreateActivity() {
 
     const [activity, setActivity] = useState('')
@@ -17,7 +23,7 @@ export function CreateActivity() {
     const [seasonError, setSeasonError] = useState(true)
     const [countryError, setCountryError] = useState(true)
     const [errorMsg, setErrorMsg] = useState('')
-
+    const [actType, setActType] = useState('')
 
     const countries = useSelector(store => store.countries)
     const activities = useSelector(store => store.countries_activities)
@@ -27,6 +33,7 @@ export function CreateActivity() {
     const dropdownDifficulty = document.getElementById('touact_difficulty');
     const dropdownSeason = document.getElementById('touact_season');
     const dropdownCountryList = document.getElementById('countries')
+    const dropdownActType = document.getElementById('activity_type')
 
     let ordered = countries.sort((a, b) => {
         let fa = a.country_name.toLowerCase(),
@@ -140,13 +147,12 @@ export function CreateActivity() {
             ...activity,
             [e.target.name]: e.target.value
         })
-        console.log(activity)
+        
     }
+
 
     function submitActivity(e) {
         e.preventDefault()
-
-
 
         if (nameError || diffError || durError || seasonError || countryError) {
             setErrorMsg('Some fields are wrong. Please check.')
@@ -169,9 +175,17 @@ export function CreateActivity() {
             dropdownDifficulty.selectedIndex = 0;
             dropdownSeason.selectedIndex = 0;
             dropdownCountryList.selectedIndex = 0;
+            dropdownActType.selectedIndex = 0;
+            setActivity('')
             setShowModal(true)
         }
 
+    }
+
+    function setActivityType(e){
+        e.preventDefault()
+        setActType(e.target.value)
+        console.log(actType)
     }
 
 
@@ -210,26 +224,30 @@ export function CreateActivity() {
                 <div className='createContainer'>
 
                     <form id="formActivity" >
-                        <label>Activity name</label><br />
-                        <input className="input" type="text" name="touact_name" id="touact_name" onChange={twoCalls}   /><br />
+                        <div className="block">
+                            <label>Activity name</label><br />
+                            <input className="input" type="text" name="touact_name" id="touact_name" onChange={twoCalls}   /><br />
+                        </div>
                         
-                        <label>Activity duration (hs)</label><br />
-                        <input className="input" type="text" name="touact_duration" id="touact_duration" onChange={twoCalls} /><br />
+                        <div className="block">
+                            <label>Activity duration (hs)</label><br />
+                            <input className="input" type="text" name="touact_duration" id="touact_duration" onChange={twoCalls} /><br />
+                        </div>
 
-                        <label>Activity difficulty</label><br />
-
-                        <select className="input" name="touact_difficulty" id="touact_difficulty" onChange={twoCalls} >
-                            <option disabled="disabled" selected="Select" value="Select option">Select difficulty</option>
-                            <option value="1">1 - Easy</option>
-                            <option value="2">2 - Upper Easy</option>
-                            <option value="3">3 - Medium</option>
-                            <option value="4">4 - Advanced</option>
-                            <option value="5">5 - Pro</option>
-                        </select>
-                        
+                        <div className="block">
+                            <label>Activity difficulty</label><br />
+                            <select className="input" name="touact_difficulty" id="touact_difficulty" onChange={twoCalls} >
+                                <option disabled="disabled" selected="Select" value="Select option">Select difficulty</option>
+                                <option value="1">1 - Easy</option>
+                                <option value="2">2 - Upper Easy</option>
+                                <option value="3">3 - Medium</option>
+                                <option value="4">4 - Advanced</option>
+                                <option value="5">5 - Pro</option>
+                            </select>
                         <br />
+                        </div>
 
-
+                        <div className="block">
                         <label>Activity season</label><br />
                         <select className="input" name="touact_season" id="touact_season" onChange={twoCalls}>
                             <option disabled="disabled" selected="Select" value="Select option">Select season</option>
@@ -239,8 +257,24 @@ export function CreateActivity() {
                             <option value="Autumn">Autumn</option>
                             <option value="All the year">All the year</option>
                         </select><br />
-                        {/* <input type="text" name="touact_season" id="" onChange={fillActivityState} /><br /> */}
 
+                        </div>
+
+                        <div className="block">
+                        <label>Activity type</label><br />
+                        <select className="input" name="activity_type" id="activity_type" onChange={setActivityType}>
+                            <option disabled="disabled" selected="Select" value="Select option">Select type</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Tour">Tour</option>
+                            <option value="Gastronomy">Gastronomy</option>
+                            <option value="Natural">Natural</option>
+                            <option value="City">City</option>
+                        </select><br />
+
+                        </div>
+
+                        {/* <input type="text" name="touact_season" id="" onChange={fillActivityState} /><br /> */}
+                        <div className="block">
                         <label>Select country for this activity</label><br />
                         <select className="input" name="country" id="countries" onChange={showPK}>
                             <option disabled="disabled" selected="Select" value="Select option">Select an option</option>
@@ -248,6 +282,8 @@ export function CreateActivity() {
                                 {c.country_name}
                             </option>)}
                         </select>
+
+                        </div>
                         <br />
                         <div className="submit">
                             <div className="saveBtn">
@@ -262,29 +298,50 @@ export function CreateActivity() {
                             <Modal onClose={() => setShowModal(false)} show={showModal} />
                         </div>
                     </form>
-                        <div className="flagList">
-                            {countryList && countryList.map(item => <div className="miniFlag"><button id="miniX" onClick={() => closeMiniFlag(item.country_id)}>x</button><img src={item.country_flag} alt="" /><span >{item.country_name}</span></div>)}
-                        </div>
+                        
 
                 </div>
 
                 <div className="createContainerAct">
-                    <h1>{activity.touact_name ? activity.touact_name : "Activity"}</h1>
-                    Duration: {activity.touact_duration}hs <hr id="renglon" />
-                    Difficulty: 
-                    {activity.touact_difficulty === '1' ? " Easy (For everyone)" : ""}
-                    {activity.touact_difficulty === '2' ? " Upper easy (No experience needed)" : ""}
-                    {activity.touact_difficulty === '3' ? " Medium (Some experience is required)" : ""}
-                    {activity.touact_difficulty === '4' ? " Advanced (Experience required)" : ""}
-                    {activity.touact_difficulty === '5' ? " Pro (Only for professionals)" : ""}
-                     <hr id="renglon" />
-                    Season: {activity.touact_season} 
-                    {activity.touact_season !== '' ? "" : activity.touact_season !== "All the year" ? "AAA" : "Always check if this weather is appropiate for this activity"}
-                    <hr id="renglon" />
-                    Activity for: 
-                    <ul>
-                        {countryList && countryList.map(item => <li>{item.country_name}</li>)}
-                    </ul>
+                    <div className="typePic">
+                    {actType === 'Sport' ? 
+                            <img src={Sport} alt="" id="sportPic"/>                            
+                            : 
+                            actType === 'Tour' ?
+                            <img src={Tour} alt="" id="sportPic"/>                            
+                            :
+                            actType === 'Gastronomy' ?
+                            <img src={Gastronomy} alt="" id="sportPic"/>
+                            : 
+                            actType === 'Natural' ?
+                            <img src={Natural} alt="" id="sportPic"/>
+                            :
+                            actType === 'City' ?
+                            <img src={City} alt="" id="sportPic"/>
+                            : null
+                        }
+                        </div>
+                    <div className="formulario">
+                        <h1>{activity.touact_name ? activity.touact_name : "Activity"}</h1>
+                        Duration: {activity.touact_duration}hs <hr id="renglon" />
+                        Difficulty: 
+                        {activity.touact_difficulty === '1' ? " Easy (For everyone)" : ""}
+                        {activity.touact_difficulty === '2' ? " Upper easy (No experience needed)" : ""}
+                        {activity.touact_difficulty === '3' ? " Medium (Some experience is required)" : ""}
+                        {activity.touact_difficulty === '4' ? " Advanced (Experience required)" : ""}
+                        {activity.touact_difficulty === '5' ? " Pro (Only for professionals)" : ""}
+                        <hr id="renglon" />
+                        Season: {activity.touact_season} 
+                        {activity.touact_season !== '' ? "" : activity.touact_season !== "All the year" ? "AAA" : "Always check if this weather is appropiate for this activity"}
+                        <hr id="renglon" />                    
+                        Activity type: {actType} 
+                        <hr id="renglon" />
+                        Activity for: 
+                        <div className="flagList">
+                                {countryList && countryList.map(item => <div className="miniFlag"><button id="miniX" onClick={() => closeMiniFlag(item.country_id)}>x</button><img src={item.country_flag} alt="" /><span >{item.country_name}</span></div>)}
+                            </div>
+
+                    </div>
                 </div>
 
             </div>
