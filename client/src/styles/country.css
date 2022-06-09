@@ -14,8 +14,7 @@
     justify-content: space-evenly;    
     margin: 0px 20px 0px 20px;    
     width: 100%;
-    background: rgb(41,54,72);
-background: linear-gradient(0deg, rgba(41,54,72,1) 0%, rgba(41,54,72,0.5046393557422969) 73%);
+    background-color:#1b2d4eb0;
     border-radius: 0px 0px 20px 20px;
 }
 
@@ -97,9 +96,10 @@ background: linear-gradient(0deg, rgba(41,54,72,1) 0%, rgba(41,54,72,0.504639355
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
-    background-color: #2c374cc4;;
+    background-color: #1b2d4eb0;
     width: 100%;
     margin: 0px 20px 0 20px;
+    border-radius: 20px 20px 0px 0px;
 }
 
 #notfound{

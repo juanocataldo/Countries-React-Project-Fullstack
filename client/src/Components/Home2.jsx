@@ -44,19 +44,13 @@ export function Home2({ countries }) {
     dispatch(getFullActivities())
   }, [])
 
-  // useEffect(() => {
-  //   if(currentPosts){
-  //     countries = countries.map( c => {
-  //       for (let i = 0; i < favorites.length; i++) {
-  //         if(favorites[i].country_id === c.country_id){
-  //            let card = document.getElementById(favorites[i].country_id)
-  //           //  console.log(`comparo ${favorites[i].country_id} === ${c.country_id}`)
-  //           card.style.cssText = 'border:1px solid #bd872d;border-radius:10px'            
-  //          }
-  //       }
-  //     })
-  //   }
-  // },[favorites])
+  useEffect(() => {
+    console.log(currentPage)
+    // if(currentPage === 1)
+    //   setCountriesPerPage(9)
+    // else
+    // setCountriesPerPage(10)
+  },[currentPage])
 
   useEffect(()=>{
     let azBtn = document.getElementById('az')

@@ -6,8 +6,8 @@ export function Pagination({ postsPerPage, totalPosts, paginate, currentPage }){
 
     let maxPags = Math.ceil(totalPosts / postsPerPage )
 
-    if(maxPags > 25)
-        maxPags = 25
+    // if(maxPags > 25)
+    //     maxPags = 25
 
     for (let i = 1; i <= maxPags; i++) {
         pageNumbers.push(i)        
