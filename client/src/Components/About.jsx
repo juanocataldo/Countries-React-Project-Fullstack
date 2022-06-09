@@ -20,7 +20,7 @@ export function About() {
 
             <div className="countrySpace">
                 <div className="countryContainer">
-                    <span style={{ padding: "20px", color: "white" }}>This app was built with the next technologies: 
+                    <span style={{ padding: "20px", color: "hsl(0, 0%, 78%)" }}>This app was built with the next technologies: 
                     <br />Frontend: <br />
                     <ul>
                         <li>React / Redux</li>

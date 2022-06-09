@@ -12,9 +12,9 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;    
-    margin: 0px 20px 0px 20px;    
+    margin: 0px 20px 20px 20px;    
     width: 100%;
-    background-color:#1b2d4eb0;
+    background-color:#42516d6c;
     border-radius: 0px 0px 20px 20px;
 }
 
@@ -25,7 +25,7 @@
     padding: 10px;
     margin: 10px;    
     color: white;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.605);
     transition: 0.3s;    
 }
 

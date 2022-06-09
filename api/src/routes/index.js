@@ -53,6 +53,7 @@ router.get('/activity_filter', async(req, res) =>{
 router.get('/activities', async(req, res) => {
   try {
     let activities = await Tourist_activity.findAll();
+    console.log(activities)
     res.json(activities)
 
   } catch (error) {
