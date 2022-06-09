@@ -5,12 +5,7 @@
     color: white;
 }
 
-.pagination button:hover{
-    background-color: transparent;
-    border-radius: 20%;
-    border: 1px solid rgb(128,96,44);;    
-    color: white;
-}
+
 
 .active{
     background-color: rgb(128,96,44);

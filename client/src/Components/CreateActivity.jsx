@@ -49,8 +49,8 @@ export function CreateActivity() {
     });
 
     useEffect(() => {
-        
-       console.log(activities)
+
+        console.log(activities)
     }, [])
 
     function closeMiniFlag(id) {
@@ -126,6 +126,7 @@ export function CreateActivity() {
             countries.style.border = ""
         }
     }
+
     function twoCalls(e) {
         fillActivityState(e)
         validate();
@@ -147,7 +148,7 @@ export function CreateActivity() {
             ...activity,
             [e.target.name]: e.target.value
         })
-        
+
     }
 
 
@@ -182,10 +183,16 @@ export function CreateActivity() {
 
     }
 
-    function setActivityType(e){
-        e.preventDefault()
+    function setActivityType(e) {
+        // let imgActType = document.getElementById('sportPic')
+
+        
+
+        // if(imgActType)
+        //     imgActType.classList.add('sportPic')
+ 
+        e.preventDefault()        
         setActType(e.target.value)
-        console.log(actType)
     }
 
 
@@ -194,14 +201,14 @@ export function CreateActivity() {
         setCountryID(pk[0].country_id)
         let add = pk[0]
 
-        let repeated = countryList.find( c => {
-            if(c.country_id === pk[0].country_id)
+        let repeated = countryList.find(c => {
+            if (c.country_id === pk[0].country_id)
                 return true
-            
+
             return false
         })
 
-        if(repeated === undefined)
+        if (repeated === undefined)
             setCountryList(oldItems => [...oldItems, add])
 
         console.log(repeated)
@@ -226,9 +233,9 @@ export function CreateActivity() {
                     <form id="formActivity" >
                         <div className="block">
                             <label>Activity name</label><br />
-                            <input className="input" type="text" name="touact_name" id="touact_name" onChange={twoCalls}   /><br />
+                            <input className="input" type="text" name="touact_name" id="touact_name" onChange={twoCalls} /><br />
                         </div>
-                        
+
                         <div className="block">
                             <label>Activity duration (hs)</label><br />
                             <input className="input" type="text" name="touact_duration" id="touact_duration" onChange={twoCalls} /><br />
@@ -244,102 +251,109 @@ export function CreateActivity() {
                                 <option value="4">4 - Advanced</option>
                                 <option value="5">5 - Pro</option>
                             </select>
-                        <br />
+                            <br />
                         </div>
 
                         <div className="block">
-                        <label>Activity season</label><br />
-                        <select className="input" name="touact_season" id="touact_season" onChange={twoCalls}>
-                            <option disabled="disabled" selected="Select" value="Select option">Select season</option>
-                            <option value="Summer">Summer</option>
-                            <option value="Winter">Winter</option>
-                            <option value="Spring">Spring</option>
-                            <option value="Autumn">Autumn</option>
-                            <option value="All the year">All the year</option>
-                        </select><br />
-
+                            <label>Activity season</label><br />
+                            <select className="input" name="touact_season" id="touact_season" onChange={twoCalls}>
+                                <option disabled="disabled" selected="Select" value="Select option">Select season</option>
+                                <option value="Summer">Summer</option>
+                                <option value="Winter">Winter</option>
+                                <option value="Spring">Spring</option>
+                                <option value="Autumn">Autumn</option>
+                                <option value="All the year">All the year</option>
+                            </select><br />
                         </div>
 
                         <div className="block">
-                        <label>Activity type</label><br />
-                        <select className="input" name="activity_type" id="activity_type" onChange={setActivityType}>
-                            <option disabled="disabled" selected="Select" value="Select option">Select type</option>
-                            <option value="Sport">Sport</option>
-                            <option value="Tour">Tour</option>
-                            <option value="Gastronomy">Gastronomy</option>
-                            <option value="Natural">Natural</option>
-                            <option value="City">City</option>
-                        </select><br />
+                            <label>Activity type</label><br />
+                            <select className="input" name="activity_type" id="activity_type" onChange={setActivityType}>
+                                <option disabled="disabled" selected="Select" value="Select option">Select type</option>
+                                <option value="Sport">Sport</option>
+                                <option value="Tour">Tour</option>
+                                <option value="Gastronomy">Gastronomy</option>
+                                <option value="Natural">Natural</option>
+                                <option value="City">City</option>
+                            </select><br />
 
                         </div>
 
                         {/* <input type="text" name="touact_season" id="" onChange={fillActivityState} /><br /> */}
                         <div className="block">
-                        <label>Select country for this activity</label><br />
-                        <select className="input" name="country" id="countries" onChange={showPK}>
-                            <option disabled="disabled" selected="Select" value="Select option">Select an option</option>
-                            {ordered && ordered.map(c => <option value={c.country_name} defaultValue={c.country_name}>
-                                {c.country_name}
-                            </option>)}
-                        </select>
+                            <label>Select country for this activity</label><br />
+                            <select className="input" name="country" id="countries" onChange={showPK}>
+                                <option disabled="disabled" selected="Select" value="Select option">Select an option</option>
+                                {ordered && ordered.map(c => <option value={c.country_name} defaultValue={c.country_name}>
+                                    {c.country_name}
+                                </option>)}
+                            </select>
 
                         </div>
                         <br />
+
                         <div className="submit">
                             <div className="saveBtn">
-                                <button className="input submBtn" onClick={submitActivity}>
+                                <button className="submBtn" onClick={submitActivity}>
                                     Save
                                     <span class="material-symbols-outlined">save</span>
                                 </button>
-                                
+
                             </div>
-                            
+
                             <span> {errorMsg}</span>
                             <Modal onClose={() => setShowModal(false)} show={showModal} />
                         </div>
                     </form>
-                        
-
                 </div>
 
                 <div className="createContainerAct">
                     <div className="typePic">
-                    {actType === 'Sport' ? 
-                            <img src={Sport} alt="" id="sportPic"/>                            
-                            : 
+                        {actType === 'Sport' ?
+                            <img src={Sport} alt="" id="sportPic" />
+                            :
                             actType === 'Tour' ?
-                            <img src={Tour} alt="" id="sportPic"/>                            
-                            :
-                            actType === 'Gastronomy' ?
-                            <img src={Gastronomy} alt="" id="sportPic"/>
-                            : 
-                            actType === 'Natural' ?
-                            <img src={Natural} alt="" id="sportPic"/>
-                            :
-                            actType === 'City' ?
-                            <img src={City} alt="" id="sportPic"/>
-                            : null
+                                <img src={Tour} alt="" id="sportPic" />
+                                :
+                                actType === 'Gastronomy' ?
+                                    <img src={Gastronomy} alt="" id="sportPic" />
+                                    :
+                                    actType === 'Natural' ?
+                                        <img src={Natural} alt="" id="sportPic" />
+                                        :
+                                        actType === 'City' ?
+                                            <img src={City} alt="" id="sportPic" />
+                                            : null
                         }
-                        </div>
+                    </div>
                     <div className="formulario">
                         <h1>{activity.touact_name ? activity.touact_name : "Activity"}</h1>
-                        Duration: {activity.touact_duration}hs <hr id="renglon" />
-                        Difficulty: 
+                        Duration: <span className="actRes">{activity.touact_duration}hs</span>
+                        <hr id="renglon" />
+                        Difficulty: <span className="actRes">
                         {activity.touact_difficulty === '1' ? " Easy (For everyone)" : ""}
                         {activity.touact_difficulty === '2' ? " Upper easy (No experience needed)" : ""}
                         {activity.touact_difficulty === '3' ? " Medium (Some experience is required)" : ""}
                         {activity.touact_difficulty === '4' ? " Advanced (Experience required)" : ""}
                         {activity.touact_difficulty === '5' ? " Pro (Only for professionals)" : ""}
-                        <hr id="renglon" />
-                        Season: {activity.touact_season} 
                         {activity.touact_season !== '' ? "" : activity.touact_season !== "All the year" ? "AAA" : "Always check if this weather is appropiate for this activity"}
-                        <hr id="renglon" />                    
-                        Activity type: {actType} 
                         <hr id="renglon" />
-                        Activity for: 
+                        </span>
+                        
+                        Season: <span className="actRes"> 
+                             {activity.touact_season}
+                        </span><br />
+                        <hr id="renglon" />
+                        Activity type: <span className="actRes">
+                            {actType}
+                        </span>
+
+                        <hr id="renglon" />
+                        
+                        Activity for:
                         <div className="flagList">
-                                {countryList && countryList.map(item => <div className="miniFlag"><button id="miniX" onClick={() => closeMiniFlag(item.country_id)}>x</button><img src={item.country_flag} alt="" /><span >{item.country_name}</span></div>)}
-                            </div>
+                            {countryList && countryList.map(item => <div className="miniFlag"><button id="miniX" onClick={() => closeMiniFlag(item.country_id)}>x</button><img src={item.country_flag} alt="" /><span >{item.country_name}</span></div>)}
+                        </div>
 
                     </div>
                 </div>

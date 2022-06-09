@@ -76,9 +76,8 @@ export function CountryDetails() {
                 <div className="info" style={{zIndex:"9999"}}>
                 <span id='titleActivities'>
 
-                {moreData.cca3 &&
-                    <img src={`https://countryflagsapi.com/svg/${moreData.cca3}`} alt={`${details.country_name} flag`} style={{width:"60px", marginRight:"10px"}} />
-                }
+                    <img src={details.country_flag} alt={`${details.country_name} flag`} style={{width:"60px", marginRight:"10px"}} />
+
                 Details of {details.country_name} 
                     </span><br />
                             <hr /><br />

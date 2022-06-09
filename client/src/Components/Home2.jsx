@@ -44,8 +44,19 @@ export function Home2({ countries }) {
     dispatch(getFullActivities())
   }, [])
 
-  useEffect(() => {
-  },[favorites])
+  // useEffect(() => {
+  //   if(currentPosts){
+  //     countries = countries.map( c => {
+  //       for (let i = 0; i < favorites.length; i++) {
+  //         if(favorites[i].country_id === c.country_id){
+  //            let card = document.getElementById(favorites[i].country_id)
+  //           //  console.log(`comparo ${favorites[i].country_id} === ${c.country_id}`)
+  //           card.style.cssText = 'border:1px solid #bd872d;border-radius:10px'            
+  //          }
+  //       }
+  //     })
+  //   }
+  // },[favorites])
 
   useEffect(()=>{
     let azBtn = document.getElementById('az')
@@ -272,8 +283,10 @@ export function Home2({ countries }) {
           </div>
           <div className="filtro-row">
             <span>By Continent</span><br />
-            <select className="input" name="continent" id="continents" onChange={filterByContinent}>
-              <option disabled="" selected="Select" value="all">All Countries</option>
+            <div className="iconFilter">
+            <span id='iconFilter' class="material-symbols-outlined">public</span>
+            <select className="inputContinents" name="continent" id="continents" onChange={filterByContinent}>
+              <option  disabled="" selected="Select" value="all">All Countries</option>
               <option value="Antarctica">Antartica</option>
               <option value="Africa">Africa</option>
               <option value="Asia">Asia</option>
@@ -282,15 +295,20 @@ export function Home2({ countries }) {
               <option value="Oceania">Oceania</option>
               <option value="South America">South America</option>
             </select>
+              
+            </div>
           </div>
           <div className="filtro-row">
             <span>By activity</span><br />
-            <select className="input" name="activity" id="activities" defaultChecked='' onChange={filterByActivity}>
+            <div className="iconFilter">
+            <span id='iconFilter' class="material-symbols-outlined">rowing</span>
+            <select className="inputContinents" name="activity" id="activities" defaultChecked='' onChange={filterByActivity}>
               <option disabled="" selected="Select" value="all">All Countries</option>
               {allActivities &&
 
                 allActivities.map(c => <option value={c.touact_name}>{c.touact_name}</option>)}
             </select>
+            </div>
 
           </div>
           <div className="filtro-row">

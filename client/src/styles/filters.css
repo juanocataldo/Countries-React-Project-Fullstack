@@ -85,6 +85,15 @@ background: linear-gradient(0deg, rgba(41,54,72,1) 0%, rgba(41,54,72,0.639093137
     color: white;
 }
 
+.inputContinents{
+    background-color: #515960;
+    border: none;
+    padding: 9px 9px 9px 0px;
+    margin: 5px 5px 5px 0px;
+    color: white;
+    border-radius: 0px 5px 5px 0px;
+}
+
 .searchByName{
     display: flex;
     align-items:center;
@@ -116,4 +125,19 @@ background: linear-gradient(0deg, rgba(41,54,72,1) 0%, rgba(41,54,72,0.639093137
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
+}
+
+#iconFilter{
+    display: flex;
+    align-items: center;
+    background-color: #515960;
+    height: 34.5px;
+    border-radius: 5px 0px 0px 5px;
+    padding-left: 5px;
+}
+
+.iconFilter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

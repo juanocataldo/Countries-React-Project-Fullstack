@@ -34,7 +34,7 @@ export function About() {
                     </ul>
                     
                     This was an individual final project of the Henry's bootcamp.                    
-                    The tematic is about creating activities in countries, using search filters and saving all the changes in the database ( CRUD ) <br />
+                    The tematic is about creating activities in countries, using search filters and saving all the changes in the database. <br />
                     </span>
                     <div className="filter">
 

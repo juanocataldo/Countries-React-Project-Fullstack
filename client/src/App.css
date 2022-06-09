@@ -11,10 +11,9 @@
 }
 
 html{
-  background: #F3904F;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #3B4371, #F3904F);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #3B4371, #a76133); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background-image: url('./Assets/HomeWallpaper.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 
@@ -32,8 +31,7 @@ background: linear-gradient(to right, #3B4371, #a76133); /* W3C, IE 10+/ Edge, F
 
 
 button:hover{
-  cursor: pointer;  
-  
+  cursor: pointer;   
 }
 
 input[type="button"], input[type="submit"], select, svg {
@@ -46,7 +44,7 @@ input[type="submit"]:hover {
   transition: 0.5s;
 }
 
-input[type="button"], input[type="text"]:not(#inputNameSearch), select{
+input[type="button"], input[type="text"]:not(#inputNameSearch), select:not(.inputContinents){
   width: 90%;
   border-radius: 5px;
 }
