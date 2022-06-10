@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     // INSERT MASIVO INICIAL
-    // dispatch(getAllCountries()) 
+    //  dispatch(getAllCountries()) 
     dispatch(getCountries())
   },[])
  
