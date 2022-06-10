@@ -319,9 +319,12 @@ export function Home2({ countries }) {
 
           </div>
           <div className="filtro-row">
-            <span>By population</span><br />
-            <button id="bigP" className="input" onClick={() => orderByBiggerPopulation()}>Bigger poblation</button>
-            <button id="smallP" className="input" onClick={() => orderBySmallerPopulation()}>Smaller poblation</button>
+            <span>By population</span><br />  
+            <div className="popu">
+                <button id="bigP" className="btnPopulationOrder" onClick={() => orderByBiggerPopulation()}> 
+                <span class="material-symbols-outlined">person_add</span></button>
+            <button id="smallP" className="btnPopulationOrder" onClick={() => orderBySmallerPopulation()}><span class="material-symbols-outlined">person_remove</span></button>
+              </div>          
           </div>
         </div>
       </div>

@@ -1,10 +1,24 @@
-.visual{
-    display: flex;    
-    text-align: left;
-    flex-direction: column;
-    align-items: flex-end;   
-    height: 100%;
+@media only screen and (min-width: 360px) and (max-width: 768px) {
+    .visual{
+        display: flex;    
+        text-align: center;
+        flex-direction: column;
+        align-items: flex-end;   
+        height: 100%;
+    }
 }
+
+@media only screen and (min-width: 769px){
+
+    .visual{
+        display: flex;    
+        text-align: left;
+        flex-direction: column;
+        align-items: flex-end;   
+        height: 100%;
+    }
+}
+
 
 .countryContainer{
     display: flex;
@@ -14,7 +28,8 @@
     justify-content: space-evenly;    
     margin: 0px 20px 20px 20px;    
     width: 100%;
-    background-color:#42516d6c;
+    background-color:#42516da9;
+    
     border-radius: 0px 0px 20px 20px;
 }
 
@@ -27,6 +42,7 @@
     color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.605);
     transition: 0.3s;    
+    background-color: rgba(190, 190, 190, 0.082);
 }
 
 .countryAccess{
@@ -100,6 +116,7 @@
     width: 100%;
     margin: 0px 20px 0 20px;
     border-radius: 20px 20px 0px 0px;
+    border: 1px solid rgba(95, 95, 95, 0.411)
 }
 
 #notfound{

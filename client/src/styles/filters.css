@@ -82,7 +82,16 @@ background: linear-gradient(0deg, rgba(41,54,72,1) 0%, rgba(41,54,72,0.639093137
     border: none;
     padding: 9px;
     margin: 5px;
-    color: white;
+    color: white;    
+}
+
+.btnPopulationOrder{
+    background-color: #515960;
+    border: none;
+    padding: 9px;
+    margin: 5px;
+    color: white;  
+    height: 34px;
 }
 
 .inputContinents{
@@ -139,5 +148,17 @@ background: linear-gradient(0deg, rgba(41,54,72,1) 0%, rgba(41,54,72,0.639093137
 .iconFilter{
     display: flex;
     align-items: center;
+}
+
+#bigP, #smallP{
+    display: flex;
+    align-items: center;
+}
+
+.popu{
+    display: flex;
+    align-items: center;
     justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

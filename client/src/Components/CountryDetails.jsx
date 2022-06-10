@@ -21,12 +21,16 @@ export function CountryDetails() {
     }
 
     function fetchMoreData() {
-        fetch(`https://restcountries.com/v3/alpha/${id}`)
-            .then(data => data.json())
-            .then(res => {
-                setMoreData(res[0])
-                console.log('more data -->', res[0])
-            })           
+        try {
+            fetch(`https://restcountries.com/v3/alpha/${id}`)
+                .then(data => data.json())
+                .then(res => {
+                    setMoreData(res[0])
+                })           
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     function getDetails() {
@@ -44,16 +48,13 @@ export function CountryDetails() {
                 setGotActivities(res[0].tourist_activities)
             })
     }
-    function fetchMiniFlags(){
-            
-           
-    }
+    
 
     useEffect(() => {
         getDetails()
         bringActivities()
         fetchMoreData()
-        fetchMiniFlags()
+        console.log('moreData',moreData)
     }, [])
 
    
@@ -76,7 +77,6 @@ export function CountryDetails() {
                 <div className="info" style={{zIndex:"9999"}}>
                 <span id='titleActivities'>
 
-                    <img src={details.country_flag} alt={`${details.country_name} flag`} style={{width:"60px", marginRight:"10px"}} />
 
                 Details of {details.country_name} 
                     </span><br />
@@ -84,25 +84,28 @@ export function CountryDetails() {
                     <div className="flag" >
                             {/* <img src={details.country_flag} alt="" /> */}
                         <div className="">
-                            
-                            <h1 id='countryTitle'>{details.country_name} [{details.country_id}]</h1>
+                            <img src={details.country_flag} alt={`${details.country_name} flag`} style={{width:"60px", marginRight:"10px",paddingLeft:"5px"}} />
+                            <h1 id='countryTitle' style={{marginTop:"0px"}}>{details.country_name}  </h1>
+                            <span>Code: {details.country_id}</span> <br />
                             <span>Perimeter: {<NumberFormat value={details.country_area} thousandsGroupStyle="thousand" thousandSeparator={true} decimalSeparator="." displayType={'text'} />} kms2</span>
                             <br />
                             <span>Located at {details.country_subregion}</span>
                             <br />
                             <span>Total poblation: {<NumberFormat value={details.country_poblation} thousandsGroupStyle="thousand" thousandSeparator={true} decimalSeparator="." displayType={'text'} />}</span>
                             <br />
-                            <span>Region: {moreData.region}</span>
-                            <br />
-                            {moreData.languages &&
-                                <span>Language/s: {(Object.values(moreData.languages)).map(val => <span>{val} </span>)}</span>
+                            {moreData && <>
+                                <span>Region: {moreData.region}</span>
+                                <br />
+                                
+                                    <span>Language/s: {(Object.values(moreData.languages)).map(val => <span>{val} </span>)}</span>
+                            </>
                             }
                         </div>
                         <div>
-                            <iframe className="holds-the-iframe" id='frame'
+                            <iframe  className="holds-the-iframe" id='frame'
                                 width="100%"
                                 height="209"
-                                frameBorder="0" style={{ border: "0" }}
+                                frameBorder="0" style={{ border: "0", marginTop:"10px" }}
                                 referrerpolicy="no-referrer-when-downgrade"
                                 src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyC36GHRjga4WoOy0LsfWII_QhSJb2DQWRk&q=${details.country_name}`}
                                 allowfullscreen>
@@ -117,7 +120,7 @@ export function CountryDetails() {
                             <span style={{color:"rgb(150, 150, 150)"}}>Difficulties: 1-Easy, 2-Upper easy, 3-Medium, 4-Hard, 5-Pro</span>
                             <hr />                            
                             <div className="listActivities">
-                                {gotActivities.length>0 ? gotActivities.map(a => <div style={{width:`${100/gotActivities.length}%`}}><span id='activity'>{a.touact_name}</span><br />Duration: <span>{a.touact_duration} hs</span><br />Difficulty: <span>{a.touact_difficulty} </span><br />Season: <span>{a.touact_season} </span><br /><br /></div>) : <span style={{color:"rgb(180, 180, 180)"}}>No activites were created</span>}
+                                {gotActivities.length>0 ? gotActivities.map(a => <div style={{padding:"15px"}}><span id='activity'>{a.touact_name}</span><br />Duration: <span>{a.touact_duration} hs</span><br />Difficulty: <span>{a.touact_difficulty} </span><br />Season: <span>{a.touact_season} </span><br /><br /></div>) : <span style={{color:"rgb(180, 180, 180)"}}>No activites were created</span>}
                             </div>
                         </div>                      
                     </div>

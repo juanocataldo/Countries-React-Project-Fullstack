@@ -1,10 +1,27 @@
-.createSpace{
-    width: 80%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    color: rgb(191, 191, 191);
+@media only screen and (min-width: 360px) and (max-width: 768px) {
+    .createSpace{
+        width: 80%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        color: rgb(191, 191, 191);
+        flex-wrap: wrap;
+    }
 }
+
+@media only screen and (min-width: 769px){
+
+    .createSpace{
+        width: 80%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        color: rgb(191, 191, 191);
+        flex-wrap: nowrap;
+    }
+}
+
+
 
 .btn{
     display: flex;
