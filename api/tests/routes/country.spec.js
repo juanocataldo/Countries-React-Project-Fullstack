@@ -13,14 +13,14 @@ const country = {
   country_capital:'Buenos Aires'
 };
 
-describe('Country routes', () => {
+xdescribe('Country routes', () => {
   before(() => conn.authenticate()
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
   }));
   beforeEach(() => Country.sync({ force: true })
     .then(() => Country.create(country)));
-  describe('GET /countries', () => {
+  xdescribe('GET /countries', () => {
     it('should get 200', () =>
       agent.get('/countries').expect(200)
     );

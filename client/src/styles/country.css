@@ -5,6 +5,20 @@
         flex-direction: column;
         align-items: flex-end;   
         height: 100%;
+        width: 90%;
+        margin-left: 50px;
+    }
+
+    .country{
+        text-align: center;    
+        width: 150px;
+        padding: 10px;
+        margin: 10px;    
+        color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.605);
+        transition: 0.3s;    
+        background-color: rgba(190, 190, 190, 0.082);
+        border-radius: 15px;
     }
 }
 
@@ -16,6 +30,19 @@
         flex-direction: column;
         align-items: flex-end;   
         height: 100%;
+        margin-left: 16px;
+    }
+
+    .country{
+        text-align: center;    
+        width: 200px;
+        padding: 10px;
+        margin: 10px;    
+        color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.605);
+        transition: 0.3s;    
+        background-color: rgba(190, 190, 190, 0.082);
+        border-radius: 15px;
     }
 }
 
@@ -34,17 +61,7 @@
 }
 
 
-.country{
-    text-align: center;    
-    width: 200px;
-    padding: 10px;
-    margin: 10px;    
-    color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.605);
-    transition: 0.3s;    
-    background-color: rgba(190, 190, 190, 0.082);
-    border-radius: 15px;
-}
+
 
 .countryAccess{
     text-decoration: none;
@@ -94,13 +111,13 @@
 
 
 .countrySpace{
-    width: 80%;
+    width: 96%;
     display: flex;
     justify-content: flex-end;
 }
 
 .paginatorSpace{
-    width: 80%;
+    width: 96%;
     display: flex;
     justify-content: flex-end;
     

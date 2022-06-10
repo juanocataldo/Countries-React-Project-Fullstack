@@ -22,7 +22,7 @@ export function NavBar(){
             <NavLink to='/create_activity' className="navMenu">
                 <div className="menu-button">
                     <span class="material-symbols-outlined">add_circle</span>
-                    <span id="textito">Create Activity</span>             
+                    <span id="textito">Activity</span>             
                     <span id="arrow" class="material-symbols-outlined">arrow_forward_ios</span>
                 </div>
             </NavLink>

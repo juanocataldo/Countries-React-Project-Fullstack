@@ -82,9 +82,9 @@ export function CountryDetails() {
                     </span><br />
                             <hr /><br />
                     <div className="flag" >
-                            {/* <img src={details.country_flag} alt="" /> */}
+                            <img src={details.country_flag} alt="" />
                         <div className="">
-                            <img src={details.country_flag} alt={`${details.country_name} flag`} style={{width:"60px", marginRight:"10px",paddingLeft:"5px"}} />
+                            {/* <img src={details.country_flag} alt={`${details.country_name} flag`} style={{width:"60px", marginRight:"10px",paddingLeft:"5px"}} /> */}
                             <h1 id='countryTitle' style={{marginTop:"0px"}}>{details.country_name}  </h1>
                             <span>Code: {details.country_id}</span> <br />
                             <span>Perimeter: {<NumberFormat value={details.country_area} thousandsGroupStyle="thousand" thousandSeparator={true} decimalSeparator="." displayType={'text'} />} kms2</span>
@@ -105,7 +105,7 @@ export function CountryDetails() {
                             <iframe  className="holds-the-iframe" id='frame'
                                 width="100%"
                                 height="209"
-                                frameBorder="0" style={{ border: "0", marginTop:"10px" }}
+                                frameBorder="0" style={{ border: "0", marginTop:"10px", borderRadius:"10px" }}
                                 referrerpolicy="no-referrer-when-downgrade"
                                 src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyC36GHRjga4WoOy0LsfWII_QhSJb2DQWRk&q=${details.country_name}`}
                                 allowfullscreen>

@@ -154,7 +154,8 @@ export function CreateActivity() {
 
     function submitActivity(e) {
         e.preventDefault()
-
+        console.log('a submitear ',activity)
+        
         if (nameError || diffError || durError || seasonError || countryError) {
             setErrorMsg('Some fields are wrong. Please check.')
         } else {
@@ -201,12 +202,16 @@ export function CreateActivity() {
         setCountryID(pk[0].country_id)
         let add = pk[0]
 
+
+
         let repeated = countryList.find(c => {
             if (c.country_id === pk[0].country_id)
                 return true
 
             return false
         })
+
+        console.log(repeated)
 
         if (repeated === undefined)
             setCountryList(oldItems => [...oldItems, add])

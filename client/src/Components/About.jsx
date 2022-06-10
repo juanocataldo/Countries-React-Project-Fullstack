@@ -19,7 +19,7 @@ export function About() {
 
 
             <div className="countrySpace">
-                <div className="countryContainer">
+                <div className="aboutContainer">
                     <span style={{ padding: "20px", color: "hsl(0, 0%, 78%)" }}>This app was built with the next technologies: 
                     <br />Frontend: <br />
                     <ul>

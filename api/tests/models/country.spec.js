@@ -1,12 +1,12 @@
 const { Country, conn } = require('../../src/db.js');
 const { expect } = require('chai');
 
-describe('Country model', () => {
+xdescribe('Country model', () => {
   before(() => conn.authenticate()
     .catch((err) => {
       console.error('Unable to connect to the database:', err);
     }));
-  describe('Validators', () => {
+  xdescribe('Validators', () => {
     beforeEach(() => Country.sync({ force: true }));
     describe('name', () => {
       it('should throw an error if name is null', (done) => {
