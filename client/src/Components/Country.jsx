@@ -55,7 +55,8 @@ export function Country({ id, name, flag, continent, favorite }) {
 
         <NavLink to={`/details/${id}`} className="countryAccess">
             <div className="country-content">           
-                <img src={flag} alt="" className="flag" />
+                <div style={{backgroundImage:`url(${flag})`, backgroundSize:"cover", height:"150px",width:"100%",backgroundPosition:"center",borderRadius:"15px"}} ></div>
+                {/* <img src={flag} alt="" className="flag" /> */}
                 <span>{name}</span><br />
                 <label>{continent}</label>
             </div>

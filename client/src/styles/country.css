@@ -43,6 +43,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.605);
     transition: 0.3s;    
     background-color: rgba(190, 190, 190, 0.082);
+    border-radius: 15px;
 }
 
 .countryAccess{
@@ -70,8 +71,7 @@
 
 .country img{      
     width: 100%;    
-    height: 150px;
-    
+    height: 150px;    
 }
 
 .country{
@@ -163,13 +163,6 @@
     color: white;    
     font-size: 50px;
 }
-
-
-
-
-
-
-
 
 
 
