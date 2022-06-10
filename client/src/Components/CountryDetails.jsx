@@ -126,8 +126,6 @@ export function CountryDetails() {
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 }
