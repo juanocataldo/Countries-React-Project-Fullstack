@@ -269,9 +269,9 @@ export function Home2({ countries }) {
           <h1 className='title'>Home</h1>
         </div>
 
-        <div className="filter-dock">
+        {/* <div className="filter-dock">
           <span>Filters</span>
-        </div>
+        </div> */}
 
         <div className="inner-filter">
           <div className="filtro-row" id='name'>

@@ -3,6 +3,14 @@
     #countryTitle{
         color: #adadad;               
     }
+
+    .listActivities{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media only screen and (min-width: 769px){
@@ -13,6 +21,14 @@
         align-items: flex-end;
         flex-direction: row;
         flex-wrap: wrap;
+    }
+
+    .listActivities{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
     }
 }
 
@@ -66,8 +82,7 @@
 
 .info{
     width: 100%;
-    color: white;
-    
+    color: white;    
 }
 
 .activities{
@@ -100,6 +115,7 @@
 
 .bottomDetail{
     width: 100%;
+    padding-bottom: 30px;
 }
 
 #titleFlag{
@@ -112,17 +128,13 @@
     font-weight: bolder;
 }
 
-.listActivities{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-}
+
 
 .holds-the-iframe{
     background:url('../Assets/loading2.gif') center center no-repeat;
     background-size: 150px;
+    -webkit-box-shadow: 0px 7px 15px 5px rgba(0,0,0,0.93); 
+box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.507);
 }
 .backBtn{
     display: flex;
@@ -132,3 +144,98 @@
     top: -30px;
 }
 
+
+
+
+
+
+
+
+
+/* From uiverse.io by @satyamchaudharydev */
+.loader {
+    --height-of-loader: 4px;
+    --loader-color: #e99f27;
+    width: 87%;
+    margin-left: 10px;
+    height: var(--height-of-loader);
+    border-radius: 30px;
+    background-color: rgba(0,0,0,0.2);
+    position: relative;
+   }
+   
+   .loader::before {
+    content: "";
+    position: absolute;
+    background: var(--loader-color);
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    border-radius: 30px;
+    animation: moving 1s ease-in-out infinite;
+    ;
+   }
+   
+   @keyframes moving {
+    50% {
+     width: 100%;
+    }
+   
+    100% {
+     width: 0;
+     right: 0;
+     left: unset;
+    }
+   }
+
+   .fetching{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+   }
+   
+   .weatherInfo{        
+    display: flex;
+    align-items: center;
+    height: 50px;
+   }
+
+   .weatherInfo img{
+    width: 150px;    
+    right: 0;
+    top: 50px;
+    z-index: 20;
+   }
+   
+   .headerInfo{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-end;;
+    width: 100%;    
+   }
+
+   .loaderDiv{
+    height: 20px;    
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+   }
+
+   #weatherDet{
+    font-size: 40px;
+    color: #ffffffe1;    
+    z-index: 99;
+    text-shadow: 2px 0 0 rgb(0, 0, 0), -2px 0 0 rgb(0, 0, 0), 0 2px 0 rgb(0, 0, 0), 0 -2px 0 rgb(0, 0, 0), 1px 1px rgb(0, 0, 0), -1px -1px 0 rgb(0, 0, 0), 1px -1px 0 rgb(0, 0, 0), -1px 1px 0 rgb(0, 0, 0);
+
+    position: absolute;
+   }
+
+   #detailFlag{
+    -webkit-box-shadow: 0px 7px 15px 5px rgba(0,0,0,0.93); 
+box-shadow: 0px 7px 15px 5px rgba(0, 0, 0, 0.534);
+   }

@@ -9,27 +9,41 @@ export function CountryDetails() {
     const [details, setDetails] = useState('')
     const [gotActivities, setGotActivities] = useState('')
     const [moreData, setMoreData] = useState('')
-
+    const [weather, setWeather] = useState({})
+    const [iconWeather, setIconWeather] = useState('')
+    const [loading, setLoading] = useState(false)
     const { id } = useParams()
 
     let navigate = useNavigate()
-
-   
     
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 
     function fetchMoreData() {
-        try {
+            setLoading(true)
             fetch(`https://restcountries.com/v3/alpha/${id}`)
                 .then(data => data.json())
                 .then(res => {
                     setMoreData(res[0])
+                    setLoading(false)                    
                 })           
+                .catch(e => console.log('fetch error -->',e))
+
+                
             
-        } catch (error) {
-            console.log(error)
+    }
+
+    function fetchWeatherInfo(){
+        if(moreData){
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${moreData.latlng[0]}&lon=${moreData.latlng[1]}&appid=3567f8bff2c8906b47ee80540774eaaf&units=metric`)
+            .then(res => res.json())
+            .then(data => {
+                setWeather(data.main)                
+                setIconWeather(data.weather[0].icon)
+                console.log('weather',data)
+            })
+            .catch(e => console.log('weather fetch error -->', e))
         }
     }
 
@@ -47,24 +61,23 @@ export function CountryDetails() {
             .then(res => {
                 setGotActivities(res[0].tourist_activities)
             })
-    }
-    
+    }    
 
     useEffect(() => {
         getDetails()
         bringActivities()
-        fetchMoreData()
+        fetchMoreData()        
         console.log('moreData',moreData)
     }, [])
 
+    useEffect(() =>{
+        fetchWeatherInfo()
+        console.log('wheateeer',weather)
+    },[moreData])
    
-    
+
     return <div className='visual'>
-        {/* <div className="filter">
-            <div className="title-dock">
-            <span>Details of {details.country_name}</span>
-            </div>
-        </div> */}
+     
         <div className="detailsSpace blur" >
          <div className="background-image" style={{backgroundImage:`url(${details.country_flag})`}}></div>
             <div className="detailsContainer" >
@@ -75,16 +88,43 @@ export function CountryDetails() {
                 </div>
                 
                 <div className="info" style={{zIndex:"9999"}}>
-                <span id='titleActivities'>
+                    <div className="headerInfo">
+                        <span id='titleActivities'>Details of {details.country_name}</span>
+                        
+                        {/* <div className="weatherInfo">
+                            {weather && !loading ?
+                            <>
+                                <span id='weatherDet'> {Math.ceil(weather.temp)}°   </span> 
+                                <img src={`http://openweathermap.org/img/w/${iconWeather}.png`} alt="" />
+                            </>
+                            :
+                            <div className="loaderDiv">                                
+                                <span style={{color: "#82847b"}}>Loading weather data<div class="loader"></div></span>
+                            </div>
+                            }
+                        </div> */}
 
+                    </div>
 
-                Details of {details.country_name} 
-                    </span><br />
-                            <hr /><br />
+                <br />
+                <hr />
+                <br />
                     <div className="flag" >
-                            <img src={details.country_flag} alt="" />
+                            <img src={details.country_flag} id="detailFlag" alt="" />
                         <div className="">
                             {/* <img src={details.country_flag} alt={`${details.country_name} flag`} style={{width:"60px", marginRight:"10px",paddingLeft:"5px"}} /> */}
+                            <div className="weatherInfo">
+                            {weather && !loading ?
+                            <>
+                                <span id='weatherDet'> {Math.ceil(weather.temp)}°   </span> 
+                                <img src={`http://openweathermap.org/img/w/${iconWeather}.png`} alt="" />
+                            </>
+                            :
+                            <div className="loaderDiv">                                
+                                <span style={{color: "#82847b"}}>Loading weather data<div class="loader"></div></span>
+                            </div>
+                            }
+                        </div>
                             <h1 id='countryTitle' style={{marginTop:"0px"}}>{details.country_name}  </h1>
                             <span>Code: {details.country_id}</span> <br />
                             <span>Perimeter: {<NumberFormat value={details.country_area} thousandsGroupStyle="thousand" thousandSeparator={true} decimalSeparator="." displayType={'text'} />} kms2</span>
@@ -93,13 +133,26 @@ export function CountryDetails() {
                             <br />
                             <span>Total poblation: {<NumberFormat value={details.country_poblation} thousandsGroupStyle="thousand" thousandSeparator={true} decimalSeparator="." displayType={'text'} />}</span>
                             <br />
-                            {moreData && <>
-                                <span>Region: {moreData.region}</span>
-                                <br />
-                                
-                                    <span>Language/s: {(Object.values(moreData.languages)).map(val => <span>{val} </span>)}</span>
-                            </>
-                            }
+                            <div className="fetching">
+                                <span>Region: </span>
+                                {!loading && moreData ? <>
+                                    <span style={{marginLeft:"10px"}}>{moreData.region}</span>
+                                    <br />                                
+                                </>
+                                :                            
+                                    <div class="loader"></div>
+                                }
+                            </div>
+                            
+                            <div className="fetching">
+                                <span>Language/s: </span>
+                                {!loading && moreData ? <>                                    
+                                        <span style={{marginLeft:"10px"}}>{(Object.values(moreData.languages)).map(val => <span>{val} </span>)}</span>
+                                </>
+                                :                            
+                                    <div class="loader"></div>
+                                }
+                            </div>
                         </div>
                         <div>
                             <iframe  className="holds-the-iframe" id='frame'

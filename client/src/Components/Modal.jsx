@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import ok from '../Assets/ok.png'
 import '../Styles/modal.css'
 
@@ -7,10 +6,7 @@ export function Modal({show, onClose}){
     if(!show)
         return null
 
-    function closeModal(){
-        show = false
-    }
-
+    
     function loadModal(){
         const modal = document.getElementById('modal')
         modal.style.opacity = "1"

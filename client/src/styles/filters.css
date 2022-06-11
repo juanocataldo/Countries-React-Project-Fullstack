@@ -17,7 +17,7 @@
 
 .filter-dock{
     display: flex;
-    background-color: #1e2a3e;
+    background-color: #1e2a3ec6;
     color: black;
     display: flex;
     color: #E4E7EA;
@@ -35,13 +35,11 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin: -20px 20px 20px 20px;
-    border-radius: 0px 0px 20px 20px;
-    background: rgb(41,54,72);
-background: linear-gradient(0deg, rgba(41,54,72,1) 0%, rgba(41,54,72,0.639093137254902) 46%, rgba(41,54,72,1) 89%);
+    
+  
     padding: 20px;
     color: white;
-    border: 1px solid rgba(101, 100, 100, 0.153);
+  
 }
 
 .page-dock{
