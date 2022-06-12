@@ -10,10 +10,12 @@
   font-family: 'Roboto', sans-serif;
 }
 
-html{
-  background-image: url('./Assets/HomeWallpaper.jpg');
-  background-repeat: repeat;
-  background-size:cover;
+html{  
+  background: url('./Assets/HomeWallpaper.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   
 }
 

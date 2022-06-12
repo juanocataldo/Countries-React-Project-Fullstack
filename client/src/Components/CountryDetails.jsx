@@ -91,18 +91,7 @@ export function CountryDetails() {
                     <div className="headerInfo">
                         <span id='titleActivities'>Details of {details.country_name}</span>
                         
-                        {/* <div className="weatherInfo">
-                            {weather && !loading ?
-                            <>
-                                <span id='weatherDet'> {Math.ceil(weather.temp)}°   </span> 
-                                <img src={`http://openweathermap.org/img/w/${iconWeather}.png`} alt="" />
-                            </>
-                            :
-                            <div className="loaderDiv">                                
-                                <span style={{color: "#82847b"}}>Loading weather data<div class="loader"></div></span>
-                            </div>
-                            }
-                        </div> */}
+                   
 
                     </div>
 

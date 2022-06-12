@@ -332,8 +332,6 @@ export function Home2({ countries }) {
         </div>
       </div>
 
-      <div className="paginatorSpace">
-        <div className="paginatorContainer">
           <div className="moveButtons">
             <button onClick={() => {paginate(currentPage-1)}}>
             <span class="material-symbols-outlined">arrow_back</span>
@@ -342,6 +340,8 @@ export function Home2({ countries }) {
             <span class="material-symbols-outlined">arrow_forward</span>
             </button>
           </div>
+      <div className="paginatorSpace">
+        <div className="paginatorContainer">
           {countryList.length <= 0
             ?<>
                 <Pagination postsPerPage={countriesPerPage} totalPosts={countries.length} paginate={paginate} currentPage={currentPage} />
