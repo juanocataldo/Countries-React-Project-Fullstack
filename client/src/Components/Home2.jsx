@@ -256,7 +256,10 @@ export function Home2({ countries }) {
 
   //Change Page
   const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber)
+    if(pageNumber > 0 && pageNumber < 26){
+      console.log('page',pageNumber)
+      setCurrentPage(pageNumber)
+    }
   }
 
 
@@ -328,15 +331,23 @@ export function Home2({ countries }) {
           </div>
         </div>
       </div>
+
       <div className="paginatorSpace">
         <div className="paginatorContainer">
+          <div className="moveButtons">
+            <button onClick={() => {paginate(currentPage-1)}}>
+            <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            <button onClick={() => {paginate(currentPage+1)}}>
+            <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+          </div>
           {countryList.length <= 0
-            ?
-            <Pagination postsPerPage={countriesPerPage} totalPosts={countries.length} paginate={paginate} currentPage={currentPage} />
-
+            ?<>
+                <Pagination postsPerPage={countriesPerPage} totalPosts={countries.length} paginate={paginate} currentPage={currentPage} />
+            </>
             :
             <Pagination postsPerPage={countriesPerPage} totalPosts={countryList.length} paginate={paginate} currentPage={currentPage} />
-
           }
         </div>
       </div>

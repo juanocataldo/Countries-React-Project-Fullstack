@@ -5,6 +5,10 @@
     color: white;
 }
 
+.pagination ul{
+    margin-left: -20px;
+}
+
 
 
 .active{
@@ -13,4 +17,39 @@
     padding: 5px;
     border-radius: 7px;
     color: white;
+}
+
+
+.paginatorSpace{
+    width: 96%;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.paginatorContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #1b2d4eb0;
+    width: 100%;
+    margin: 0px 20px 0 20px;
+    border-radius: 20px 20px 0px 0px;
+    border: 1px solid rgba(95, 95, 95, 0.411)
+}
+
+.paginatorContainer button{
+    background-color: #1b2d4e00;
+    border: none;
+    color: #ffffff;
+}
+
+.moveButtons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }

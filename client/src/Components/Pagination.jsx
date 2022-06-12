@@ -18,12 +18,14 @@ export function Pagination({ postsPerPage, totalPosts, paginate, currentPage }){
     return <nav className="pagination">
         <ul>
             {pageNumbers.map( number => (
+                <>
+            
                 <span className={currentPage === number ? 'active' : ''}  key={number}>
                     <button className={currentPage === number ? 'active' : ''} onClick={() => {paginate(number)}} >
                         {number}   
                     </button>
-                </span>
-            ))}
+                </span>        
+        </>))}
         </ul>
     </nav>
 }
