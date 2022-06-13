@@ -178,7 +178,7 @@ export function Home2({ countries }) {
     setSearchCountryByName(e.target.value)
   }
 
-  const filterItems = query => {
+  const filterItems = query => {    
     return countries.filter(c => c.country_name.match(new RegExp(query, "i")))
   }
 
@@ -240,6 +240,8 @@ export function Home2({ countries }) {
 
   function searchByName(e) {
     e.preventDefault()
+    console.log(filterItems(searchCountryByName))
+    setCurrentPage(1)
     setCountryList(filterItems(searchCountryByName))
   }
 
@@ -342,26 +344,26 @@ export function Home2({ countries }) {
 
       <div className="paginatorSpace">
         <div className="paginatorContainer">        
-          {countryList.length <= 0
-            ? <>
+          {countryList &&
+          <>
               <button onClick={() => { paginate(currentPage - 1) }}>
                 <span class="material-symbols-outlined">arrow_back</span>
               </button>
-              <Pagination postsPerPage={countriesPerPage} totalPosts={countries.length} paginate={paginate} currentPage={currentPage} />
+              <Pagination postsPerPage={countriesPerPage} totalPosts={countryList.length || 250} paginate={paginate} currentPage={currentPage} />
               <button onClick={() => { paginate(currentPage + 1) }}>
                 <span style={{ marginLeft: "15px" }} class="material-symbols-outlined">arrow_forward</span>
               </button>
             </>
-            :
-            <>
-              <button onClick={() => { paginate(currentPage - 1) }}>
-                <span class="material-symbols-outlined">arrow_back</span>
-              </button>
-              <Pagination postsPerPage={countriesPerPage} totalPosts={countryList.length} paginate={paginate} currentPage={currentPage} />
-              <button onClick={() => { paginate(currentPage + 1) }}>
-                <span style={{ marginLeft: "15px" }} class="material-symbols-outlined">arrow_forward</span>
-              </button>
-            </>
+            // :
+            // <>
+            //   <button onClick={() => { paginate(currentPage - 1) }}>
+            //     <span class="material-symbols-outlined">arrow_back</span>
+            //   </button>
+            //   <Pagination postsPerPage={countriesPerPage} totalPosts={countryList.length} paginate={paginate} currentPage={currentPage} />
+            //   <button onClick={() => { paginate(currentPage + 1) }}>
+            //     <span style={{ marginLeft: "15px" }} class="material-symbols-outlined">arrow_forward</span>
+            //   </button>
+            // </>
           }
         </div>
       </div>
