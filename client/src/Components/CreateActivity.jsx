@@ -67,24 +67,23 @@ export function CreateActivity() {
         let inputName = document.getElementById('touact_name')
         let difficulty = document.getElementById('touact_difficulty')
         let duration = document.getElementById('touact_duration')
+        let spanDurError = document.getElementById('durError')
         let season = document.getElementById('touact_season')
         let countries = document.getElementById('countries')
 
 
         if (!activity.touact_name) {
-            inputName.style.border = "1px solid #ff000086"
-            inputName.placeholder = "Fill this field"
-            console.log('mal nombre')
+            // inputName.style.border = "1px solid #ff000086"
+            // inputName.placeholder = "Fill this field"
             setNameError(true)
         } else {
-            console.log('buen nombre')
             setNameError(false)
             inputName.style.border = ""
         }
 
         if (!activity.touact_difficulty) {
             difficulty.style.border = "1px solid #ff000086"
-            difficulty.placeholder = "Fill this field"
+            difficulty.placeholder = "Fill difficulty field"
             setDiffError(true)
         } else {
             setDiffError(false)
@@ -92,19 +91,15 @@ export function CreateActivity() {
         }
 
         if (!activity.touact_duration) {
-            duration.style.border = "1px solid #ff000086"
-            duration.placeholder = "Fill this field"
             setDurError(true)
         } else {
             if (isNaN(activity.touact_duration)) {
+                setDurError(true)
                 console.log('not a number')
-                duration.style.border = "1px solid #ff000086"
-                duration.value = ""
-                duration.placeholder = "Only numbers"
                 setDurError(true)
             } else {
                 setDurError(false)
-                duration.style.border = ""
+                // duration.style.border = ""
             }
         }
 
@@ -220,12 +215,11 @@ export function CreateActivity() {
         console.log(countryList)
     }
 
-
-
     return <div>
         <div className="visual">
 
             <div className="filter">
+                
                 <div className="page-dock">
                     <h1 className='title'>Create Activity</h1>
                 </div>
@@ -234,22 +228,50 @@ export function CreateActivity() {
             <div className="createSpace">
 
                 <div className='createContainer'>
-
-                    <form id="formActivity" >
+                <div className="typePic">
+                        {actType === 'Sport' ?
+                            <img src={Sport} alt="" id="sportPic" />
+                            :
+                            actType === 'Tour' ?
+                                <img src={Tour} alt="" id="sportPic" />
+                                :
+                                actType === 'Gastronomy' ?
+                                    <img src={Gastronomy} alt="" id="sportPic" />
+                                    :
+                                    actType === 'Natural' ?
+                                        <img src={Natural} alt="" id="sportPic" />
+                                        :
+                                        actType === 'City' ?
+                                            <img src={City} alt="" id="sportPic" />
+                                            : null
+                        }
+                    </div>
+                    <form id="formActivity" style={{zIndex:"9999"}} >
                         <div className="block">
-                            <label>Activity name *</label><br />
-                            <input className="input" type="text" name="touact_name" id="touact_name" onChange={twoCalls} /><br />
+                            {/* <label>Activity name *</label><br /> */}
+                            {/* <h1 style={{position:"absolute"}}>{activity.touact_name ? activity.touact_name : ""}</h1> */}
+                            <div className="group">
+                            <span>Activity Name</span>
+                                <input className="input3" type="text" name="touact_name" id="touact_name" onChange={twoCalls} placeholder="..."/><br />
+                                <span class="highlight2"></span>
+                                <span class="bar"></span>
+                            </div>
+                            {nameError && <span className="error">Please fill this field</span>}
+                        </div>
+<br />
+                        <div className="block">
+                            {/* <label>Activity duration (hs) *</label><br /> */}      
+                            <span>Activity duration (hs)</span>   <br />                   
+                            <input className="input2" type="text" name="touact_duration" id="touact_duration" onChange={twoCalls} placeholder="hs" /><br />
+                            <span class="highlight2"></span>
+                                <span class="bar"></span>
+                            {durError && <span className="error" id="durError">Please fill this field only with numbers</span>}
                         </div>
 
                         <div className="block">
-                            <label>Activity duration (hs) *</label><br />
-                            <input className="input" type="text" name="touact_duration" id="touact_duration" onChange={twoCalls} /><br />
-                        </div>
-
-                        <div className="block">
-                            <label>Activity difficulty *</label><br />
+                            {/* <label>Activity difficulty *</label><br /> */}
                             <select className="input" name="touact_difficulty" id="touact_difficulty" onChange={twoCalls} >
-                                <option disabled="disabled" selected="Select" value="Select option">Select difficulty</option>
+                                <option disabled="disabled" selected="Select" value="Select option">Select activity difficulty</option>
                                 <option value="1">1 - Easy</option>
                                 <option value="2">2 - Upper Easy</option>
                                 <option value="3">3 - Medium</option>
@@ -260,9 +282,9 @@ export function CreateActivity() {
                         </div>
 
                         <div className="block">
-                            <label>Activity season *</label><br />
+                            {/* <label>Activity season *</label><br /> */}
                             <select className="input" name="touact_season" id="touact_season" onChange={twoCalls}>
-                                <option disabled="disabled" selected="Select" value="Select option">Select season</option>
+                                <option disabled="disabled" selected="Select" value="Select option">Select activity season</option>
                                 <option value="Summer">Summer</option>
                                 <option value="Winter">Winter</option>
                                 <option value="Spring">Spring</option>
@@ -272,9 +294,9 @@ export function CreateActivity() {
                         </div>
 
                         <div className="block">
-                            <label>Activity type</label><br />
+                            {/* <label>Activity type</label><br /> */}
                             <select className="input" name="activity_type" id="activity_type" onChange={setActivityType}>
-                                <option disabled="disabled" selected="Select" value="Select option">Select type</option>
+                                <option disabled="disabled" selected="Select" value="Select option">Select activity type</option>
                                 <option value="Sport">Sport</option>
                                 <option value="Tour">Tour</option>
                                 <option value="Gastronomy">Gastronomy</option>
@@ -286,16 +308,22 @@ export function CreateActivity() {
 
                         {/* <input type="text" name="touact_season" id="" onChange={fillActivityState} /><br /> */}
                         <div className="block">
-                            <label>Select country for this activity *</label><br />
+                            {/* <label>Select country for this activity *</label><br /> */}
                             <select className="input" name="country" id="countries" onChange={showPK}>
-                                <option disabled="disabled" selected="Select" value="Select option">Select an option</option>
+                                <option disabled="disabled" selected="Select" value="Select option">Select the countries availables for this activity</option>
                                 {ordered && ordered.map(c => <option value={c.country_name} defaultValue={c.country_name}>
                                     {c.country_name}
                                 </option>)}
                             </select>
 
                         </div>
+                        Activity for:
+                        <div className="flagList">
+                            {countryList && countryList.map(item => <div className="miniFlag"><button type="button" id="miniX" onClick={() => closeMiniFlag(item.country_id)}>x</button><img src={item.country_flag} alt="" /><span >{item.country_name}</span></div>)}
+                        </div>
                         <br />
+
+                      
 
                         <div className="submit">
                             <div className="saveBtn">
@@ -310,9 +338,10 @@ export function CreateActivity() {
                             <Modal onClose={() => setShowModal(false)} show={showModal} />
                         </div>
                     </form>
+                    
                 </div>
 
-                <div className="createContainerAct">
+                {/* <div className="createContainerAct">
                     <div className="typePic">
                         {actType === 'Sport' ?
                             <img src={Sport} alt="" id="sportPic" />
@@ -361,7 +390,7 @@ export function CreateActivity() {
                         </div>
 
                     </div>
-                </div>
+                </div> */}
 
             </div>
 

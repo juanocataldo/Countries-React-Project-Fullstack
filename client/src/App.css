@@ -6,7 +6,7 @@
 }
 
 .title{
-  color: #eeeeee59;
+  color: #eeeeeeab;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -49,8 +49,9 @@ input[type="submit"]:hover {
 
 input[type="button"], input[type="text"]:not(#inputNameSearch), select:not(.inputContinents){
   width: 90%;
-  border-radius: 5px;
+  border-radius: 5px;  
 }
+
 
 .App-logo {
   height: 40vmin;

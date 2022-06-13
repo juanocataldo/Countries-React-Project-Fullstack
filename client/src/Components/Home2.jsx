@@ -1,5 +1,6 @@
 import '../Styles/country.css'
 import '../Styles/filters.css'
+import '../Styles/form.css'
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getFullActivities, getCountriesPaginated, GET_ALL_COUNTRIES, orderCountries, GET_FILTERED_COUNTRIES, getCountries, getAllActivities, GET_FULL_COUNTRY_LIST } from "../Redux/actions"
@@ -59,13 +60,13 @@ export function Home2({ countries }) {
 
     if (az) {
       azBtn.style.backgroundColor = "rgb(128,96,44)"
-      zaBtn.style.backgroundColor = "#515960"
+      zaBtn.style.backgroundColor = "#12324D"
     } else
       azBtn.style.backgroundColor = ""
 
     if (za) {
       zaBtn.style.backgroundColor = "rgb(128,96,44)"
-      azBtn.style.backgroundColor = "#515960"
+      azBtn.style.backgroundColor = "#12324D"
     } else
       zaBtn.style.backgroundColor = ""
 
@@ -75,19 +76,19 @@ export function Home2({ countries }) {
     console.log(smallP)
     if (bigP) {
       big.style.backgroundColor = "rgb(128,96,44)"
-      small.style.backgroundColor = "#515960"
+      small.style.backgroundColor = "#263954"
     } else {
       big.style.backgroundColor = ""
     }
 
     if (smallP) {
       small.style.backgroundColor = "rgb(128,96,44)"
-      big.style.backgroundColor = "#515960"
+      big.style.backgroundColor = "#263954"
     } else {
       small.style.backgroundColor = ""
     }
 
-  }, [az, bigP, smallP, currentPage])
+  }, [az,za, bigP, smallP, currentPage])
 
 
 
@@ -278,9 +279,15 @@ export function Home2({ countries }) {
 
         <div className="inner-filter">
           <div className="filtro-row" id='name'>
-            <span>Country name</span>
+              <span>Country Name</span>
             <form onSubmit={searchByName} className='searchByName' style={{ marginTop: "5px" }}>
-              <input autoComplete='off' className="input" id='inputNameSearch' type="text" name="searchByName" placeholder="Search country" onChange={fillSearchByName} />
+            <div class="group">
+              <input required="" type="text" class="input2" onChange={fillSearchByName} />
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              {/* <label className='label2'>Country Name</label> */}
+            </div>
+              {/* <input autoComplete='off' className="input" id='inputNameSearch' type="text" name="searchByName" placeholder="Search country" onChange={fillSearchByName} /> */}
               <button className='search'>
                 <span class="material-symbols-outlined">search</span>
               </button>
@@ -288,11 +295,21 @@ export function Home2({ countries }) {
           </div>
           <div className="filtro-row">
             <span>Alphabetically</span><br />
-            <button id="az" className="input" onClick={() => orderByAZ()}>A-Z</button>
-            <button id="za" className="input" onClick={() => orderByZA()}>Z-A</button><br />
+            <button id="az" className="input" onClick={() => orderByAZ()}>
+              <div className="alphOrder">
+              <span class="material-symbols-outlined">arrow_right_alt</span>
+              AZ
+              </div>
+            </button>
+            <button id="za" className="input" onClick={() => orderByZA()}>
+            <div className="alphOrder">
+              <span class="material-symbols-outlined">keyboard_backspace</span>
+              AZ
+              </div>
+              </button><br />
           </div>
           <div className="filtro-row">
-            <span>By Continent</span><br />
+            <span className='filterName'>By Continent</span><br />
             <div className="iconFilter">
               <span id='iconFilter' class="material-symbols-outlined">public</span>
               <select className="inputContinents" name="continent" id="continents" onChange={filterByContinent}>
@@ -332,19 +349,25 @@ export function Home2({ countries }) {
         </div>
       </div>
 
-          <div className="moveButtons">
+      <div className="paginatorSpace">
+        <div className="paginatorContainer">
+          {/* <div className="moveButtons">
             <button onClick={() => {paginate(currentPage-1)}}>
             <span class="material-symbols-outlined">arrow_back</span>
             </button>
             <button onClick={() => {paginate(currentPage+1)}}>
             <span class="material-symbols-outlined">arrow_forward</span>
             </button>
-          </div>
-      <div className="paginatorSpace">
-        <div className="paginatorContainer">
+          </div> */}
           {countryList.length <= 0
             ?<>
+            <button onClick={() => {paginate(currentPage-1)}}>
+            <span class="material-symbols-outlined">arrow_back</span>
+            </button>
                 <Pagination postsPerPage={countriesPerPage} totalPosts={countries.length} paginate={paginate} currentPage={currentPage} />
+                <button onClick={() => {paginate(currentPage+1)}}>
+            <span style={{marginLeft:"15px"}} class="material-symbols-outlined">arrow_forward</span>
+            </button>
             </>
             :
             <Pagination postsPerPage={countriesPerPage} totalPosts={countryList.length} paginate={paginate} currentPage={currentPage} />
