@@ -47,10 +47,7 @@ export function Home2({ countries }) {
 
   useEffect(() => {
     console.log(currentPage)
-    // if(currentPage === 1)
-    //   setCountriesPerPage(9)
-    // else
-    // setCountriesPerPage(10)
+    
   }, [currentPage])
 
   useEffect(() => {
@@ -88,7 +85,7 @@ export function Home2({ countries }) {
       small.style.backgroundColor = ""
     }
 
-  }, [az,za, bigP, smallP, currentPage])
+  }, [az, za, bigP, smallP, currentPage])
 
 
 
@@ -232,7 +229,7 @@ export function Home2({ countries }) {
       });
 
       //CONCATENO LOS RESULTADOS PARA TENERLOS PROLIJOS A MANO
-      
+
       let resFinal = [].concat.apply([], filtered)
 
       console.log('Result', resFinal)
@@ -257,8 +254,8 @@ export function Home2({ countries }) {
 
   //Change Page
   const paginate = (pageNumber) => {
-    if(pageNumber > 0 && pageNumber < 26){
-      console.log('page',pageNumber)
+    if (pageNumber > 0 && pageNumber < 26) {
+      console.log('page', pageNumber)
       setCurrentPage(pageNumber)
     }
   }
@@ -273,21 +270,15 @@ export function Home2({ countries }) {
           <h1 className='title'>Home</h1>
         </div>
 
-        {/* <div className="filter-dock">
-          <span>Filters</span>
-        </div> */}
-
         <div className="inner-filter">
           <div className="filtro-row" id='name'>
-              <span>Country Name</span>
+            <span>Country Name</span>
             <form onSubmit={searchByName} className='searchByName' style={{ marginTop: "5px" }}>
-            <div class="group">
-              <input required="" type="text" class="input2" onChange={fillSearchByName} />
-              <span class="highlight"></span>
-              <span class="bar"></span>
-              {/* <label className='label2'>Country Name</label> */}
-            </div>
-              {/* <input autoComplete='off' className="input" id='inputNameSearch' type="text" name="searchByName" placeholder="Search country" onChange={fillSearchByName} /> */}
+              <div class="group">
+                <input required="" type="text" class="input2" onChange={fillSearchByName} />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+              </div>
               <button className='search'>
                 <span class="material-symbols-outlined">search</span>
               </button>
@@ -297,16 +288,16 @@ export function Home2({ countries }) {
             <span>Alphabetically</span><br />
             <button id="az" className="input" onClick={() => orderByAZ()}>
               <div className="alphOrder">
-              <span class="material-symbols-outlined">arrow_right_alt</span>
-              AZ
+                <span class="material-symbols-outlined">arrow_right_alt</span>
+                AZ
               </div>
             </button>
             <button id="za" className="input" onClick={() => orderByZA()}>
-            <div className="alphOrder">
-              <span class="material-symbols-outlined">keyboard_backspace</span>
-              AZ
+              <div className="alphOrder">
+                <span class="material-symbols-outlined">keyboard_backspace</span>
+                AZ
               </div>
-              </button><br />
+            </button><br />
           </div>
           <div className="filtro-row">
             <span className='filterName'>By Continent</span><br />
@@ -339,38 +330,38 @@ export function Home2({ countries }) {
 
           </div>
           <div className="filtro-row">
-            <span>By population</span><br />  
+            <span>By population</span><br />
             <div className="popu">
-                <button id="bigP" className="btnPopulationOrder" onClick={() => orderByBiggerPopulation()}> 
+              <button id="bigP" className="btnPopulationOrder" onClick={() => orderByBiggerPopulation()}>
                 <span class="material-symbols-outlined">person_add</span></button>
-            <button id="smallP" className="btnPopulationOrder" onClick={() => orderBySmallerPopulation()}><span class="material-symbols-outlined">person_remove</span></button>
-              </div>          
+              <button id="smallP" className="btnPopulationOrder" onClick={() => orderBySmallerPopulation()}><span class="material-symbols-outlined">person_remove</span></button>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="paginatorSpace">
-        <div className="paginatorContainer">
-          {/* <div className="moveButtons">
-            <button onClick={() => {paginate(currentPage-1)}}>
-            <span class="material-symbols-outlined">arrow_back</span>
-            </button>
-            <button onClick={() => {paginate(currentPage+1)}}>
-            <span class="material-symbols-outlined">arrow_forward</span>
-            </button>
-          </div> */}
+        <div className="paginatorContainer">        
           {countryList.length <= 0
-            ?<>
-            <button onClick={() => {paginate(currentPage-1)}}>
-            <span class="material-symbols-outlined">arrow_back</span>
-            </button>
-                <Pagination postsPerPage={countriesPerPage} totalPosts={countries.length} paginate={paginate} currentPage={currentPage} />
-                <button onClick={() => {paginate(currentPage+1)}}>
-            <span style={{marginLeft:"15px"}} class="material-symbols-outlined">arrow_forward</span>
-            </button>
+            ? <>
+              <button onClick={() => { paginate(currentPage - 1) }}>
+                <span class="material-symbols-outlined">arrow_back</span>
+              </button>
+              <Pagination postsPerPage={countriesPerPage} totalPosts={countries.length} paginate={paginate} currentPage={currentPage} />
+              <button onClick={() => { paginate(currentPage + 1) }}>
+                <span style={{ marginLeft: "15px" }} class="material-symbols-outlined">arrow_forward</span>
+              </button>
             </>
             :
-            <Pagination postsPerPage={countriesPerPage} totalPosts={countryList.length} paginate={paginate} currentPage={currentPage} />
+            <>
+              <button onClick={() => { paginate(currentPage - 1) }}>
+                <span class="material-symbols-outlined">arrow_back</span>
+              </button>
+              <Pagination postsPerPage={countriesPerPage} totalPosts={countryList.length} paginate={paginate} currentPage={currentPage} />
+              <button onClick={() => { paginate(currentPage + 1) }}>
+                <span style={{ marginLeft: "15px" }} class="material-symbols-outlined">arrow_forward</span>
+              </button>
+            </>
           }
         </div>
       </div>
