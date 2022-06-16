@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { createActivityOfCountry, getAllActivities, getCountries, loadActivity } from "../Redux/actions"
-import '../Styles/createActivity.css'
-import '../Styles/filters.css'
+import '../styles/createActivity.css'
+import '../styles/filters.css'
 import { Modal } from "./Modal"
 import Sport from '../Assets/activity_type/Sport.png'
 import Tour from '../Assets/activity_type/Tour.png'
@@ -73,8 +73,6 @@ export function CreateActivity() {
 
 
         if (!activity.touact_name) {
-            // inputName.style.border = "1px solid #ff000086"
-            // inputName.placeholder = "Fill this field"
             setNameError(true)
         } else {
             setNameError(false)
@@ -99,7 +97,6 @@ export function CreateActivity() {
                 setDurError(true)
             } else {
                 setDurError(false)
-                // duration.style.border = ""
             }
         }
 
@@ -179,39 +176,18 @@ export function CreateActivity() {
 
     }
 
-    function setActivityType(e) {
-        // let imgActType = document.getElementById('sportPic')
-
-        
-
-        // if(imgActType)
-        //     imgActType.classList.add('sportPic')
- 
+    function setActivityType(e) {       
         e.preventDefault()        
         setActType(e.target.value)
     }
 
 
     function showPK(e) {
-        let pk = countries.filter(c => c.country_name === e.target.value)
-        setCountryID(pk[0].country_id)
-        let add = pk[0]
+        let pk = countries.find(c => c.country_name === e.target.value)
+        setCountryID(pk.country_id)
+        
+        setCountryList(oldItems => [...oldItems, pk])
 
-
-
-        let repeated = countryList.find(c => {
-            if (c.country_id === pk[0].country_id)
-                return true
-
-            return false
-        })
-
-        console.log(repeated)
-
-        if (repeated === undefined)
-            setCountryList(oldItems => [...oldItems, add])
-
-        console.log(repeated)
         console.log(countryList)
     }
 
@@ -219,7 +195,6 @@ export function CreateActivity() {
         <div className="visual">
 
             <div className="filter">
-                
                 <div className="page-dock">
                     <h1 className='title'>Create Activity</h1>
                 </div>
@@ -248,8 +223,6 @@ export function CreateActivity() {
                     </div>
                     <form id="formActivity" style={{zIndex:"9999"}} >
                         <div className="block">
-                            {/* <label>Activity name *</label><br /> */}
-                            {/* <h1 style={{position:"absolute"}}>{activity.touact_name ? activity.touact_name : ""}</h1> */}
                             <div className="group">
                             <span>Activity Name</span>
                                 <input className="input3" type="text" name="touact_name" id="touact_name" onChange={twoCalls} placeholder="..."/><br />
@@ -260,7 +233,6 @@ export function CreateActivity() {
                         </div>
 <br />
                         <div className="block">
-                            {/* <label>Activity duration (hs) *</label><br /> */}      
                             <span>Activity duration (hs)</span>   <br />                   
                             <input className="input2" type="text" name="touact_duration" id="touact_duration" onChange={twoCalls} placeholder="hs" /><br />
                             <span class="highlight2"></span>
@@ -269,7 +241,6 @@ export function CreateActivity() {
                         </div>
 
                         <div className="block">
-                            {/* <label>Activity difficulty *</label><br /> */}
                             <select className="input" name="touact_difficulty" id="touact_difficulty" onChange={twoCalls} >
                                 <option disabled="disabled" selected="Select" value="Select option">Select activity difficulty</option>
                                 <option value="1">1 - Easy</option>
@@ -282,7 +253,6 @@ export function CreateActivity() {
                         </div>
 
                         <div className="block">
-                            {/* <label>Activity season *</label><br /> */}
                             <select className="input" name="touact_season" id="touact_season" onChange={twoCalls}>
                                 <option disabled="disabled" selected="Select" value="Select option">Select activity season</option>
                                 <option value="Summer">Summer</option>
@@ -294,7 +264,6 @@ export function CreateActivity() {
                         </div>
 
                         <div className="block">
-                            {/* <label>Activity type</label><br /> */}
                             <select className="input" name="activity_type" id="activity_type" onChange={setActivityType}>
                                 <option disabled="disabled" selected="Select" value="Select option">Select activity type</option>
                                 <option value="Sport">Sport</option>
@@ -306,9 +275,7 @@ export function CreateActivity() {
 
                         </div>
 
-                        {/* <input type="text" name="touact_season" id="" onChange={fillActivityState} /><br /> */}
                         <div className="block">
-                            {/* <label>Select country for this activity *</label><br /> */}
                             <select className="input" name="country" id="countries" onChange={showPK}>
                                 <option disabled="disabled" selected="Select" value="Select option">Select the countries availables for this activity</option>
                                 {ordered && ordered.map(c => <option value={c.country_name} defaultValue={c.country_name}>
@@ -323,8 +290,6 @@ export function CreateActivity() {
                         </div>
                         <br />
 
-                      
-
                         <div className="submit">
                             <div className="saveBtn">
                                 <button className="submBtn" onClick={submitActivity}>
@@ -338,64 +303,8 @@ export function CreateActivity() {
                             <Modal onClose={() => setShowModal(false)} show={showModal} />
                         </div>
                     </form>
-                    
                 </div>
-
-                {/* <div className="createContainerAct">
-                    <div className="typePic">
-                        {actType === 'Sport' ?
-                            <img src={Sport} alt="" id="sportPic" />
-                            :
-                            actType === 'Tour' ?
-                                <img src={Tour} alt="" id="sportPic" />
-                                :
-                                actType === 'Gastronomy' ?
-                                    <img src={Gastronomy} alt="" id="sportPic" />
-                                    :
-                                    actType === 'Natural' ?
-                                        <img src={Natural} alt="" id="sportPic" />
-                                        :
-                                        actType === 'City' ?
-                                            <img src={City} alt="" id="sportPic" />
-                                            : null
-                        }
-                    </div>
-                    <div className="formulario">
-                        <h1>{activity.touact_name ? activity.touact_name : "Activity"}</h1>
-                        Duration: <span className="actRes">{activity.touact_duration}hs</span>
-                        <hr id="renglon" />
-                        Difficulty: <span className="actRes">
-                        {activity.touact_difficulty === '1' ? " Easy (For everyone)" : ""}
-                        {activity.touact_difficulty === '2' ? " Upper easy (No experience needed)" : ""}
-                        {activity.touact_difficulty === '3' ? " Medium (Some experience is required)" : ""}
-                        {activity.touact_difficulty === '4' ? " Advanced (Experience required)" : ""}
-                        {activity.touact_difficulty === '5' ? " Pro (Only for professionals)" : ""}
-                        {activity.touact_season !== '' ? "" : activity.touact_season !== "All the year" ? "AAA" : "Always check if this weather is appropiate for this activity"}
-                        <hr id="renglon" />
-                        </span>
-                        
-                        Season: <span className="actRes"> 
-                             {activity.touact_season}
-                        </span><br />
-                        <hr id="renglon" />
-                        Activity type: <span className="actRes">
-                            {actType}
-                        </span>
-
-                        <hr id="renglon" />
-                        
-                        Activity for:
-                        <div className="flagList">
-                            {countryList && countryList.map(item => <div className="miniFlag"><button id="miniX" onClick={() => closeMiniFlag(item.country_id)}>x</button><img src={item.country_flag} alt="" /><span >{item.country_name}</span></div>)}
-                        </div>
-
-                    </div>
-                </div> */}
-
             </div>
-
         </div>
-
-
     </div>
 }

@@ -1,4 +1,4 @@
-import '../Styles/pagination.css'
+import '../styles/pagination.css'
 
 export function Pagination({ postsPerPage, totalPosts, paginate, currentPage }){
     const pageNumbers = []

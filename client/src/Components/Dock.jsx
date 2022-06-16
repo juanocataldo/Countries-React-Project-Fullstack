@@ -1,4 +1,4 @@
-import '../Styles/dock.css'
+import '../styles/dock.css'
 import Logo from '../Assets/logo.png'
 
 export function Dock(){

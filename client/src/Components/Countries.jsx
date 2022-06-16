@@ -1,6 +1,6 @@
 import { Country } from "./Country"
-import '../Styles/country.css'
-import '../Styles/filters.css'
+import '../styles/country.css'
+import '../styles/filters.css'
 
 export function Countries({posts}){
         

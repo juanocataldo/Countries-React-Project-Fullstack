@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import '../Styles/landing.css'
+import '../styles/landing.css'
 
 export function Landing() {
     return <div className="wallpaper">

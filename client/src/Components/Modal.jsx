@@ -1,5 +1,5 @@
 import ok from '../Assets/ok.png'
-import '../Styles/modal.css'
+import '../styles/modal.css'
 
 export function Modal({show, onClose}){
 

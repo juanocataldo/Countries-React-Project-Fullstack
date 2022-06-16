@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import '../Styles/country.css'
+import '../styles/country.css'
 import { getCountries, GET_ALL_COUNTRIES, GET_FULL_COUNTRY_LIST, setFavCountry, SET_FAVORITE_COUNTRY } from '../Redux/actions'
 import { useEffect, useState } from 'react'
 import heart_red from '../Assets/heart_red.png'

@@ -1,4 +1,4 @@
-import '../Styles/details.css'
+import '../styles/details.css'
 import { useEffect, useState } from "react"
 import { NavLink, useNavigate, useParams } from "react-router-dom"
 import back from '../Assets/back.png'
@@ -90,9 +90,6 @@ export function CountryDetails() {
                 <div className="info" style={{zIndex:"9999"}}>
                     <div className="headerInfo">
                         <span id='titleActivities'>Details of {details.country_name}</span>
-                        
-                   
-
                     </div>
 
                 <br />
@@ -101,7 +98,6 @@ export function CountryDetails() {
                     <div className="flag" >
                             <img src={details.country_flag} id="detailFlag" alt="" />
                         <div className="">
-                            {/* <img src={details.country_flag} alt={`${details.country_name} flag`} style={{width:"60px", marginRight:"10px",paddingLeft:"5px"}} /> */}
                             <div className="weatherInfo">
                             {weather && !loading ?
                             <>

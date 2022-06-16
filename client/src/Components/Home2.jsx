@@ -1,6 +1,6 @@
-import '../Styles/country.css'
-import '../Styles/filters.css'
-import '../Styles/form.css'
+import '../styles/country.css'
+import '../styles/filters.css'
+import '../styles/form.css'
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getFullActivities, getCountriesPaginated, GET_ALL_COUNTRIES, orderCountries, GET_FILTERED_COUNTRIES, getCountries, getAllActivities, GET_FULL_COUNTRY_LIST } from "../Redux/actions"
